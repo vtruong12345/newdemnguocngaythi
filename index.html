@@ -1,0 +1,1080 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0f766e" />
+  <meta name="description" content="Trang web đếm ngược ngày thi tốt nghiệp THPT 2026" />
+  <title>Đếm Ngược Ngày Thi Tốt Nghiệp THPT 2026</title>
+  <style>
+    :root {
+      --bg-1: #0f5069;
+      --bg-2: #0f766e;
+      --bg-3: #0f3f4d;
+      --card: rgba(255,255,255,.13);
+      --card-strong: rgba(255,255,255,.17);
+      --card-border: rgba(255,255,255,.22);
+      --text: #f8fafc;
+      --muted: #c7d2fe;
+      --muted-2: #bfd7de;
+      --accent: #3b82f6;
+      --accent-2: #14b8a6;
+      --accent-3: #eab308;
+      --danger: #ef4444;
+      --shadow: 0 24px 80px rgba(0,0,0,.26);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --max: 1160px;
+      color-scheme: dark;
+    }
+
+    [data-theme="light"] {
+      --bg-1: #dff5ff;
+      --bg-2: #d7fff4;
+      --bg-3: #eef2ff;
+      --card: rgba(255,255,255,.78);
+      --card-strong: rgba(255,255,255,.92);
+      --card-border: rgba(15,23,42,.11);
+      --text: #0f172a;
+      --muted: #334155;
+      --muted-2: #475569;
+      --shadow: 0 24px 80px rgba(15,23,42,.14);
+      color-scheme: light;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 9% 98%, rgba(99,179,237,.23), transparent 18rem),
+        radial-gradient(circle at 92% 48%, rgba(45,212,191,.28), transparent 12rem),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 58%, var(--bg-3));
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 999px;
+      opacity: .38;
+    }
+    body::before {
+      width: 450px; height: 450px;
+      left: -170px; bottom: -190px;
+      background: rgba(148, 216, 230, .23);
+    }
+    body::after {
+      width: 270px; height: 270px;
+      right: 55px; top: 44%;
+      background: rgba(153, 246, 228, .24);
+    }
+
+    .curve {
+      position: fixed;
+      right: -80px;
+      bottom: -30px;
+      width: 680px;
+      height: 230px;
+      border: 4px solid rgba(255,255,255,.08);
+      border-left: 0;
+      border-bottom: 0;
+      border-radius: 100% 0 0 0;
+      transform: rotate(-15deg);
+      pointer-events: none;
+    }
+
+    .page { position: relative; z-index: 1; }
+
+    .topbar {
+      width: 100%;
+      background: rgba(4, 47, 61, .72);
+      border-bottom: 1px solid rgba(255,255,255,.11);
+      backdrop-filter: blur(18px);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    [data-theme="light"] .topbar { background: rgba(255,255,255,.72); }
+
+    .topbar-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 22px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,.16);
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+      font-size: 23px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: clamp(20px, 3vw, 28px);
+      line-height: 1.1;
+      font-weight: 850;
+      letter-spacing: -.03em;
+    }
+    .brand p {
+      margin: 5px 0 0;
+      color: var(--muted-2);
+      font-weight: 650;
+      font-size: 14px;
+    }
+
+    .actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: end; }
+    .icon-btn,
+    .pill-btn {
+      border: 1px solid transparent;
+      color: var(--text);
+      background: transparent;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      font: inherit;
+    }
+    .icon-btn {
+      width: 38px; height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+    }
+    .pill-btn {
+      border-radius: 999px;
+      padding: 10px 14px;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      font-weight: 800;
+      font-size: 13px;
+    }
+    .icon-btn:hover,
+    .pill-btn:hover {
+      background: rgba(255,255,255,.13);
+      border-color: rgba(255,255,255,.18);
+      transform: translateY(-1px);
+    }
+    .icon-btn.music-on {
+      background: rgba(20,184,166,.28);
+      border-color: rgba(94,234,212,.45);
+      color: #ccfbf1;
+      box-shadow: 0 0 0 3px rgba(20,184,166,.14);
+    }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 22px 22px 58px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 410px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .card {
+      border: 1px solid var(--card-border);
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,.10));
+      backdrop-filter: blur(16px);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+    }
+
+    .quote-card {
+      text-align: center;
+      padding: clamp(26px, 4vw, 46px) 24px;
+      min-height: 170px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 24px;
+    }
+    .quote-mark { font-size: 48px; line-height: .7; color: rgba(255,255,255,.72); font-weight: 900; }
+    .quote-text {
+      margin: 12px 0 10px;
+      font-size: clamp(22px, 3.1vw, 31px);
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: -.025em;
+    }
+    .quote-author { margin: 0; color: var(--muted-2); font-weight: 850; }
+    .quote-sub { margin: 12px 0 0; color: var(--muted-2); font-size: 13px; font-weight: 750; opacity: .86; }
+
+    .next-card { padding: 26px 24px; margin-bottom: 24px; }
+    .next-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-align: center;
+      color: var(--muted-2);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+    }
+    .small-icon {
+      width: 46px; height: 46px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.18);
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+    }
+    .next-subject { margin-top: 2px; }
+    .next-date {
+      display: block;
+      margin-top: 2px;
+      color: var(--text);
+      font-size: 27px;
+      font-weight: 950;
+      letter-spacing: -.03em;
+      text-transform: none;
+    }
+    .time-badge {
+      margin: 12px auto 0;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(20,184,166,.28);
+      border: 1px solid rgba(45,212,191,.32);
+      color: #dcfffb;
+      font-weight: 900;
+      font-size: 14px;
+    }
+    [data-theme="light"] .time-badge { color: #0f766e; }
+
+    .count-section { text-align: center; margin: 26px 0 30px; }
+    .section-title {
+      margin: 0 0 18px;
+      font-size: clamp(18px, 2.4vw, 24px);
+      font-weight: 900;
+      letter-spacing: -.015em;
+    }
+    .count-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .count-box {
+      min-height: 116px;
+      border-radius: 18px;
+      background: rgba(5, 35, 44, .76);
+      border: 1px solid rgba(255,255,255,.14);
+      display: grid;
+      place-content: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 16px 30px rgba(0,0,0,.16);
+    }
+    [data-theme="light"] .count-box { background: rgba(15, 118, 110, .92); color: white; }
+    .count-number {
+      font-size: clamp(38px, 6vw, 58px);
+      font-weight: 950;
+      line-height: 1;
+      letter-spacing: -.06em;
+      font-variant-numeric: tabular-nums;
+    }
+    .count-label {
+      margin-top: 10px;
+      font-size: 14px;
+      color: rgba(255,255,255,.76);
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+    }
+
+    .chips {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 20px 0 28px;
+    }
+    .chip {
+      border: 1px solid rgba(255,255,255,.18);
+      color: var(--text);
+      background: rgba(255,255,255,.10);
+      border-radius: 10px;
+      padding: 9px 13px;
+      font-size: 13px;
+      font-weight: 850;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .chip.green { background: rgba(20,184,166,.23); border-color: rgba(20,184,166,.5); }
+    .chip.blue { background: rgba(59,130,246,.22); border-color: rgba(59,130,246,.5); }
+    .chip.purple { background: rgba(124,58,237,.24); border-color: rgba(124,58,237,.5); }
+    .chip.yellow { background: rgba(234,179,8,.20); border-color: rgba(234,179,8,.48); }
+
+    .panel { padding: 24px; }
+    .panel + .panel { margin-top: 20px; }
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .panel-title {
+      margin: 0;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-size: clamp(20px, 2.4vw, 26px);
+      font-weight: 950;
+      letter-spacing: -.025em;
+    }
+    .status-badge {
+      display: inline-flex;
+      gap: 7px;
+      align-items: center;
+      border: 1px solid rgba(234,179,8,.35);
+      background: rgba(234,179,8,.18);
+      color: #e7f8a8;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 950;
+      white-space: nowrap;
+    }
+    [data-theme="light"] .status-badge { color: #854d0e; }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .news-card {
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 18px;
+      background: rgba(255,255,255,.10);
+      padding: 18px;
+      min-height: 142px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      text-decoration: none;
+      color: inherit;
+      display: grid;
+      align-content: space-between;
+    }
+    .news-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.28); background: rgba(255,255,255,.14); }
+    .news-meta { display: flex; justify-content: space-between; gap: 8px; align-items: center; margin-bottom: 12px; }
+    .tag {
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(148,163,184,.24);
+      border: 1px solid rgba(255,255,255,.16);
+      color: var(--muted-2);
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .ago { color: var(--muted-2); font-size: 12px; font-weight: 850; white-space: nowrap; }
+    .news-title { margin: 0; font-size: 18px; line-height: 1.35; font-weight: 950; letter-spacing: -.02em; }
+    .news-desc { margin: 10px 0 0; color: var(--muted-2); font-size: 14px; line-height: 1.5; font-weight: 650; }
+
+    .side { position: sticky; top: 92px; }
+    .schedule-list { display: grid; gap: 12px; }
+    .exam-card {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 12px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.10);
+      border-radius: 16px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .exam-card.active {
+      border-color: rgba(59,130,246,.74);
+      background: rgba(59,130,246,.22);
+      box-shadow: 0 0 0 2px rgba(59,130,246,.20) inset;
+    }
+    .exam-card.done { opacity: .58; }
+    .exam-card:hover { transform: translateY(-1px); }
+    .exam-icon {
+      width: 28px; height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 4px;
+      background: #0ea5e9;
+      color: white;
+      border: 1px solid rgba(255,255,255,.28);
+      font-size: 16px;
+      font-weight: 950;
+      align-self: start;
+    }
+    .exam-subject {
+      margin: 0 0 6px;
+      font-size: 17px;
+      font-weight: 950;
+      letter-spacing: -.02em;
+    }
+    .exam-info {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      color: var(--muted-2);
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .exam-status {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 4px 9px;
+      background: rgba(59,130,246,.35);
+      color: #dbeafe;
+      font-size: 12px;
+      font-weight: 950;
+    }
+    [data-theme="light"] .exam-status { color: #1d4ed8; background: rgba(59,130,246,.15); }
+
+    .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .tool-card {
+      border: 1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.09);
+      border-radius: 15px;
+      padding: 14px;
+    }
+    .tool-card strong { display: block; margin-bottom: 5px; font-size: 14px; }
+    .tool-card span { color: var(--muted-2); font-size: 13px; line-height: 1.45; font-weight: 650; }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      place-items: center;
+      background: rgba(2,6,23,.58);
+      backdrop-filter: blur(10px);
+      padding: 18px;
+    }
+    .modal-backdrop.open { display: grid; }
+    .modal {
+      width: min(820px, 100%);
+      max-height: min(88vh, 880px);
+      overflow: auto;
+      border-radius: 24px;
+      border: 1px solid var(--card-border);
+      background: linear-gradient(180deg, rgba(15,78,92,.97), rgba(15,118,110,.97));
+      box-shadow: 0 28px 100px rgba(0,0,0,.38);
+      padding: 22px;
+    }
+    [data-theme="light"] .modal { background: rgba(255,255,255,.98); }
+    .modal-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 16px; }
+    .modal-head h2 { margin: 0; font-size: 24px; letter-spacing: -.03em; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { display: grid; gap: 7px; margin-bottom: 12px; }
+    .field.full { grid-column: 1 / -1; }
+    label { color: var(--muted-2); font-size: 13px; font-weight: 950; }
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.20);
+      color: var(--text);
+      background: rgba(255,255,255,.10);
+      border-radius: 13px;
+      padding: 12px 13px;
+      font: inherit;
+      outline: 0;
+    }
+    textarea { min-height: 84px; resize: vertical; }
+    input:focus, textarea:focus, select:focus { border-color: rgba(59,130,246,.75); box-shadow: 0 0 0 3px rgba(59,130,246,.22); }
+    [data-theme="light"] input,
+    [data-theme="light"] textarea,
+    [data-theme="light"] select { background: rgba(15,23,42,.04); border-color: rgba(15,23,42,.16); }
+    .editor-list { display: grid; gap: 12px; margin: 12px 0 16px; }
+    .editor-row { border: 1px solid rgba(255,255,255,.13); border-radius: 18px; padding: 14px; background: rgba(255,255,255,.08); }
+    .row-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px; }
+    .primary { background: rgba(59,130,246,.86); border-color: rgba(147,197,253,.45); color: white; }
+    .success { background: rgba(20,184,166,.72); border-color: rgba(94,234,212,.45); color: white; }
+    .danger { background: rgba(239,68,68,.76); border-color: rgba(252,165,165,.45); color: white; }
+    .ghost { background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.15); }
+    .hidden { display: none !important; }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%) translateY(22px);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 200;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(15,23,42,.88);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 999px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.28);
+      font-weight: 800;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    @media (max-width: 980px) {
+      .layout { grid-template-columns: 1fr; }
+      .side { position: static; }
+      .news-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .topbar-inner { grid-template-columns: auto 1fr; }
+      .actions { grid-column: 1 / -1; justify-content: start; }
+      .container { padding-inline: 14px; }
+      .count-grid { grid-template-columns: repeat(2, 1fr); }
+      .count-box { min-height: 104px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .panel { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="curve" aria-hidden="true"></div>
+  <div class="page">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="logo" aria-hidden="true">🗓️</div>
+        <div class="brand">
+          <h1 id="siteTitle">Đếm Ngược Ngày Thi Tốt Nghiệp THPT 2026</h1>
+          <p id="siteSubtitle">Trang web đếm ngược ngày thi tốt nghiệp THPT 2026</p>
+        </div>
+        <nav class="actions" aria-label="Công cụ nhanh">
+          <button class="icon-btn" id="musicBtn" type="button" title="Bật/tắt nhạc nền">♪</button>
+          <button class="icon-btn" id="filterBtn" type="button" title="Ẩn/hiện môn đã thi">⌁</button>
+          <button class="icon-btn" id="shareBtn" type="button" title="Chia sẻ trang">↗</button>
+          <button class="icon-btn" id="editBtn" type="button" title="Chỉnh sửa dữ liệu">▣</button>
+          <button class="icon-btn" id="themeBtn" type="button" title="Đổi giao diện">☾</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="layout">
+        <section>
+          <article class="card quote-card">
+            <div>
+              <div class="quote-mark">❞</div>
+              <p class="quote-text" id="quoteText">“Đầu tư vào tri thức luôn mang lại lợi nhuận tốt nhất”</p>
+              <p class="quote-author" id="quoteAuthor">— Benjamin Franklin</p>
+              <p class="quote-sub" id="quoteSub">An investment in knowledge pays the best interest</p>
+            </div>
+          </article>
+
+          <article class="card next-card">
+            <div class="next-line">
+              <span class="small-icon">◷</span>
+              <span>
+                <span id="nextLabel">Môn thi tiếp theo: Ngữ văn</span>
+                <span class="next-date" id="nextDate">11/6/2026</span>
+              </span>
+            </div>
+            <div class="time-badge" id="nextTime">▣ 07:30</div>
+          </article>
+
+          <section class="count-section" aria-live="polite">
+            <h2 class="section-title" id="countTitle">Thời gian còn lại đến môn thi Ngữ văn</h2>
+            <div class="count-grid">
+              <div class="count-box"><div class="count-number" id="days">00</div><div class="count-label">Ngày</div></div>
+              <div class="count-box"><div class="count-number" id="hours">00</div><div class="count-label">Giờ</div></div>
+              <div class="count-box"><div class="count-number" id="minutes">00</div><div class="count-label">Phút</div></div>
+              <div class="count-box"><div class="count-number" id="seconds">00</div><div class="count-label">Giây</div></div>
+            </div>
+          </section>
+
+          <div class="chips" id="chips"></div>
+
+          <section class="card panel">
+            <div class="panel-header">
+              <h2 class="panel-title">▱ Tin tức & Thông báo mới nhất</h2>
+              <span class="status-badge">⟳ Đang cập nhật</span>
+            </div>
+            <div class="news-grid" id="newsGrid"></div>
+          </section>
+        </section>
+
+        <aside class="side">
+          <section class="card panel">
+            <div class="panel-header">
+              <h2 class="panel-title">▱ Lịch thi tổng quan 2026</h2>
+            </div>
+            <div class="schedule-list" id="scheduleList"></div>
+          </section>
+
+          <section class="card panel">
+            <div class="panel-header">
+              <h2 class="panel-title">⚙ Tính năng</h2>
+            </div>
+            <div class="tools-grid">
+              <div class="tool-card"><strong>Đếm ngược thật</strong><span>Tự chọn môn thi gần nhất chưa diễn ra.</span></div>
+              <div class="tool-card"><strong>Lưu dữ liệu</strong><span>Chỉnh lịch thi, tin tức, câu quote ngay trên trang.</span></div>
+              <div class="tool-card"><strong>Nhạc nền</strong><span>Có sẵn danh sách nhạc nhẹ, bật/tắt bằng một nút.</span></div>
+              <div class="tool-card"><strong>Xuất/Nhập JSON</strong><span>Sao lưu dữ liệu để đưa lên GitHub Pages.</span></div>
+              <div class="tool-card"><strong>Responsive</strong><span>Dùng tốt trên máy tính, tablet và điện thoại.</span></div>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modal-head">
+        <h2 id="modalTitle">Chỉnh sửa trang đếm ngược</h2>
+        <button class="icon-btn ghost" id="closeModal" type="button" title="Đóng">×</button>
+      </div>
+
+      <div class="form-grid">
+        <div class="field full"><label for="editSiteTitle">Tiêu đề trang</label><input id="editSiteTitle" /></div>
+        <div class="field full"><label for="editSiteSubtitle">Mô tả ngắn</label><input id="editSiteSubtitle" /></div>
+        <div class="field full"><label for="editQuote">Câu truyền cảm hứng</label><input id="editQuote" /></div>
+        <div class="field"><label for="editAuthor">Tác giả</label><input id="editAuthor" /></div>
+        <div class="field"><label for="editSubQuote">Dòng phụ</label><input id="editSubQuote" /></div>
+      </div>
+
+      <h3>Lịch thi</h3>
+      <div class="editor-list" id="examEditor"></div>
+      <button class="pill-btn ghost" id="addExamBtn" type="button">＋ Thêm môn thi</button>
+
+      <h3>Tin tức</h3>
+      <div class="editor-list" id="newsEditor"></div>
+      <button class="pill-btn ghost" id="addNewsBtn" type="button">＋ Thêm tin</button>
+
+      <div class="row-actions" style="margin-top: 18px; flex-wrap: wrap;">
+        <button class="pill-btn ghost" id="exportBtn" type="button">⬇ Xuất JSON</button>
+        <label class="pill-btn ghost" for="importFile" style="cursor:pointer;">⬆ Nhập JSON</label>
+        <input class="hidden" id="importFile" type="file" accept="application/json" />
+        <button class="pill-btn danger" id="resetBtn" type="button">Khôi phục mặc định</button>
+        <button class="pill-btn success" id="saveBtn" type="button">✓ Lưu thay đổi</button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="musicPlayer" preload="auto"></audio>
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const DEFAULT_DATA = {
+      siteTitle: "Đếm Ngược Ngày Thi Tốt Nghiệp THPT 2026",
+      siteSubtitle: "Trang web đếm ngược ngày thi tốt nghiệp THPT 2026",
+      quoteText: "“Đầu tư vào tri thức luôn mang lại lợi nhuận tốt nhất”",
+      quoteAuthor: "— Benjamin Franklin",
+      quoteSub: "An investment in knowledge pays the best interest",
+      chips: [
+        ["☆", "Nỗ lực mỗi ngày", "green"],
+        ["♧", "Đồng hành cùng nhau", "blue"],
+        ["◎", "Hướng tới thành công", "purple"],
+        ["⚡", "Tin tưởng bản thân", "yellow"]
+      ],
+      music: [
+        { name: "Nhạc tập trung nhẹ", url: "https://cdn.pixabay.com/download/audio/2022/10/18/audio_31c2730e64.mp3?filename=lofi-study-112191.mp3" },
+        { name: "Piano thư giãn", url: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=inspiring-ambient-116199.mp3" },
+        { name: "Giai điệu bình yên", url: "https://cdn.pixabay.com/download/audio/2022/08/02/audio_884fe92c21.mp3?filename=lofi-chill-140858.mp3" },
+        { name: "Lofi học bài", url: "https://cdn.pixabay.com/download/audio/2023/04/23/audio_60dfadef0e.mp3?filename=lofi-study-112191.mp3" },
+        { name: "Chill buổi tối", url: "https://cdn.pixabay.com/download/audio/2022/11/22/audio_febc508520.mp3?filename=chill-lofi-song-8444.mp3" },
+        { name: "Không gian yên tĩnh", url: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=ambient-piano-logo-129296.mp3" }
+      ],
+      exams: [
+        { subject: "Ngữ văn", icon: "📝", date: "2026-06-11", time: "07:30", duration: 120 },
+        { subject: "Toán", icon: "▦", date: "2026-06-11", time: "14:20", duration: 90 },
+        { subject: "Bài thi Tự chọn môn thứ nhất", icon: "1", date: "2026-06-12", time: "07:30", duration: 50 },
+        { subject: "Bài thi Tự chọn môn thứ hai", icon: "2", date: "2026-06-12", time: "08:35", duration: 50 }
+      ],
+      news: [
+        { tag: "Thông tin kỳ thi", title: "Đại học Bách khoa Hà Nội công bố lịch thi đánh giá tư duy năm 2026", desc: "Theo dõi các thông báo mới để lên kế hoạch ôn tập phù hợp.", time: "5 phút đọc", url: "#" },
+        { tag: "Thông tin kỳ thi", title: "Lịch thi THPT quốc gia 2026: dự kiến diễn ra vào ngày 11/6 - 12/6/2026", desc: "Mốc thời gian có thể chỉnh sửa trực tiếp trong phần cài đặt.", time: "8 phút đọc", url: "#" },
+        { tag: "Ôn tập", title: "Lập kế hoạch 30 ngày nước rút: ưu tiên kiến thức trọng tâm", desc: "Chia nhỏ mục tiêu từng ngày, luyện đề đều và rà soát lỗi sai.", time: "6 phút đọc", url: "#" },
+        { tag: "Nhắc nhở", title: "Chuẩn bị giấy tờ, dụng cụ học tập và lịch di chuyển trước ngày thi", desc: "Kiểm tra căn cước, thẻ dự thi, bút, máy tính và giờ đến điểm thi.", time: "4 phút đọc", url: "#" }
+      ]
+    };
+
+    const STORAGE_KEY = "thptCountdown2026Data";
+    const THEME_KEY = "thptCountdownTheme";
+    let data = loadData();
+    let hideDone = false;
+    let musicOn = false;
+    let currentTrack = 0;
+
+    const $ = (id) => document.getElementById(id);
+
+    function loadData() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (!saved) return structuredClone(DEFAULT_DATA);
+        const parsed = JSON.parse(saved);
+        return { ...structuredClone(DEFAULT_DATA), ...parsed };
+      } catch {
+        return structuredClone(DEFAULT_DATA);
+      }
+    }
+
+    function saveData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data, null, 2));
+    }
+
+    function parseExamDate(exam) {
+      return new Date(`${exam.date}T${exam.time || "00:00"}:00`);
+    }
+
+    function formatDate(dateString) {
+      const [y, m, d] = dateString.split("-");
+      return `${Number(d)}/${Number(m)}/${y}`;
+    }
+
+    function pad(n) { return String(n).padStart(2, "0"); }
+
+    function getNextExam() {
+      const now = new Date();
+      return [...data.exams]
+        .sort((a, b) => parseExamDate(a) - parseExamDate(b))
+        .find(exam => parseExamDate(exam) > now) || null;
+    }
+
+    function renderStatic() {
+      initMusic();
+      $("siteTitle").textContent = data.siteTitle;
+      $("siteSubtitle").textContent = data.siteSubtitle;
+      $("quoteText").textContent = data.quoteText;
+      $("quoteAuthor").textContent = data.quoteAuthor;
+      $("quoteSub").textContent = data.quoteSub;
+
+      $("chips").innerHTML = data.chips.map(([icon, label, color]) =>
+        `<span class="chip ${color}">${icon} ${label}</span>`
+      ).join("");
+
+      renderNews();
+      renderSchedule();
+    }
+
+    function renderNews() {
+      $("newsGrid").innerHTML = data.news.map(item => `
+        <a class="news-card" href="${escapeAttr(item.url || "#")}" ${item.url && item.url !== "#" ? "target=\"_blank\" rel=\"noopener\"" : ""}>
+          <div>
+            <div class="news-meta"><span class="tag">${escapeHtml(item.tag || "Tin tức")}</span><span class="ago">${escapeHtml(item.time || "Mới cập nhật")}</span></div>
+            <h3 class="news-title">${escapeHtml(item.title || "Tiêu đề tin tức")}</h3>
+            <p class="news-desc">${escapeHtml(item.desc || "")}</p>
+          </div>
+        </a>
+      `).join("");
+    }
+
+    function renderSchedule() {
+      const now = new Date();
+      const next = getNextExam();
+      const exams = [...data.exams].sort((a, b) => parseExamDate(a) - parseExamDate(b));
+      $("scheduleList").innerHTML = exams.map((exam, index) => {
+        const examDate = parseExamDate(exam);
+        const done = examDate <= now;
+        const active = next && exam === next;
+        if (hideDone && done) return "";
+        const status = done ? "Đã qua" : active ? "Đang đếm ngược" : "Sắp tới";
+        return `
+          <article class="exam-card ${active ? "active" : ""} ${done ? "done" : ""}">
+            <div class="exam-icon">${escapeHtml(exam.icon || String(index + 1))}</div>
+            <div>
+              <h3 class="exam-subject">${escapeHtml(exam.subject)}</h3>
+              <div class="exam-info">
+                <span>${formatDate(exam.date)}</span><span>•</span><span>${escapeHtml(exam.time)}</span><span>•</span><span>${Number(exam.duration || 0)} phút</span>
+                <span class="exam-status">${status}</span>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("") || `<p style="color:var(--muted-2);font-weight:800;">Không còn môn thi nào để hiển thị.</p>`;
+    }
+
+    function tick() {
+      const next = getNextExam();
+      if (!next) {
+        $("nextLabel").textContent = "Kỳ thi đã hoàn thành";
+        $("nextDate").textContent = "Chúc mừng bạn!";
+        $("nextTime").textContent = "✓ Hoàn tất";
+        $("countTitle").textContent = "Bạn đã đi hết chặng đường này";
+        setCount(0, 0, 0, 0);
+        renderSchedule();
+        return;
+      }
+
+      const target = parseExamDate(next);
+      const diff = Math.max(0, target - new Date());
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      $("nextLabel").textContent = `Môn thi tiếp theo: ${next.subject}`;
+      $("nextDate").textContent = formatDate(next.date);
+      $("nextTime").textContent = `▣ ${next.time}`;
+      $("countTitle").textContent = `Thời gian còn lại đến môn thi ${next.subject}`;
+      setCount(days, hours, minutes, seconds);
+    }
+
+    function setCount(d, h, m, s) {
+      $("days").textContent = pad(d);
+      $("hours").textContent = pad(h);
+      $("minutes").textContent = pad(m);
+      $("seconds").textContent = pad(s);
+    }
+
+    function openEditor() {
+      $("editSiteTitle").value = data.siteTitle;
+      $("editSiteSubtitle").value = data.siteSubtitle;
+      $("editQuote").value = data.quoteText;
+      $("editAuthor").value = data.quoteAuthor;
+      $("editSubQuote").value = data.quoteSub;
+      renderExamEditor();
+      renderNewsEditor();
+      $("modalBackdrop").classList.add("open");
+    }
+
+    function closeEditor() {
+      $("modalBackdrop").classList.remove("open");
+    }
+
+    function renderExamEditor() {
+      $("examEditor").innerHTML = data.exams.map((exam, i) => `
+        <div class="editor-row" data-exam-index="${i}">
+          <div class="form-grid">
+            <div class="field"><label>Môn thi</label><input data-key="subject" value="${escapeAttr(exam.subject)}"></div>
+            <div class="field"><label>Biểu tượng</label><input data-key="icon" value="${escapeAttr(exam.icon || "")}"></div>
+            <div class="field"><label>Ngày</label><input data-key="date" type="date" value="${escapeAttr(exam.date)}"></div>
+            <div class="field"><label>Giờ</label><input data-key="time" type="time" value="${escapeAttr(exam.time)}"></div>
+            <div class="field"><label>Thời lượng phút</label><input data-key="duration" type="number" min="1" value="${escapeAttr(exam.duration)}"></div>
+          </div>
+          <div class="row-actions"><button class="pill-btn danger" type="button" onclick="removeExam(${i})">Xóa</button></div>
+        </div>
+      `).join("");
+    }
+
+    function renderNewsEditor() {
+      $("newsEditor").innerHTML = data.news.map((item, i) => `
+        <div class="editor-row" data-news-index="${i}">
+          <div class="form-grid">
+            <div class="field"><label>Nhãn</label><input data-key="tag" value="${escapeAttr(item.tag || "")}"></div>
+            <div class="field"><label>Thời gian đọc</label><input data-key="time" value="${escapeAttr(item.time || "")}"></div>
+            <div class="field full"><label>Tiêu đề</label><input data-key="title" value="${escapeAttr(item.title || "")}"></div>
+            <div class="field full"><label>Mô tả</label><textarea data-key="desc">${escapeHtml(item.desc || "")}</textarea></div>
+            <div class="field full"><label>Link</label><input data-key="url" value="${escapeAttr(item.url || "#")}"></div>
+          </div>
+          <div class="row-actions"><button class="pill-btn danger" type="button" onclick="removeNews(${i})">Xóa</button></div>
+        </div>
+      `).join("");
+    }
+
+    window.removeExam = (index) => {
+      data.exams.splice(index, 1);
+      renderExamEditor();
+    };
+
+    window.removeNews = (index) => {
+      data.news.splice(index, 1);
+      renderNewsEditor();
+    };
+
+    function collectEditorData() {
+      data.siteTitle = $("editSiteTitle").value.trim() || DEFAULT_DATA.siteTitle;
+      data.siteSubtitle = $("editSiteSubtitle").value.trim() || DEFAULT_DATA.siteSubtitle;
+      data.quoteText = $("editQuote").value.trim() || DEFAULT_DATA.quoteText;
+      data.quoteAuthor = $("editAuthor").value.trim() || DEFAULT_DATA.quoteAuthor;
+      data.quoteSub = $("editSubQuote").value.trim() || DEFAULT_DATA.quoteSub;
+
+      data.exams = [...document.querySelectorAll("[data-exam-index]")].map(row => {
+        const get = key => row.querySelector(`[data-key="${key}"]`).value.trim();
+        return { subject: get("subject"), icon: get("icon"), date: get("date"), time: get("time"), duration: Number(get("duration") || 0) };
+      }).filter(exam => exam.subject && exam.date && exam.time);
+
+      data.news = [...document.querySelectorAll("[data-news-index]")].map(row => {
+        const get = key => row.querySelector(`[data-key="${key}"]`).value.trim();
+        return { tag: get("tag"), title: get("title"), desc: get("desc"), time: get("time"), url: get("url") || "#" };
+      }).filter(item => item.title);
+    }
+
+    function exportJson() {
+      collectEditorData();
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "du-lieu-dem-nguoc-thpt-2026.json";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(a.href);
+      showToast("Đã xuất file JSON");
+    }
+
+    function importJson(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const imported = JSON.parse(reader.result);
+          data = { ...structuredClone(DEFAULT_DATA), ...imported };
+          saveData();
+          renderStatic();
+          tick();
+          openEditor();
+          showToast("Đã nhập dữ liệu");
+        } catch {
+          showToast("File JSON không hợp lệ");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function escapeAttr(value) { return escapeHtml(value); }
+
+    function initMusic() {
+      const player = $("musicPlayer");
+      if (!data.music || !data.music.length) data.music = structuredClone(DEFAULT_DATA.music);
+      player.volume = 0.38;
+      player.src = data.music[currentTrack]?.url || data.music[0].url;
+      player.onended = () => {
+        currentTrack = (currentTrack + 1) % data.music.length;
+        player.src = data.music[currentTrack].url;
+        if (musicOn) {
+          player.play().catch(() => {});
+          showToast(`Đang chuyển bài: ${data.music[currentTrack]?.name || "Nhạc nền"}`);
+        }
+      };
+    }
+
+    async function toggleMusic() {
+      const player = $("musicPlayer");
+      const btn = $("musicBtn");
+      if (!musicOn) {
+        try {
+          if (!player.src) initMusic();
+          await player.play();
+          musicOn = true;
+          btn.classList.add("music-on");
+          btn.textContent = "♫";
+          showToast(`Đang bật nhạc: ${data.music[currentTrack]?.name || "Nhạc nền"}`);
+        } catch {
+          showToast("Trình duyệt chưa cho phép phát nhạc. Hãy bấm lại nút nhạc.");
+        }
+      } else {
+        player.pause();
+        musicOn = false;
+        btn.classList.remove("music-on");
+        btn.textContent = "♪";
+        showToast("Đã tắt nhạc nền");
+      }
+    }
+
+    function showToast(message) {
+      const toast = $("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    function setTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      localStorage.setItem(THEME_KEY, theme);
+      $("themeBtn").textContent = theme === "light" ? "☀" : "☾";
+    }
+
+    $("musicBtn").addEventListener("click", toggleMusic);
+
+    $("themeBtn").addEventListener("click", () => {
+      setTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light");
+    });
+
+    $("filterBtn").addEventListener("click", () => {
+      hideDone = !hideDone;
+      renderSchedule();
+      showToast(hideDone ? "Đã ẩn môn đã thi" : "Đã hiện tất cả môn thi");
+    });
+
+    $("shareBtn").addEventListener("click", async () => {
+      const shareData = { title: data.siteTitle, text: data.siteSubtitle, url: location.href };
+      try {
+        if (navigator.share) await navigator.share(shareData);
+        else {
+          await navigator.clipboard.writeText(location.href);
+          showToast("Đã sao chép link trang");
+        }
+      } catch {}
+    });
+
+    $("editBtn").addEventListener("click", openEditor);
+    $("closeModal").addEventListener("click", closeEditor);
+    $("modalBackdrop").addEventListener("click", (e) => { if (e.target === $("modalBackdrop")) closeEditor(); });
+
+    $("addExamBtn").addEventListener("click", () => {
+      collectEditorData();
+      data.exams.push({ subject: "Môn thi mới", icon: "▣", date: "2026-06-12", time: "09:40", duration: 50 });
+      renderExamEditor();
+    });
+
+    $("addNewsBtn").addEventListener("click", () => {
+      collectEditorData();
+      data.news.push({ tag: "Tin mới", title: "Tiêu đề thông báo mới", desc: "Nhập mô tả ngắn cho thông báo.", time: "1 phút đọc", url: "#" });
+      renderNewsEditor();
+    });
+
+    $("saveBtn").addEventListener("click", () => {
+      collectEditorData();
+      saveData();
+      renderStatic();
+      tick();
+      closeEditor();
+      showToast("Đã lưu thay đổi");
+    });
+
+    $("resetBtn").addEventListener("click", () => {
+      if (!confirm("Khôi phục dữ liệu mặc định?")) return;
+      data = structuredClone(DEFAULT_DATA);
+      saveData();
+      renderStatic();
+      tick();
+      openEditor();
+      showToast("Đã khôi phục mặc định");
+    });
+
+    $("exportBtn").addEventListener("click", exportJson);
+    $("importFile").addEventListener("change", e => importJson(e.target.files[0]));
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeEditor();
+    });
+
+    setTheme(localStorage.getItem(THEME_KEY) || "dark");
+    renderStatic();
+    tick();
+    setInterval(() => {
+      tick();
+      renderSchedule();
+    }, 1000);
+  </script>
+</body>
+</html>

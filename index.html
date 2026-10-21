@@ -28,16 +28,16 @@
 ======================================================================== */
 
 const CUA_HANG = {
-  ten: "Góc App",                       // ĐỔI TÊN CỬA HÀNG TẠI ĐÂY
+  ten: "Tiem Nha Bong",                       // ĐỔI TÊN CỬA HÀNG TẠI ĐÂY
   gioiThieu: "Khám phá các gói ứng dụng phù hợp với nhu cầu của bạn. Xem giá rõ ràng và liên hệ để được tư vấn trước khi mua.",
   zalo: "",                            // THAY LINK LIÊN HỆ TẠI ĐÂY (ví dụ https://zalo.me/09xxxxxxxx)
   facebook: "",                        // THAY LINK LIÊN HỆ TẠI ĐÂY (link trang Facebook)
   telegram: ""                         // THAY LINK LIÊN HỆ TẠI ĐÂY (ví dụ https://t.me/username)
 };
 
-// Giá bên dưới là GIÁ MINH HỌA, KHÔNG PHẢI BÁO GIÁ THỊ TRƯỜNG.
-// Thay bằng giá thực tế trước khi bán. Đổi thành false khi đã cập nhật.
-const GIA_MINH_HOA = true;
+// Chỉnh giá bán trong từng mục sản phẩm bên dưới.
+// Giá trong file giữ nguyên theo dữ liệu đã nhập; hãy tự xác nhận trước khi bán.
+
 
 const SAN_PHAM = [
 
@@ -47,13 +47,15 @@ const SAN_PHAM = [
     moTa: "Các gói Meitu theo thời hạn. Liên hệ để xác nhận quyền lợi và cách kích hoạt.",
     tinhNang: ["Gói theo tháng", "Thông tin quyền lợi được xác nhận khi đặt hàng"],
     huongDan: ["Chọn thời hạn phù hợp.", "Liên hệ cửa hàng để xác nhận gói.", "Làm theo hướng dẫn kích hoạt được cung cấp khi mua."],
-    dieuKhoan: [Quy định sử dụng 1 thiết bị:
-Sử dụng 1 thiết bị cố định
-Nguyên tắc thiết bị: Hệ thống lưu theo địa chỉ IP máy. 1 lần đăng nhập = 1 thiết bị.
-Không đăng nhập máy thứ 2: Kế cả khi đã đăng xuất máy cũ hoặc xóa app, vẫn tính là quá thiết bị.
-Đối máy/Thêm máy: Liên hệ Admin để mua thêm slot (có giảm giá).
-Vi phạm: Tự ý đăng nhập nhiều máy dẫn đến lỗi thiết bị toàn bộ máy sẽ bị từ chối bảo hành.
-Nếu phát hiện sai phạm bạn phải đền bù slot bị mất và tiền phạt vi phạm theo quy định],
+    dieuKhoan: [
+      "Quy định sử dụng 1 thiết bị:",
+      "Sử dụng 1 thiết bị cố định.",
+      "Nguyên tắc thiết bị: Hệ thống lưu theo địa chỉ IP máy. 1 lần đăng nhập = 1 thiết bị.",
+      "Không đăng nhập máy thứ 2: Kể cả khi đã đăng xuất máy cũ hoặc xóa app, vẫn tính là quá thiết bị.",
+      "Đổi máy/Thêm máy: Liên hệ Admin để mua thêm slot (có giảm giá).",
+      "Vi phạm: Tự ý đăng nhập nhiều máy dẫn đến lỗi thiết bị toàn bộ máy sẽ bị từ chối bảo hành.",
+      "Nếu phát hiện sai phạm bạn phải đền bù slot bị mất và tiền phạt vi phạm theo quy định."
+    ],
     goi: [ // SỬA GIÁ TẠI ĐÂY
       {ten:"Meitu 1 tuần",loai:"VIP",han:"1 tuần",gia:35000},
       {ten:"Meitu 1 tháng",loai:"VIP",han:"1 tháng",gia:75000},
@@ -70,17 +72,14 @@ Nếu phát hiện sai phạm bạn phải đền bù slot bị mất và tiề
     moTa:"Lựa chọn các gói VIP và SVIP với thời hạn linh hoạt.",
     tinhNang:["Có tùy chọn VIP và SVIP", "Tư vấn quyền lợi theo từng gói"],
     huongDan:["Chọn VIP hoặc SVIP.","Chọn thời hạn và liên hệ tư vấn.","Nhận hướng dẫn kích hoạt tương ứng."],
-    dieuKhoan:[
-LƯU Ý QUAN TRỌNG KHI SỬ DỤNG
-Cập nhật ứng dụng: Đảm bảo sử dụng bản Xingtu mới nhất để trải nghiệm đủ tính năng 
-
-Đăng nhập duy nhất: Chỉ đăng nhập 01 lần duy nhất trên 01 thiết bị.
-
-Tuyệt đối KHÔNG ĐĂNG XUẤT: Việc đăng xuất (Log out) sẽ làm mất quyền VIP và shop không thể hỗ trợ đăng nhập lại.
-
-Không hỗ trợ đổi máy: Tài khoản gắn liền với thiết bị đầu tiên bạn đăng nhập.
-
-Sử dụng văn minh: Không thay đổi bất kỳ thông tin cá nhân nào của tài khoản."],
+    dieuKhoan: [
+      "LƯU Ý QUAN TRỌNG KHI SỬ DỤNG",
+      "Cập nhật ứng dụng: Đảm bảo sử dụng bản Xingtu mới nhất để trải nghiệm đủ tính năng.",
+      "Đăng nhập duy nhất: Chỉ đăng nhập 01 lần duy nhất trên 01 thiết bị.",
+      "Tuyệt đối KHÔNG ĐĂNG XUẤT: Việc đăng xuất (Log out) sẽ làm mất quyền VIP và shop không thể hỗ trợ đăng nhập lại.",
+      "Không hỗ trợ đổi máy: Tài khoản gắn liền với thiết bị đầu tiên bạn đăng nhập.",
+      "Sử dụng văn minh: Không thay đổi bất kỳ thông tin cá nhân nào của tài khoản."
+    ],
     goi:[ // SỬA RIÊNG TÊN, LOẠI VIP/SVIP, THỜI HẠN VÀ GIÁ TỪNG DÒNG
       {ten:"Xingtu VIP 1 ngày",loai:"VIP",han:"1 ngày",gia:35000},
       {ten:"Xingtu VIP 1 tháng",loai:"VIP",han:"1 tháng",gia:120000},
@@ -99,7 +98,14 @@ Sử dụng văn minh: Không thay đổi bất kỳ thông tin cá nhân nào 
     moTa:"Các lựa chọn gói Wink theo thời hạn.",
     tinhNang:["Nhiều lựa chọn thời hạn","Xác nhận quyền lợi trước khi mua"],
     huongDan:["Chọn gói Wink.","Gửi yêu cầu đặt mua.","Nhận hướng dẫn sử dụng từ cửa hàng."],
-    dieuKhoan:["Kiểm tra thông tin gói trước khi đặt.","Áp dụng điều kiện sử dụng được xác nhận khi mua."],
+    dieuKhoan:["Quy định sử dụng 1 thiết bị:
+
+Sử dụng 1 thiết bị cố định
+Nguyên tắc thiết bị: Hệ thống lưu theo địa chỉ IP máy. 1 lần đăng nhập = 1 thiết bị.
+Không đăng nhập máy thứ 2: Kế cả khi đã đăng xuất máy cũ hoặc xóa app, vẫn tính là quá thiết bị.
+Đối máy/Thêm máy: Liên hệ Admin để mua thêm slot (có giảm giá).
+Vi phạm: Tự ý đăng nhập nhiều máy dẫn đến lỗi thiết bị toàn bộ máy sẽ bị từ chối bảo hành.
+Nếu phát hiện sai phạm bạn phải đền bù slot bị mất và tiền phạt vi phạm theo quy định."],
     goi:[
       {ten:"Wink 1 tháng",loai:"VIP",han:"1 tháng",gia:100000},
       {ten:"Wink 1 năm",loai:"VIP",han:"1 năm",gia:550000},
@@ -114,7 +120,21 @@ Sử dụng văn minh: Không thay đổi bất kỳ thông tin cá nhân nào 
     moTa:"Danh sách gói CapCut với thời hạn mẫu dễ tùy chỉnh.",
     tinhNang:["Lựa chọn thời hạn","Tư vấn thông tin gói"],
     huongDan:["Chọn thời hạn.","Liên hệ để xác nhận cách cấp quyền.","Thực hiện theo hướng dẫn nhận được."],
-    dieuKhoan:["Không cam kết tính năng ngoài thông tin được xác nhận.","Kiểm tra thời hạn và điều kiện sử dụng trước khi mua."],
+    dieuKhoan:["CHÍNH SÁCH BẢO HÀNH
+
+Bảo hành 1 đổi 1 nếu lỗi trong thời gian sử dụng.
+
+Khách hàng không đăng nhập vượt quá số lượng thiết bị đã mua ( 1 điện thoại 1 máy tính).
+
+Không bảo hành nếu khách hàng đăng nhập quá số lượng thiết bị đã mua hoặc spam liên tục trong việc thực hiện thao tác (Lỗi truy cập thường xuyên) =>  đợi từ 10 - 14 ngày để app tự động mở hạn chế/ khoá tài khoản
+
+Không thay đổi thông tin đăng nhập , username của tài khoản để được bảo hành nhé
+
+Lỗi thường xuyên liên hệ admin để được hỗ trợ nhé (tuỳ trường hợp)
+
+Lưu ý : Vui lòng không rời Space trong quá trình sử dụng !! Chỉ đăng nhập PC bằng app, không đăng nhập bằng web
+
+CÁCH ĐĂNG NHẬP TRÊN PC: đăng nhập email bằng điện thoại ngay trên app Capcut, sau đó quét QR lên PC"],
     goi:[
       {ten:"CapCut 1 tháng",loai:"Pro",han:"1 tháng",gia:95000},
       {ten:"CapCut 3 tháng",loai:"Pro",han:"3 tháng",gia:250000},
@@ -135,8 +155,8 @@ Sử dụng văn minh: Không thay đổi bất kỳ thông tin cá nhân nào 
     huongDan:["Chọn gói.","Liên hệ cửa hàng xác nhận điều kiện.","Nhận hướng dẫn sử dụng."],
     dieuKhoan:["Gói bán phải tuân thủ điều khoản nền tảng.","Chỉ đặt mua sau khi xác nhận loại gói phù hợp."],
     goi:[
-      {ten:"YouTube 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:59000},
-      {ten:"YouTube 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:149000},
+      {ten:"YouTube 1 tháng",loai:"Tiêu chuẩn",han:"1 tháng",gia:59000},
+      {ten:"YouTube 3 tháng",loai:"Tiêu chuẩn",han:"3 tháng",gia:149000},
     ]
   },
 
@@ -144,20 +164,43 @@ Sử dụng văn minh: Không thay đổi bất kỳ thông tin cá nhân nào 
   {
     id:"hypic",ten:"Hypic",logo:"",banner:"", // THAY LINK ẢNH TẠI ĐÂY
     moTa:"Gói Hypic mẫu, tùy chỉnh thông tin theo sản phẩm thực tế.",
-    tinhNang:["Gói mẫu dễ thay đổi"],
+    tinhNang:["Tiêu chuẩn dễ thay đổi"],
     huongDan:["Chọn gói Hypic.","Liên hệ xác nhận.","Nhận hướng dẫn sử dụng."],
-    dieuKhoan:["Điều kiện sử dụng được xác nhận khi mua."],
-    goi:[{ten:"Hypic - Gói Năm",loai:"Gói mẫu",han:"1 năm",gia:250000}]
+    dieuKhoan:["LƯU Ý QUAN TRỌNG KHI SỬ DỤNG:
+
+Phương thức đăng nhập: Tài khoản được thực hiện đăng nhập thông qua liên kết với TikTok.
+
+Giới hạn thiết bị: Để đảm bảo quyền lợi và sự ổn định của tính năng Pro, tài khoản chỉ được sử dụng trên 01 thiết bị cố định. Việc đăng nhập nhiều thiết bị có thể làm ảnh hưởng đến trạng thái nâng cấp của tài khoản.
+
+LƯU Ý QUAN TRỌNG: Tắt "Gỡ bỏ ứng dụng không dùng" để tránh trường hợp tự động đăng xuất khi lâu không sử dụng (đối với trường hợp này bên shop không chịu trách nhiệm vì đây là lỗi khách quan từ máy khách). Cách tắt chế độ này: Vào cài đặt của máy -> Chọn mục Ứng dụng -> tìm kiếm Appstore -> kéo xuống chọn mục Gỡ bỏ ứng dụng và tắt đi
+
+Các bước thực hiện đăng nhập: để tránh bị lỗi truy cập thường xuyên thì làm kĩ từng bước ở dưới:
+Bước 1: Mở trình duyệt (cực kỳ quan trọng vì đăng nhập trực tiếp bằng app dễ lỗi) và đăng nhập Tiktok trên điện thoại của bạn.
+
+Bước 2: Nhập Username và Mật khẩu vào mục Đăng nhập của TikTok. Nếu cần nhận Mã xác minh (OTP), hãy nhấn vào "Link nhận mã" được cung cấp và ấn bắt đầu nhận mã
+
+Bước 3: Sau khi đăng nhập thành công. Vào ứng dụng Hypic, chọn dòng chữ Đăng nhập bằng TikTok / Sign in with TikTok
+
+Bước 4: Hệ thống sẽ tự động chuyển hướng bạn sang trình duyệt TikTok và tự động đăng nhập vào Hypic.
+
+Lưu ý 1: Nếu hệ thống không chuyển hướng qua trình duyệt thì xoá app Tiktok, sau khi đăng nhập thành công thì tải lại app Tiktok (Nếu không muốn mất dữ liệu vào mục "Dung lượng Iphone -> Tiktok -> Gỡ bỏ ứng dụng -> sau khi đăng nhập Hypic thành công thì chọn Cài đặt lại dữ liệu)
+
+Lưu ý 2: Nếu đã đăng nhập trình duyệt mà khi vào Hypic bắt đăng nhập lại thì cứ nhập lại username và mật khẩu đã cấp như bước 2 là vào được nhé 
+
+Vui lòng không đăng xuất, xoá app, đổi máy, thay đổi thông tin nếu vi phạm sẽ không hoàn tiền và bảo hành !
+
+Đối với tiktok dùng để đăng nhập vui lòng không thay đổi thông tin, sử dụng tài khoản với bất kì mục đích gì !! Bên em sẽ thu hồi tài khoản sau khi mình đăng nhập thành công hypic (sau 1h sẽ tự động thu hồi tính từ lúc đăng nhập tiktok thành công, vui lòng thao tác đăng nhập nhanh chóng)."],
+    goi:[{ten:"Hypic - Gói Năm",loai:"Tiêu chuẩn",han:"1 năm",gia:250000}]
   },
 
   // ===================== 07. CANVA =====================
   {
     id:"canva",ten:"Canva",logo:"",banner:"", // THAY LINK ẢNH TẠI ĐÂY
     moTa:"Gói Canva mẫu, vui lòng xác nhận hình thức cấp quyền.",
-    tinhNang:["Gói mẫu dễ thay đổi"],
+    tinhNang:["Tiêu chuẩn dễ thay đổi"],
     huongDan:["Chọn gói Canva.","Xác nhận hình thức cấp quyền.","Nhận hướng dẫn sử dụng."],
     dieuKhoan:["Cần tuân thủ điều khoản cấp quyền của nền tảng."],
-    goi:[{ten:"Canva - Gói mẫu",loai:"Gói mẫu",han:"1 năm",gia:190000}]
+    goi:[{ten:"Canva - Tiêu chuẩn",loai:"Tiêu chuẩn",han:"1 năm",gia:190000}]
   },
 
   // ================ 08. ỨNG DỤNG 01 =================
@@ -167,9 +210,9 @@ Sử dụng văn minh: Không thay đổi bất kỳ thông tin cá nhân nào 
     huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
     dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
     goi:[
-      {ten:"Gói 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:19000},
-      {ten:"Gói 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:49000},
-      {ten:"Gói 12 tháng",loai:"Gói mẫu",han:"12 tháng",gia:159000}
+      {ten:"Gói 1 tháng",loai:"Tiêu chuẩn",han:"1 tháng",gia:19000},
+      {ten:"Gói 3 tháng",loai:"Tiêu chuẩn",han:"3 tháng",gia:49000},
+      {ten:"Gói 12 tháng",loai:"Tiêu chuẩn",han:"12 tháng",gia:159000}
     ]
   },
 
@@ -180,9 +223,9 @@ Sử dụng văn minh: Không thay đổi bất kỳ thông tin cá nhân nào 
     huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
     dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
     goi:[
-      {ten:"Gói 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:19000},
-      {ten:"Gói 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:49000},
-      {ten:"Gói 12 tháng",loai:"Gói mẫu",han:"12 tháng",gia:159000}
+      {ten:"Gói 1 tháng",loai:"Tiêu chuẩn",han:"1 tháng",gia:19000},
+      {ten:"Gói 3 tháng",loai:"Tiêu chuẩn",han:"3 tháng",gia:49000},
+      {ten:"Gói 12 tháng",loai:"Tiêu chuẩn",han:"12 tháng",gia:159000}
     ]
   },
 
@@ -193,9 +236,9 @@ Sử dụng văn minh: Không thay đổi bất kỳ thông tin cá nhân nào 
     huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
     dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
     goi:[
-      {ten:"Gói 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:19000},
-      {ten:"Gói 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:49000},
-      {ten:"Gói 12 tháng",loai:"Gói mẫu",han:"12 tháng",gia:159000}
+      {ten:"Gói 1 tháng",loai:"Tiêu chuẩn",han:"1 tháng",gia:19000},
+      {ten:"Gói 3 tháng",loai:"Tiêu chuẩn",han:"3 tháng",gia:49000},
+      {ten:"Gói 12 tháng",loai:"Tiêu chuẩn",han:"12 tháng",gia:159000}
     ]
   },
 
@@ -206,9 +249,9 @@ Sử dụng văn minh: Không thay đổi bất kỳ thông tin cá nhân nào 
     huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
     dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
     goi:[
-      {ten:"Gói 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:19000},
-      {ten:"Gói 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:49000},
-      {ten:"Gói 12 tháng",loai:"Gói mẫu",han:"12 tháng",gia:159000}
+      {ten:"Gói 1 tháng",loai:"Tiêu chuẩn",han:"1 tháng",gia:19000},
+      {ten:"Gói 3 tháng",loai:"Tiêu chuẩn",han:"3 tháng",gia:49000},
+      {ten:"Gói 12 tháng",loai:"Tiêu chuẩn",han:"12 tháng",gia:159000}
     ]
   },
 
@@ -219,9 +262,9 @@ Sử dụng văn minh: Không thay đổi bất kỳ thông tin cá nhân nào 
     huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
     dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
     goi:[
-      {ten:"Gói 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:19000},
-      {ten:"Gói 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:49000},
-      {ten:"Gói 12 tháng",loai:"Gói mẫu",han:"12 tháng",gia:159000}
+      {ten:"Gói 1 tháng",loai:"Tiêu chuẩn",han:"1 tháng",gia:19000},
+      {ten:"Gói 3 tháng",loai:"Tiêu chuẩn",han:"3 tháng",gia:49000},
+      {ten:"Gói 12 tháng",loai:"Tiêu chuẩn",han:"12 tháng",gia:159000}
     ]
   },
 
@@ -232,9 +275,9 @@ Sử dụng văn minh: Không thay đổi bất kỳ thông tin cá nhân nào 
     huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
     dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
     goi:[
-      {ten:"Gói 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:19000},
-      {ten:"Gói 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:49000},
-      {ten:"Gói 12 tháng",loai:"Gói mẫu",han:"12 tháng",gia:159000}
+      {ten:"Gói 1 tháng",loai:"Tiêu chuẩn",han:"1 tháng",gia:19000},
+      {ten:"Gói 3 tháng",loai:"Tiêu chuẩn",han:"3 tháng",gia:49000},
+      {ten:"Gói 12 tháng",loai:"Tiêu chuẩn",han:"12 tháng",gia:159000}
     ]
   },
 
@@ -245,9 +288,9 @@ Sử dụng văn minh: Không thay đổi bất kỳ thông tin cá nhân nào 
     huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
     dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
     goi:[
-      {ten:"Gói 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:19000},
-      {ten:"Gói 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:49000},
-      {ten:"Gói 12 tháng",loai:"Gói mẫu",han:"12 tháng",gia:159000}
+      {ten:"Gói 1 tháng",loai:"Tiêu chuẩn",han:"1 tháng",gia:19000},
+      {ten:"Gói 3 tháng",loai:"Tiêu chuẩn",han:"3 tháng",gia:49000},
+      {ten:"Gói 12 tháng",loai:"Tiêu chuẩn",han:"12 tháng",gia:159000}
     ]
   },
 
@@ -258,9 +301,9 @@ Sử dụng văn minh: Không thay đổi bất kỳ thông tin cá nhân nào 
     huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
     dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
     goi:[
-      {ten:"Gói 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:19000},
-      {ten:"Gói 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:49000},
-      {ten:"Gói 12 tháng",loai:"Gói mẫu",han:"12 tháng",gia:159000}
+      {ten:"Gói 1 tháng",loai:"Tiêu chuẩn",han:"1 tháng",gia:19000},
+      {ten:"Gói 3 tháng",loai:"Tiêu chuẩn",han:"3 tháng",gia:49000},
+      {ten:"Gói 12 tháng",loai:"Tiêu chuẩn",han:"12 tháng",gia:159000}
     ]
   }
 
@@ -281,12 +324,12 @@ function showHome(){
 }
 function drawApps(query){let q=query.trim().toLocaleLowerCase('vi');let apps=SAN_PHAM.filter(a=>a.ten.toLocaleLowerCase('vi').includes(q));$('appGrid').innerHTML=apps.map(a=>`<article class="app-card">${icon(a)}<h3>${safe(a.ten)}</h3><p>${safe(a.moTa)}</p><a class="btn btn-outline" href="#app/${encodeURIComponent(a.id)}">Xem các gói →</a></article>`).join('')||'<p class="empty">Không tìm thấy ứng dụng phù hợp.</p>'}
 function showDetail(a){
- $('main').innerHTML=`<div class="wrap detail-top"><button class="back" onclick="location.hash=''">← Quay lại danh sách</button><div class="banner" id="banner"><div class="banner-content">${icon(a)}<div><h1>${safe(a.ten)}</h1><p>${safe(a.moTa)}</p></div></div></div><div class="detail-layout"><div><section class="panel"><h2>Thông tin ứng dụng</h2><p class="muted">${safe(a.moTa)}</p><ul class="features">${listItems(a.tinhNang)}</ul></section><section class="panel"><h2>Các gói đang bán</h2><p class="muted">Chọn gói phù hợp để liên hệ đặt hàng.</p><div class="packages">${a.goi.map((p,i)=>`<article class="package"><span class="tag">${safe(p.loai||'Gói ứng dụng')}</span><h3>${safe(p.ten)}</h3><div class="duration">Thời hạn: ${safe(p.han)}</div><div class="price">${money(p.gia)}</div>${GIA_MINH_HOA?'<div class="note">Giá minh họa</div>':''}<button class="btn" onclick="openOrder('${safe(a.id)}',${i})">Đặt mua ngay →</button></article>`).join('')}</div></section><section class="panel"><h2>Hướng dẫn & điều khoản</h2><details><summary>Hướng dẫn sử dụng ${safe(a.ten)}</summary><ol>${listItems(a.huongDan)}</ol></details><details><summary>Điều khoản sử dụng ${safe(a.ten)}</summary><ul>${listItems(a.dieuKhoan)}</ul></details></section></div><aside><div class="panel"><h2>Cần tư vấn?</h2><p class="muted">Liên hệ cửa hàng để hỏi về ${safe(a.ten)}.</p><div class="contact-box"><button class="btn" style="width:100%" onclick="openOrder('${safe(a.id)}',-1)">Liên hệ về ${safe(a.ten)}</button></div></div><div class="panel"><h3>Lưu ý</h3><p class="muted">Đây là cửa hàng độc lập, không phải website chính thức của ứng dụng.</p>${GIA_MINH_HOA?'<p class="warning">Giá hiện tại chỉ là minh họa. Hãy thay bằng giá bán thật trước khi nhận đơn.</p>':''}</div></aside></div></div>`;
+ $('main').innerHTML=`<div class="wrap detail-top"><button class="back" onclick="location.hash=''">← Quay lại danh sách</button><div class="banner" id="banner"><div class="banner-content">${icon(a)}<div><h1>${safe(a.ten)}</h1><p>${safe(a.moTa)}</p></div></div></div><div class="detail-layout"><div><section class="panel"><h2>Thông tin ứng dụng</h2><p class="muted">${safe(a.moTa)}</p><ul class="features">${listItems(a.tinhNang)}</ul></section><section class="panel"><h2>Các gói đang bán</h2><p class="muted">Chọn gói phù hợp để liên hệ đặt hàng.</p><div class="packages">${a.goi.map((p,i)=>`<article class="package"><span class="tag">${safe(p.loai||'Gói ứng dụng')}</span><h3>${safe(p.ten)}</h3><div class="duration">Thời hạn: ${safe(p.han)}</div><div class="price">${money(p.gia)}</div><button class="btn" onclick="openOrder('${safe(a.id)}',${i})">Đặt mua ngay →</button></article>`).join('')}</div></section><section class="panel"><h2>Hướng dẫn & điều khoản</h2><details><summary>Hướng dẫn sử dụng ${safe(a.ten)}</summary><ol>${listItems(a.huongDan)}</ol></details><details><summary>Điều khoản sử dụng ${safe(a.ten)}</summary><ul>${listItems(a.dieuKhoan)}</ul></details></section></div><aside><div class="panel"><h2>Cần tư vấn?</h2><p class="muted">Liên hệ cửa hàng để hỏi về ${safe(a.ten)}.</p><div class="contact-box"><button class="btn" style="width:100%" onclick="openOrder('${safe(a.id)}',-1)">Liên hệ về ${safe(a.ten)}</button></div></div><div class="panel"><h3>Lưu ý</h3><p class="muted">Đây là cửa hàng độc lập, không phải website chính thức của ứng dụng.</p></div></aside></div></div>`;
  if(a.banner){const b=$('banner');const img=new Image();img.onload=()=>b.style.backgroundImage=`url("${a.banner.replace(/"/g,'%22')}")`;img.src=a.banner}
 }
 function route(){const hash=decodeURIComponent(location.hash.slice(1));if(hash.startsWith('app/')){const app=SAN_PHAM.find(a=>a.id===hash.slice(4));if(app)showDetail(app);else showHome()}else showHome();window.scrollTo(0,0)}
 let currentMessage='';
-function openOrder(id,index){const a=SAN_PHAM.find(x=>x.id===id);if(!a)return;const p=a.goi[index];currentMessage=p?`Xin chào ${CUA_HANG.ten}!\nTôi muốn đặt gói:\nỨng dụng: ${a.ten}\nTên gói: ${p.ten}\nLoại: ${p.loai||'Không phân loại'}\nThời hạn: ${p.han}\nGiá hiển thị: ${money(p.gia)}${GIA_MINH_HOA?' (giá minh họa, vui lòng xác nhận)':''}\nNhờ cửa hàng tư vấn cách mua và sử dụng.`:`Xin chào ${CUA_HANG.ten}! Tôi muốn được tư vấn về ứng dụng ${a.ten}.`;
+function openOrder(id,index){const a=SAN_PHAM.find(x=>x.id===id);if(!a)return;const p=a.goi[index];currentMessage=p?`Xin chào ${CUA_HANG.ten}!\nTôi muốn đặt gói:\nỨng dụng: ${a.ten}\nTên gói: ${p.ten}\nLoại: ${p.loai||'Không phân loại'}\nThời hạn: ${p.han}\nGiá hiển thị: ${money(p.gia)}\nNhờ cửa hàng tư vấn cách mua và sử dụng.`:`Xin chào ${CUA_HANG.ten}! Tôi muốn được tư vấn về ứng dụng ${a.ten}.`;
  $('orderText').textContent=currentMessage;const links=[['Zalo',CUA_HANG.zalo],['Facebook',CUA_HANG.facebook],['Telegram',CUA_HANG.telegram]];$('contactLinks').innerHTML=links.filter(x=>/^https:\/\//i.test(x[1])).map(([name,url])=>`<a class="btn btn-outline btn-small" target="_blank" rel="noopener noreferrer" href="${safe(url)}">Mở ${name} ↗</a>`).join('');$('contactWarning').hidden=!!links.some(x=>/^https:\/\//i.test(x[1]));$('orderDialog').classList.add('show')}
 function closeOrder(){$('orderDialog').classList.remove('show')}
 async function copyOrder(){try{await navigator.clipboard.writeText(currentMessage);alert('Đã sao chép nội dung đặt hàng!')}catch(e){const t=document.createElement('textarea');t.value=currentMessage;document.body.appendChild(t);t.select();const ok=document.execCommand('copy');t.remove();alert(ok?'Đã sao chép nội dung đặt hàng!':'Không thể sao chép tự động. Hãy chọn và sao chép nội dung trong hộp thoại.')}}

@@ -1,1080 +1,281 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0f766e" />
-  <meta name="description" content="Trang web đếm ngược ngày thi tốt nghiệp THPT 2026" />
-  <title>Đếm Ngược Ngày Thi Tốt Nghiệp THPT 2026</title>
-  <style>
-    :root {
-      --bg-1: #0f5069;
-      --bg-2: #0f766e;
-      --bg-3: #0f3f4d;
-      --card: rgba(255,255,255,.13);
-      --card-strong: rgba(255,255,255,.17);
-      --card-border: rgba(255,255,255,.22);
-      --text: #f8fafc;
-      --muted: #c7d2fe;
-      --muted-2: #bfd7de;
-      --accent: #3b82f6;
-      --accent-2: #14b8a6;
-      --accent-3: #eab308;
-      --danger: #ef4444;
-      --shadow: 0 24px 80px rgba(0,0,0,.26);
-      --radius-xl: 24px;
-      --radius-lg: 18px;
-      --radius-md: 14px;
-      --max: 1160px;
-      color-scheme: dark;
-    }
-
-    [data-theme="light"] {
-      --bg-1: #dff5ff;
-      --bg-2: #d7fff4;
-      --bg-3: #eef2ff;
-      --card: rgba(255,255,255,.78);
-      --card-strong: rgba(255,255,255,.92);
-      --card-border: rgba(15,23,42,.11);
-      --text: #0f172a;
-      --muted: #334155;
-      --muted-2: #475569;
-      --shadow: 0 24px 80px rgba(15,23,42,.14);
-      color-scheme: light;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 9% 98%, rgba(99,179,237,.23), transparent 18rem),
-        radial-gradient(circle at 92% 48%, rgba(45,212,191,.28), transparent 12rem),
-        linear-gradient(135deg, var(--bg-1), var(--bg-2) 58%, var(--bg-3));
-      overflow-x: hidden;
-    }
-
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      pointer-events: none;
-      z-index: 0;
-      border-radius: 999px;
-      opacity: .38;
-    }
-    body::before {
-      width: 450px; height: 450px;
-      left: -170px; bottom: -190px;
-      background: rgba(148, 216, 230, .23);
-    }
-    body::after {
-      width: 270px; height: 270px;
-      right: 55px; top: 44%;
-      background: rgba(153, 246, 228, .24);
-    }
-
-    .curve {
-      position: fixed;
-      right: -80px;
-      bottom: -30px;
-      width: 680px;
-      height: 230px;
-      border: 4px solid rgba(255,255,255,.08);
-      border-left: 0;
-      border-bottom: 0;
-      border-radius: 100% 0 0 0;
-      transform: rotate(-15deg);
-      pointer-events: none;
-    }
-
-    .page { position: relative; z-index: 1; }
-
-    .topbar {
-      width: 100%;
-      background: rgba(4, 47, 61, .72);
-      border-bottom: 1px solid rgba(255,255,255,.11);
-      backdrop-filter: blur(18px);
-      position: sticky;
-      top: 0;
-      z-index: 20;
-    }
-    [data-theme="light"] .topbar { background: rgba(255,255,255,.72); }
-
-    .topbar-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 14px 22px;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 14px;
-      align-items: center;
-    }
-
-    .logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 13px;
-      display: grid;
-      place-items: center;
-      background: rgba(255,255,255,.16);
-      border: 1px solid rgba(255,255,255,.16);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
-      font-size: 23px;
-    }
-
-    .brand h1 {
-      margin: 0;
-      font-size: clamp(20px, 3vw, 28px);
-      line-height: 1.1;
-      font-weight: 850;
-      letter-spacing: -.03em;
-    }
-    .brand p {
-      margin: 5px 0 0;
-      color: var(--muted-2);
-      font-weight: 650;
-      font-size: 14px;
-    }
-
-    .actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: end; }
-    .icon-btn,
-    .pill-btn {
-      border: 1px solid transparent;
-      color: var(--text);
-      background: transparent;
-      cursor: pointer;
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
-      font: inherit;
-    }
-    .icon-btn {
-      width: 38px; height: 38px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      font-size: 18px;
-    }
-    .pill-btn {
-      border-radius: 999px;
-      padding: 10px 14px;
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      font-weight: 800;
-      font-size: 13px;
-    }
-    .icon-btn:hover,
-    .pill-btn:hover {
-      background: rgba(255,255,255,.13);
-      border-color: rgba(255,255,255,.18);
-      transform: translateY(-1px);
-    }
-    .icon-btn.music-on {
-      background: rgba(20,184,166,.28);
-      border-color: rgba(94,234,212,.45);
-      color: #ccfbf1;
-      box-shadow: 0 0 0 3px rgba(20,184,166,.14);
-    }
-
-    .container {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 22px 22px 58px;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 410px;
-      gap: 24px;
-      align-items: start;
-    }
-
-    .card {
-      border: 1px solid var(--card-border);
-      background: linear-gradient(180deg, var(--card), rgba(255,255,255,.10));
-      backdrop-filter: blur(16px);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-    }
-
-    .quote-card {
-      text-align: center;
-      padding: clamp(26px, 4vw, 46px) 24px;
-      min-height: 170px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 24px;
-    }
-    .quote-mark { font-size: 48px; line-height: .7; color: rgba(255,255,255,.72); font-weight: 900; }
-    .quote-text {
-      margin: 12px 0 10px;
-      font-size: clamp(22px, 3.1vw, 31px);
-      font-weight: 900;
-      font-style: italic;
-      letter-spacing: -.025em;
-    }
-    .quote-author { margin: 0; color: var(--muted-2); font-weight: 850; }
-    .quote-sub { margin: 12px 0 0; color: var(--muted-2); font-size: 13px; font-weight: 750; opacity: .86; }
-
-    .next-card { padding: 26px 24px; margin-bottom: 24px; }
-    .next-line {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      text-align: center;
-      color: var(--muted-2);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .02em;
-    }
-    .small-icon {
-      width: 46px; height: 46px;
-      border-radius: 14px;
-      background: rgba(255,255,255,.18);
-      display: grid;
-      place-items: center;
-      font-size: 22px;
-    }
-    .next-subject { margin-top: 2px; }
-    .next-date {
-      display: block;
-      margin-top: 2px;
-      color: var(--text);
-      font-size: 27px;
-      font-weight: 950;
-      letter-spacing: -.03em;
-      text-transform: none;
-    }
-    .time-badge {
-      margin: 12px auto 0;
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(20,184,166,.28);
-      border: 1px solid rgba(45,212,191,.32);
-      color: #dcfffb;
-      font-weight: 900;
-      font-size: 14px;
-    }
-    [data-theme="light"] .time-badge { color: #0f766e; }
-
-    .count-section { text-align: center; margin: 26px 0 30px; }
-    .section-title {
-      margin: 0 0 18px;
-      font-size: clamp(18px, 2.4vw, 24px);
-      font-weight: 900;
-      letter-spacing: -.015em;
-    }
-    .count-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-    .count-box {
-      min-height: 116px;
-      border-radius: 18px;
-      background: rgba(5, 35, 44, .76);
-      border: 1px solid rgba(255,255,255,.14);
-      display: grid;
-      place-content: center;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 16px 30px rgba(0,0,0,.16);
-    }
-    [data-theme="light"] .count-box { background: rgba(15, 118, 110, .92); color: white; }
-    .count-number {
-      font-size: clamp(38px, 6vw, 58px);
-      font-weight: 950;
-      line-height: 1;
-      letter-spacing: -.06em;
-      font-variant-numeric: tabular-nums;
-    }
-    .count-label {
-      margin-top: 10px;
-      font-size: 14px;
-      color: rgba(255,255,255,.76);
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: .03em;
-    }
-
-    .chips {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin: 20px 0 28px;
-    }
-    .chip {
-      border: 1px solid rgba(255,255,255,.18);
-      color: var(--text);
-      background: rgba(255,255,255,.10);
-      border-radius: 10px;
-      padding: 9px 13px;
-      font-size: 13px;
-      font-weight: 850;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .chip.green { background: rgba(20,184,166,.23); border-color: rgba(20,184,166,.5); }
-    .chip.blue { background: rgba(59,130,246,.22); border-color: rgba(59,130,246,.5); }
-    .chip.purple { background: rgba(124,58,237,.24); border-color: rgba(124,58,237,.5); }
-    .chip.yellow { background: rgba(234,179,8,.20); border-color: rgba(234,179,8,.48); }
-
-    .panel { padding: 24px; }
-    .panel + .panel { margin-top: 20px; }
-    .panel-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-    .panel-title {
-      margin: 0;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      font-size: clamp(20px, 2.4vw, 26px);
-      font-weight: 950;
-      letter-spacing: -.025em;
-    }
-    .status-badge {
-      display: inline-flex;
-      gap: 7px;
-      align-items: center;
-      border: 1px solid rgba(234,179,8,.35);
-      background: rgba(234,179,8,.18);
-      color: #e7f8a8;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 950;
-      white-space: nowrap;
-    }
-    [data-theme="light"] .status-badge { color: #854d0e; }
-
-    .news-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-    .news-card {
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 18px;
-      background: rgba(255,255,255,.10);
-      padding: 18px;
-      min-height: 142px;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
-      text-decoration: none;
-      color: inherit;
-      display: grid;
-      align-content: space-between;
-    }
-    .news-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.28); background: rgba(255,255,255,.14); }
-    .news-meta { display: flex; justify-content: space-between; gap: 8px; align-items: center; margin-bottom: 12px; }
-    .tag {
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: rgba(148,163,184,.24);
-      border: 1px solid rgba(255,255,255,.16);
-      color: var(--muted-2);
-      font-size: 12px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-    .ago { color: var(--muted-2); font-size: 12px; font-weight: 850; white-space: nowrap; }
-    .news-title { margin: 0; font-size: 18px; line-height: 1.35; font-weight: 950; letter-spacing: -.02em; }
-    .news-desc { margin: 10px 0 0; color: var(--muted-2); font-size: 14px; line-height: 1.5; font-weight: 650; }
-
-    .side { position: sticky; top: 92px; }
-    .schedule-list { display: grid; gap: 12px; }
-    .exam-card {
-      display: grid;
-      grid-template-columns: 32px 1fr;
-      gap: 12px;
-      padding: 16px;
-      border: 1px solid rgba(255,255,255,.15);
-      background: rgba(255,255,255,.10);
-      border-radius: 16px;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
-    }
-    .exam-card.active {
-      border-color: rgba(59,130,246,.74);
-      background: rgba(59,130,246,.22);
-      box-shadow: 0 0 0 2px rgba(59,130,246,.20) inset;
-    }
-    .exam-card.done { opacity: .58; }
-    .exam-card:hover { transform: translateY(-1px); }
-    .exam-icon {
-      width: 28px; height: 28px;
-      display: grid;
-      place-items: center;
-      border-radius: 4px;
-      background: #0ea5e9;
-      color: white;
-      border: 1px solid rgba(255,255,255,.28);
-      font-size: 16px;
-      font-weight: 950;
-      align-self: start;
-    }
-    .exam-subject {
-      margin: 0 0 6px;
-      font-size: 17px;
-      font-weight: 950;
-      letter-spacing: -.02em;
-    }
-    .exam-info {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      color: var(--muted-2);
-      font-size: 14px;
-      font-weight: 800;
-    }
-    .exam-status {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      padding: 4px 9px;
-      background: rgba(59,130,246,.35);
-      color: #dbeafe;
-      font-size: 12px;
-      font-weight: 950;
-    }
-    [data-theme="light"] .exam-status { color: #1d4ed8; background: rgba(59,130,246,.15); }
-
-    .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .tool-card {
-      border: 1px solid rgba(255,255,255,.13);
-      background: rgba(255,255,255,.09);
-      border-radius: 15px;
-      padding: 14px;
-    }
-    .tool-card strong { display: block; margin-bottom: 5px; font-size: 14px; }
-    .tool-card span { color: var(--muted-2); font-size: 13px; line-height: 1.45; font-weight: 650; }
-
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      display: none;
-      place-items: center;
-      background: rgba(2,6,23,.58);
-      backdrop-filter: blur(10px);
-      padding: 18px;
-    }
-    .modal-backdrop.open { display: grid; }
-    .modal {
-      width: min(820px, 100%);
-      max-height: min(88vh, 880px);
-      overflow: auto;
-      border-radius: 24px;
-      border: 1px solid var(--card-border);
-      background: linear-gradient(180deg, rgba(15,78,92,.97), rgba(15,118,110,.97));
-      box-shadow: 0 28px 100px rgba(0,0,0,.38);
-      padding: 22px;
-    }
-    [data-theme="light"] .modal { background: rgba(255,255,255,.98); }
-    .modal-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 16px; }
-    .modal-head h2 { margin: 0; font-size: 24px; letter-spacing: -.03em; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .field { display: grid; gap: 7px; margin-bottom: 12px; }
-    .field.full { grid-column: 1 / -1; }
-    label { color: var(--muted-2); font-size: 13px; font-weight: 950; }
-    input, textarea, select {
-      width: 100%;
-      border: 1px solid rgba(255,255,255,.20);
-      color: var(--text);
-      background: rgba(255,255,255,.10);
-      border-radius: 13px;
-      padding: 12px 13px;
-      font: inherit;
-      outline: 0;
-    }
-    textarea { min-height: 84px; resize: vertical; }
-    input:focus, textarea:focus, select:focus { border-color: rgba(59,130,246,.75); box-shadow: 0 0 0 3px rgba(59,130,246,.22); }
-    [data-theme="light"] input,
-    [data-theme="light"] textarea,
-    [data-theme="light"] select { background: rgba(15,23,42,.04); border-color: rgba(15,23,42,.16); }
-    .editor-list { display: grid; gap: 12px; margin: 12px 0 16px; }
-    .editor-row { border: 1px solid rgba(255,255,255,.13); border-radius: 18px; padding: 14px; background: rgba(255,255,255,.08); }
-    .row-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px; }
-    .primary { background: rgba(59,130,246,.86); border-color: rgba(147,197,253,.45); color: white; }
-    .success { background: rgba(20,184,166,.72); border-color: rgba(94,234,212,.45); color: white; }
-    .danger { background: rgba(239,68,68,.76); border-color: rgba(252,165,165,.45); color: white; }
-    .ghost { background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.15); }
-    .hidden { display: none !important; }
-
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 22px;
-      transform: translateX(-50%) translateY(22px);
-      opacity: 0;
-      pointer-events: none;
-      z-index: 200;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(15,23,42,.88);
-      color: white;
-      padding: 12px 16px;
-      border-radius: 999px;
-      box-shadow: 0 18px 50px rgba(0,0,0,.28);
-      font-weight: 800;
-      transition: opacity .2s ease, transform .2s ease;
-    }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-    @media (max-width: 980px) {
-      .layout { grid-template-columns: 1fr; }
-      .side { position: static; }
-      .news-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 640px) {
-      .topbar-inner { grid-template-columns: auto 1fr; }
-      .actions { grid-column: 1 / -1; justify-content: start; }
-      .container { padding-inline: 14px; }
-      .count-grid { grid-template-columns: repeat(2, 1fr); }
-      .count-box { min-height: 104px; }
-      .form-grid { grid-template-columns: 1fr; }
-      .panel { padding: 18px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Góc App | Cửa hàng gói ứng dụng</title>
+<style>
+:root{--bg:#f5f7f6;--white:#fff;--ink:#22352f;--muted:#697b73;--accent:#347f69;--soft:#e9f4ee;--border:#dfe9e3;--shadow:0 12px 32px rgba(32,63,49,.06)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.55}button,input{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}.wrap{max-width:1150px;margin:auto;padding:0 20px}header{background:rgba(255,255,255,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{font-size:22px;font-weight:800;color:var(--accent);display:flex;align-items:center;gap:9px}.brand-mark{display:grid;place-items:center;background:var(--accent);color:#fff;width:37px;height:37px;border-radius:12px}.navlinks{display:flex;gap:18px;font-size:14px;color:var(--muted)}.navlinks a:hover{color:var(--accent)}.hero{padding:65px 0 45px}.hero-inner{border-radius:25px;background:linear-gradient(120deg,#e4f1e8,#f9fbf8);padding:55px 50px;border:1px solid var(--border)}.eyebrow{color:var(--accent);font-size:13px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase}h1{font-size:clamp(31px,5vw,49px);line-height:1.18;margin:13px 0}h2{font-size:26px;margin:0 0 8px}h3{margin:0 0 8px}p{margin:0 0 16px}.muted{color:var(--muted)}.hero p{max-width:570px}.section{padding:24px 0 55px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:23px}.search{width:290px;max-width:100%;border:1px solid var(--border);padding:13px 15px;border-radius:13px;background:#fff;outline:none}.search:focus{border-color:var(--accent)}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}.app-card,.package,.panel{background:var(--white);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow)}.app-card{padding:23px;display:flex;flex-direction:column;min-height:250px;transition:transform .2s,border-color .2s}.app-card:hover,.package:hover{transform:translateY(-3px);border-color:#a9d2bd}.app-icon{width:62px;height:62px;border-radius:17px;background:var(--soft);color:var(--accent);display:grid;place-items:center;font-size:23px;font-weight:800;overflow:hidden;margin-bottom:17px}.app-icon img{width:100%;height:100%;object-fit:cover}.app-card h3{font-size:19px}.app-card p{font-size:14px;color:var(--muted);flex:1}.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:11px 16px;border-radius:11px;border:1px solid var(--accent);background:var(--accent);color:white;font-size:14px;font-weight:700;transition:opacity .2s}.btn:hover{opacity:.87}.btn-outline{background:white;color:var(--accent)}.btn-small{padding:9px 13px}.detail-top{padding:25px 0 10px}.back{background:none;border:0;color:var(--accent);font-weight:700;padding:8px 0}.banner{position:relative;min-height:245px;border-radius:22px;overflow:hidden;background:linear-gradient(115deg,#cce5d6,#e9f3ec);border:1px solid var(--border);display:flex;align-items:end;margin:10px 0 28px;background-position:center;background-size:cover}.banner:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,51,40,.85),rgba(22,51,40,.24))}.banner-content{position:relative;color:white;padding:34px;display:flex;align-items:center;gap:18px}.banner .app-icon{margin:0;background:white;flex-shrink:0}.banner h1{font-size:37px;margin:0 0 6px}.banner p{margin:0;color:#eaf5ee}.detail-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px}.panel{padding:24px;margin-bottom:22px}.panel h2{font-size:21px;margin-bottom:12px}.features{margin:0;padding-left:20px;color:var(--muted)}.features li{margin:7px 0}.packages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.package{padding:19px;display:flex;flex-direction:column;min-height:205px;transition:transform .2s}.package .tag{align-self:flex-start;background:var(--soft);color:var(--accent);font-size:12px;font-weight:700;border-radius:30px;padding:4px 10px;margin-bottom:13px}.package h3{font-size:17px;line-height:1.35}.duration{font-size:13px;color:var(--muted)}.price{font-size:24px;font-weight:800;color:var(--accent);margin:14px 0}.package .btn{margin-top:auto}.note{font-size:12px;color:var(--muted)}details{border:1px solid var(--border);border-radius:12px;margin-top:12px;padding:15px;background:#fff}summary{cursor:pointer;font-weight:700}details ol,details ul{margin-bottom:0;padding-left:22px}details li{margin:9px 0}.contact-box{background:#edf6f0;border-radius:14px;padding:18px}.contact-box .btn{width:100%;margin:5px 0}.footer{border-top:1px solid var(--border);background:#fff;padding:30px 0;color:var(--muted);font-size:14px}.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.empty{grid-column:1/-1;color:var(--muted);padding:30px;text-align:center}.dialog{position:fixed;inset:0;background:rgba(20,36,29,.57);z-index:20;display:none;align-items:center;justify-content:center;padding:20px}.dialog.show{display:flex}.dialog-card{background:white;border-radius:19px;padding:26px;max-width:480px;width:100%;max-height:90vh;overflow:auto}.dialog-head{display:flex;justify-content:space-between;gap:10px;align-items:start}.close{border:0;background:#edf2ee;border-radius:9px;padding:6px 11px;font-size:22px}.order-text{white-space:pre-wrap;background:#f6f8f7;border:1px solid var(--border);border-radius:12px;padding:15px;margin:17px 0;font-size:14px;overflow-wrap:anywhere}.contact-actions{display:flex;flex-wrap:wrap;gap:9px}.contact-actions .btn{flex:1}.warning{background:#fff7e9;color:#77521b;border:1px solid #f1dfba;padding:12px;border-radius:10px;font-size:13px;margin-top:12px}
+@media(max-width:950px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.detail-layout{grid-template-columns:1fr}.packages{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:650px){.navlinks{gap:10px;font-size:12px}.hero{padding:28px 0}.hero-inner{padding:30px 24px}.grid,.packages{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.section-head{align-items:stretch;flex-direction:column}.search{width:100%}.app-card{padding:16px;min-height:235px}.app-card h3{font-size:17px}.banner-content{padding:24px;align-items:start}.banner h1{font-size:29px}.panel{padding:17px}.package{padding:15px}.price{font-size:21px}}@media(max-width:380px){.grid,.packages{grid-template-columns:1fr}.navlinks a:nth-child(2){display:none}.banner-content{flex-direction:column}.hero-inner{padding:26px 20px}}
+</style>
 </head>
 <body>
-  <div class="curve" aria-hidden="true"></div>
-  <div class="page">
-    <header class="topbar">
-      <div class="topbar-inner">
-        <div class="logo" aria-hidden="true">🗓️</div>
-        <div class="brand">
-          <h1 id="siteTitle">Đếm Ngược Ngày Thi Tốt Nghiệp THPT 2026</h1>
-          <p id="siteSubtitle">Trang web đếm ngược ngày thi tốt nghiệp THPT 2026</p>
-        </div>
-        <nav class="actions" aria-label="Công cụ nhanh">
-          <button class="icon-btn" id="musicBtn" type="button" title="Bật/tắt nhạc nền">♪</button>
-          <button class="icon-btn" id="filterBtn" type="button" title="Ẩn/hiện môn đã thi">⌁</button>
-          <button class="icon-btn" id="shareBtn" type="button" title="Chia sẻ trang">↗</button>
-          <button class="icon-btn" id="editBtn" type="button" title="Chỉnh sửa dữ liệu">▣</button>
-          <button class="icon-btn" id="themeBtn" type="button" title="Đổi giao diện">☾</button>
-        </nav>
-      </div>
-    </header>
+<header><div class="wrap nav"><a class="brand" href="#"><span class="brand-mark">G</span><span id="brandName">Góc App</span></a><nav class="navlinks"><a href="#">Trang chủ</a><a href="#danh-sach">Sản phẩm</a><a href="#lien-he">Liên hệ</a></nav></div></header>
+<main id="main"></main>
+<footer class="footer" id="lien-he"><div class="wrap footer-row"><span>© <span id="footerName">Góc App</span> · Cửa hàng độc lập, không đại diện cho các ứng dụng.</span><span>Liên hệ mua hàng qua các kênh đã cấu hình.</span></div></footer>
+<div class="dialog" id="orderDialog" role="dialog" aria-modal="true" aria-labelledby="orderTitle"><div class="dialog-card"><div class="dialog-head"><div><h2 id="orderTitle">Thông tin đặt hàng</h2><p class="muted">Sao chép tin nhắn và gửi cho cửa hàng.</p></div><button class="close" onclick="closeOrder()" aria-label="Đóng">×</button></div><div id="orderText" class="order-text"></div><div class="contact-actions"><button class="btn" onclick="copyOrder()">📋 Sao chép nội dung</button></div><div id="contactLinks" class="contact-actions" style="margin-top:10px"></div><div id="contactWarning" class="warning" hidden>Chủ cửa hàng chưa cấu hình đường dẫn liên hệ.</div></div></div>
+<script>
+/* ======================================================================
+  KHU VỰC CHỈNH SỬA — BẠN CHỈ CẦN SỬA TỪ ĐÂY ĐẾN DÒNG "HẾT CẤU HÌNH"
+  MỖI ỨNG DỤNG LÀ MỘT KHỐI RIÊNG, KHÔNG CẦN CHỈNH HTML/CSS BÊN DƯỚI.
 
-    <main class="container">
-      <div class="layout">
-        <section>
-          <article class="card quote-card">
-            <div>
-              <div class="quote-mark">❞</div>
-              <p class="quote-text" id="quoteText">“Đầu tư vào tri thức luôn mang lại lợi nhuận tốt nhất”</p>
-              <p class="quote-author" id="quoteAuthor">— Benjamin Franklin</p>
-              <p class="quote-sub" id="quoteSub">An investment in knowledge pays the best interest</p>
-            </div>
-          </article>
+  GIÁ: ghi số, KHÔNG ghi dấu chấm: gia: 39000 => hiển thị 39.000đ
+       gia: null => hiển thị "Liên hệ"
+  ẢNH: để "" nếu chưa có link. Website sẽ tự dùng hình dự phòng.
+  THÊM GÓI: sao chép một dòng { ten: ..., loai: ..., han: ..., gia: ... },
+  THÊM ỨNG DỤNG: sao chép nguyên một khối { ... } và đổi id, tên, dữ liệu.
+======================================================================== */
 
-          <article class="card next-card">
-            <div class="next-line">
-              <span class="small-icon">◷</span>
-              <span>
-                <span id="nextLabel">Môn thi tiếp theo: Ngữ văn</span>
-                <span class="next-date" id="nextDate">11/6/2026</span>
-              </span>
-            </div>
-            <div class="time-badge" id="nextTime">▣ 07:30</div>
-          </article>
+const CUA_HANG = {
+  ten: "Góc App",                       // ĐỔI TÊN CỬA HÀNG TẠI ĐÂY
+  gioiThieu: "Khám phá các gói ứng dụng phù hợp với nhu cầu của bạn. Xem giá rõ ràng và liên hệ để được tư vấn trước khi mua.",
+  zalo: "",                            // THAY LINK LIÊN HỆ TẠI ĐÂY (ví dụ https://zalo.me/09xxxxxxxx)
+  facebook: "",                        // THAY LINK LIÊN HỆ TẠI ĐÂY (link trang Facebook)
+  telegram: ""                         // THAY LINK LIÊN HỆ TẠI ĐÂY (ví dụ https://t.me/username)
+};
 
-          <section class="count-section" aria-live="polite">
-            <h2 class="section-title" id="countTitle">Thời gian còn lại đến môn thi Ngữ văn</h2>
-            <div class="count-grid">
-              <div class="count-box"><div class="count-number" id="days">00</div><div class="count-label">Ngày</div></div>
-              <div class="count-box"><div class="count-number" id="hours">00</div><div class="count-label">Giờ</div></div>
-              <div class="count-box"><div class="count-number" id="minutes">00</div><div class="count-label">Phút</div></div>
-              <div class="count-box"><div class="count-number" id="seconds">00</div><div class="count-label">Giây</div></div>
-            </div>
-          </section>
+// Giá bên dưới là GIÁ MINH HỌA, KHÔNG PHẢI BÁO GIÁ THỊ TRƯỜNG.
+// Thay bằng giá thực tế trước khi bán. Đổi thành false khi đã cập nhật.
+const GIA_MINH_HOA = true;
 
-          <div class="chips" id="chips"></div>
+const SAN_PHAM = [
 
-          <section class="card panel">
-            <div class="panel-header">
-              <h2 class="panel-title">▱ Tin tức & Thông báo mới nhất</h2>
-              <span class="status-badge">⟳ Đang cập nhật</span>
-            </div>
-            <div class="news-grid" id="newsGrid"></div>
-          </section>
-        </section>
+  // ===================== 01. MEITU =====================
+  {
+    id: "meitu", ten: "Meitu", logo: "", banner: "", // THAY LINK ẢNH TẠI ĐÂY
+    moTa: "Các gói Meitu theo thời hạn. Liên hệ để xác nhận quyền lợi và cách kích hoạt.",
+    tinhNang: ["Gói theo tháng", "Thông tin quyền lợi được xác nhận khi đặt hàng"],
+    huongDan: ["Chọn thời hạn phù hợp.", "Liên hệ cửa hàng để xác nhận gói.", "Làm theo hướng dẫn kích hoạt được cung cấp khi mua."],
+    dieuKhoan: ["Vui lòng xác nhận điều kiện sử dụng trước khi thanh toán.", "Không chia sẻ thông tin đăng nhập cho người khác nếu gói không cho phép."],
+    goi: [ // SỬA GIÁ TẠI ĐÂY
+      {ten:"Meitu 1 tuần",loai:"VIP",han:"1 tuần",gia:35000},
+      {ten:"Meitu 1 tháng",loai:"VIP",han:"1 tháng",gia:75000},
+      {ten:"Meitu 3 tháng",loai:"VIP",han:"3 tháng",gia:199000},
+      {ten:"Meitu 5 tháng",loai:"VIP",han:"5 tháng",gia:300000},
+      {ten:"Meitu 6 tháng",loai:"VIP",han:"6 tháng",gia:370000},
+      {ten:"Meitu 12 tháng",loai:"VIP",han:"12 tháng",gia:550000}
+    ]
+  },
 
-        <aside class="side">
-          <section class="card panel">
-            <div class="panel-header">
-              <h2 class="panel-title">▱ Lịch thi tổng quan 2026</h2>
-            </div>
-            <div class="schedule-list" id="scheduleList"></div>
-          </section>
+  // ===================== 02. XINGTU =====================
+  {
+    id:"xingtu",ten:"Xingtu",logo:"",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    moTa:"Lựa chọn các gói VIP và SVIP với thời hạn linh hoạt.",
+    tinhNang:["Có tùy chọn VIP và SVIP", "Tư vấn quyền lợi theo từng gói"],
+    huongDan:["Chọn VIP hoặc SVIP.","Chọn thời hạn và liên hệ tư vấn.","Nhận hướng dẫn kích hoạt tương ứng."],
+    dieuKhoan:["Quyền lợi VIP/SVIP cần được xác nhận trước khi mua.","Chỉ sử dụng theo điều kiện của gói đã chọn."],
+    goi:[ // SỬA RIÊNG TÊN, LOẠI VIP/SVIP, THỜI HẠN VÀ GIÁ TỪNG DÒNG
+      {ten:"Xingtu VIP 1 ngày",loai:"VIP",han:"1 ngày",gia:35000},
+      {ten:"Xingtu VIP 1 tháng",loai:"VIP",han:"1 tháng",gia:120000},
+      {ten:"Xingtu SVIP 1 ngày",loai:"SVIP",han:"1 ngày",gia:45000},
+      {ten:"Xingtu SVIP 1 tuần",loai:"SVIP",han:"1 tuần",gia:95000},
+      {ten:"Xingtu SVIP 1 tháng",loai:"SVIP",han:"1 tháng",gia:145000},
+      {ten:"Xingtu SVIP 12 tháng",loai:"SVIP",han:"6 tháng",gia:750000},
+      {ten:"Xingtu SVIP 1 tháng chính chủ",loai:"SVIP",han:"12 tháng",gia:260000}
+      {ten:"Xingtu SVIP 12 tháng chính chủ",loai:"SVIP",han:"12 tháng",gia:1200000}
+    ]
+  },
 
-          <section class="card panel">
-            <div class="panel-header">
-              <h2 class="panel-title">⚙ Tính năng</h2>
-            </div>
-            <div class="tools-grid">
-              <div class="tool-card"><strong>Đếm ngược thật</strong><span>Tự chọn môn thi gần nhất chưa diễn ra.</span></div>
-              <div class="tool-card"><strong>Lưu dữ liệu</strong><span>Chỉnh lịch thi, tin tức, câu quote ngay trên trang.</span></div>
-              <div class="tool-card"><strong>Nhạc nền</strong><span>Có sẵn danh sách nhạc nhẹ, bật/tắt bằng một nút.</span></div>
-              <div class="tool-card"><strong>Xuất/Nhập JSON</strong><span>Sao lưu dữ liệu để đưa lên GitHub Pages.</span></div>
-              <div class="tool-card"><strong>Responsive</strong><span>Dùng tốt trên máy tính, tablet và điện thoại.</span></div>
-            </div>
-          </section>
-        </aside>
-      </div>
-    </main>
-  </div>
+  // ===================== 03. WINK =====================
+  {
+    id:"wink",ten:"Wink",logo:"",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    moTa:"Các lựa chọn gói Wink theo thời hạn.",
+    tinhNang:["Nhiều lựa chọn thời hạn","Xác nhận quyền lợi trước khi mua"],
+    huongDan:["Chọn gói Wink.","Gửi yêu cầu đặt mua.","Nhận hướng dẫn sử dụng từ cửa hàng."],
+    dieuKhoan:["Kiểm tra thông tin gói trước khi đặt.","Áp dụng điều kiện sử dụng được xác nhận khi mua."],
+    goi:[
+      {ten:"Wink 1 tháng",loai:"VIP",han:"1 tháng",gia:100000},
+      {ten:"Wink 1 năm",loai:"VIP",han:"1 năm",gia:550000},
+      {ten:"Wink 1 tháng",loai:"SVIP",han:"1 tháng",gia:155000},
+      {ten:"Wink 12 tháng",loai:"SVIP",han:"12 tháng",gia:850000},
+    ]
+  },
 
-  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal">
-      <div class="modal-head">
-        <h2 id="modalTitle">Chỉnh sửa trang đếm ngược</h2>
-        <button class="icon-btn ghost" id="closeModal" type="button" title="Đóng">×</button>
-      </div>
+  // ===================== 04. CAPCUT =====================
+  {
+    id:"capcut",ten:"CapCut",logo:"",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    moTa:"Danh sách gói CapCut với thời hạn mẫu dễ tùy chỉnh.",
+    tinhNang:["Lựa chọn thời hạn","Tư vấn thông tin gói"],
+    huongDan:["Chọn thời hạn.","Liên hệ để xác nhận cách cấp quyền.","Thực hiện theo hướng dẫn nhận được."],
+    dieuKhoan:["Không cam kết tính năng ngoài thông tin được xác nhận.","Kiểm tra thời hạn và điều kiện sử dụng trước khi mua."],
+    goi:[
+      {ten:"CapCut 1 tháng",loai:"Pro",han:"1 tháng",gia:95000},
+      {ten:"CapCut 3 tháng",loai:"Pro",han:"3 tháng",gia:250000},
+      {ten:"CapCut 6 tháng",loai:"Pro",han:"6 tháng",gia:499000},
+      {ten:"CapCut 12 tháng",loai:"Pro",han:"12 tháng",gia:950000}
+      {ten:"CapCut 1 tháng chính chủ",loai:"Pro",han:"1 tháng",gia:115000},
+      {ten:"CapCut 3 tháng chính chủ",loai:"Pro",han:"3 tháng",gia:300000},
+      {ten:"CapCut 6 tháng chính chủ",loai:"Pro",han:"6 tháng",gia:600000},
 
-      <div class="form-grid">
-        <div class="field full"><label for="editSiteTitle">Tiêu đề trang</label><input id="editSiteTitle" /></div>
-        <div class="field full"><label for="editSiteSubtitle">Mô tả ngắn</label><input id="editSiteSubtitle" /></div>
-        <div class="field full"><label for="editQuote">Câu truyền cảm hứng</label><input id="editQuote" /></div>
-        <div class="field"><label for="editAuthor">Tác giả</label><input id="editAuthor" /></div>
-        <div class="field"><label for="editSubQuote">Dòng phụ</label><input id="editSubQuote" /></div>
-      </div>
+   ]
+  },
 
-      <h3>Lịch thi</h3>
-      <div class="editor-list" id="examEditor"></div>
-      <button class="pill-btn ghost" id="addExamBtn" type="button">＋ Thêm môn thi</button>
+  // ===================== 05. YOUTUBE =====================
+  {
+    id:"youtube",ten:"YouTube",logo:"",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    moTa:"Các gói YouTube theo thời hạn, thông tin mẫu cần xác nhận.",
+    tinhNang:["Chọn thời hạn","Liên hệ xác nhận quyền lợi"],
+    huongDan:["Chọn gói.","Liên hệ cửa hàng xác nhận điều kiện.","Nhận hướng dẫn sử dụng."],
+    dieuKhoan:["Gói bán phải tuân thủ điều khoản nền tảng.","Chỉ đặt mua sau khi xác nhận loại gói phù hợp."],
+    goi:[
+      {ten:"YouTube 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:59000},
+      {ten:"YouTube 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:149000},
+    ]
+  },
 
-      <h3>Tin tức</h3>
-      <div class="editor-list" id="newsEditor"></div>
-      <button class="pill-btn ghost" id="addNewsBtn" type="button">＋ Thêm tin</button>
+  // ===================== 06. HYPIC =====================
+  {
+    id:"hypic",ten:"Hypic",logo:"",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    moTa:"Gói Hypic mẫu, tùy chỉnh thông tin theo sản phẩm thực tế.",
+    tinhNang:["Gói mẫu dễ thay đổi"],
+    huongDan:["Chọn gói Hypic.","Liên hệ xác nhận.","Nhận hướng dẫn sử dụng."],
+    dieuKhoan:["Điều kiện sử dụng được xác nhận khi mua."],
+    goi:[{ten:"Hypic - Gói Năm",loai:"Gói mẫu",han:"1 năm",gia:250000}]
+  },
 
-      <div class="row-actions" style="margin-top: 18px; flex-wrap: wrap;">
-        <button class="pill-btn ghost" id="exportBtn" type="button">⬇ Xuất JSON</button>
-        <label class="pill-btn ghost" for="importFile" style="cursor:pointer;">⬆ Nhập JSON</label>
-        <input class="hidden" id="importFile" type="file" accept="application/json" />
-        <button class="pill-btn danger" id="resetBtn" type="button">Khôi phục mặc định</button>
-        <button class="pill-btn success" id="saveBtn" type="button">✓ Lưu thay đổi</button>
-      </div>
-    </div>
-  </div>
+  // ===================== 07. CANVA =====================
+  {
+    id:"canva",ten:"Canva",logo:"",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    moTa:"Gói Canva mẫu, vui lòng xác nhận hình thức cấp quyền.",
+    tinhNang:["Gói mẫu dễ thay đổi"],
+    huongDan:["Chọn gói Canva.","Xác nhận hình thức cấp quyền.","Nhận hướng dẫn sử dụng."],
+    dieuKhoan:["Cần tuân thủ điều khoản cấp quyền của nền tảng."],
+    goi:[{ten:"Canva - Gói mẫu",loai:"Gói mẫu",han:"1 năm",gia:190000}]
+  },
 
-  <audio id="musicPlayer" preload="auto"></audio>
-  <div class="toast" id="toast"></div>
+  // ================ 08. ỨNG DỤNG 01 =================
+  {
+    id:"ung-dung-01",ten:"Ứng dụng 01",logo:"",banner:"",
+    moTa:"Mô tả sản phẩm đang cập nhật.",tinhNang:["Tính năng sẽ cập nhật"],
+    huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
+    dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
+    goi:[
+      {ten:"Gói 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:19000},
+      {ten:"Gói 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:49000},
+      {ten:"Gói 12 tháng",loai:"Gói mẫu",han:"12 tháng",gia:159000}
+    ]
+  },
 
-  <script>
-    const DEFAULT_DATA = {
-      siteTitle: "Đếm Ngược Ngày Thi Tốt Nghiệp THPT 2026",
-      siteSubtitle: "Trang web đếm ngược ngày thi tốt nghiệp THPT 2026",
-      quoteText: "“Đầu tư vào tri thức luôn mang lại lợi nhuận tốt nhất”",
-      quoteAuthor: "— Benjamin Franklin",
-      quoteSub: "An investment in knowledge pays the best interest",
-      chips: [
-        ["☆", "Nỗ lực mỗi ngày", "green"],
-        ["♧", "Đồng hành cùng nhau", "blue"],
-        ["◎", "Hướng tới thành công", "purple"],
-        ["⚡", "Tin tưởng bản thân", "yellow"]
-      ],
-      music: [
-        { name: "Nhạc tập trung nhẹ", url: "https://cdn.pixabay.com/download/audio/2022/10/18/audio_31c2730e64.mp3?filename=lofi-study-112191.mp3" },
-        { name: "Piano thư giãn", url: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=inspiring-ambient-116199.mp3" },
-        { name: "Giai điệu bình yên", url: "https://cdn.pixabay.com/download/audio/2022/08/02/audio_884fe92c21.mp3?filename=lofi-chill-140858.mp3" },
-        { name: "Lofi học bài", url: "https://cdn.pixabay.com/download/audio/2023/04/23/audio_60dfadef0e.mp3?filename=lofi-study-112191.mp3" },
-        { name: "Chill buổi tối", url: "https://cdn.pixabay.com/download/audio/2022/11/22/audio_febc508520.mp3?filename=chill-lofi-song-8444.mp3" },
-        { name: "Không gian yên tĩnh", url: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=ambient-piano-logo-129296.mp3" }
-      ],
-      exams: [
-        { subject: "Ngữ văn", icon: "📝", date: "2026-06-11", time: "07:30", duration: 120 },
-        { subject: "Toán", icon: "▦", date: "2026-06-11", time: "14:20", duration: 90 },
-        { subject: "Bài thi Tự chọn môn thứ nhất", icon: "1", date: "2026-06-12", time: "07:30", duration: 50 },
-        { subject: "Bài thi Tự chọn môn thứ hai", icon: "2", date: "2026-06-12", time: "08:35", duration: 50 }
-      ],
-      news: [
-        { tag: "Thông tin kỳ thi", title: "Đại học Bách khoa Hà Nội công bố lịch thi đánh giá tư duy năm 2026", desc: "Theo dõi các thông báo mới để lên kế hoạch ôn tập phù hợp.", time: "5 phút đọc", url: "#" },
-        { tag: "Thông tin kỳ thi", title: "Lịch thi THPT quốc gia 2026: dự kiến diễn ra vào ngày 11/6 - 12/6/2026", desc: "Mốc thời gian có thể chỉnh sửa trực tiếp trong phần cài đặt.", time: "8 phút đọc", url: "#" },
-        { tag: "Ôn tập", title: "Lập kế hoạch 30 ngày nước rút: ưu tiên kiến thức trọng tâm", desc: "Chia nhỏ mục tiêu từng ngày, luyện đề đều và rà soát lỗi sai.", time: "6 phút đọc", url: "#" },
-        { tag: "Nhắc nhở", title: "Chuẩn bị giấy tờ, dụng cụ học tập và lịch di chuyển trước ngày thi", desc: "Kiểm tra căn cước, thẻ dự thi, bút, máy tính và giờ đến điểm thi.", time: "4 phút đọc", url: "#" }
-      ]
-    };
+  // ================ 09. ỨNG DỤNG 02 =================
+  {
+    id:"ung-dung-02",ten:"Ứng dụng 02",logo:"",banner:"",
+    moTa:"Mô tả sản phẩm đang cập nhật.",tinhNang:["Tính năng sẽ cập nhật"],
+    huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
+    dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
+    goi:[
+      {ten:"Gói 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:19000},
+      {ten:"Gói 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:49000},
+      {ten:"Gói 12 tháng",loai:"Gói mẫu",han:"12 tháng",gia:159000}
+    ]
+  },
 
-    const STORAGE_KEY = "thptCountdown2026Data";
-    const THEME_KEY = "thptCountdownTheme";
-    let data = loadData();
-    let hideDone = false;
-    let musicOn = false;
-    let currentTrack = 0;
+  // ================ 10. ỨNG DỤNG 03 =================
+  {
+    id:"ung-dung-03",ten:"Ứng dụng 03",logo:"",banner:"",
+    moTa:"Mô tả sản phẩm đang cập nhật.",tinhNang:["Tính năng sẽ cập nhật"],
+    huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
+    dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
+    goi:[
+      {ten:"Gói 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:19000},
+      {ten:"Gói 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:49000},
+      {ten:"Gói 12 tháng",loai:"Gói mẫu",han:"12 tháng",gia:159000}
+    ]
+  },
 
-    const $ = (id) => document.getElementById(id);
+  // ================ 11. ỨNG DỤNG 04 =================
+  {
+    id:"ung-dung-04",ten:"Ứng dụng 04",logo:"",banner:"",
+    moTa:"Mô tả sản phẩm đang cập nhật.",tinhNang:["Tính năng sẽ cập nhật"],
+    huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
+    dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
+    goi:[
+      {ten:"Gói 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:19000},
+      {ten:"Gói 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:49000},
+      {ten:"Gói 12 tháng",loai:"Gói mẫu",han:"12 tháng",gia:159000}
+    ]
+  },
 
-    function loadData() {
-      try {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (!saved) return structuredClone(DEFAULT_DATA);
-        const parsed = JSON.parse(saved);
-        return { ...structuredClone(DEFAULT_DATA), ...parsed };
-      } catch {
-        return structuredClone(DEFAULT_DATA);
-      }
-    }
+  // ================ 12. ỨNG DỤNG 05 =================
+  {
+    id:"ung-dung-05",ten:"Ứng dụng 05",logo:"",banner:"",
+    moTa:"Mô tả sản phẩm đang cập nhật.",tinhNang:["Tính năng sẽ cập nhật"],
+    huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
+    dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
+    goi:[
+      {ten:"Gói 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:19000},
+      {ten:"Gói 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:49000},
+      {ten:"Gói 12 tháng",loai:"Gói mẫu",han:"12 tháng",gia:159000}
+    ]
+  },
 
-    function saveData() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data, null, 2));
-    }
+  // ================ 13. ỨNG DỤNG 06 =================
+  {
+    id:"ung-dung-06",ten:"Ứng dụng 06",logo:"",banner:"",
+    moTa:"Mô tả sản phẩm đang cập nhật.",tinhNang:["Tính năng sẽ cập nhật"],
+    huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
+    dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
+    goi:[
+      {ten:"Gói 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:19000},
+      {ten:"Gói 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:49000},
+      {ten:"Gói 12 tháng",loai:"Gói mẫu",han:"12 tháng",gia:159000}
+    ]
+  },
 
-    function parseExamDate(exam) {
-      return new Date(`${exam.date}T${exam.time || "00:00"}:00`);
-    }
+  // ================ 14. ỨNG DỤNG 07 =================
+  {
+    id:"ung-dung-07",ten:"Ứng dụng 07",logo:"",banner:"",
+    moTa:"Mô tả sản phẩm đang cập nhật.",tinhNang:["Tính năng sẽ cập nhật"],
+    huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
+    dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
+    goi:[
+      {ten:"Gói 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:19000},
+      {ten:"Gói 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:49000},
+      {ten:"Gói 12 tháng",loai:"Gói mẫu",han:"12 tháng",gia:159000}
+    ]
+  },
 
-    function formatDate(dateString) {
-      const [y, m, d] = dateString.split("-");
-      return `${Number(d)}/${Number(m)}/${y}`;
-    }
+  // ================ 15. ỨNG DỤNG 08 =================
+  {
+    id:"ung-dung-08",ten:"Ứng dụng 08",logo:"",banner:"",
+    moTa:"Mô tả sản phẩm đang cập nhật.",tinhNang:["Tính năng sẽ cập nhật"],
+    huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
+    dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
+    goi:[
+      {ten:"Gói 1 tháng",loai:"Gói mẫu",han:"1 tháng",gia:19000},
+      {ten:"Gói 3 tháng",loai:"Gói mẫu",han:"3 tháng",gia:49000},
+      {ten:"Gói 12 tháng",loai:"Gói mẫu",han:"12 tháng",gia:159000}
+    ]
+  }
 
-    function pad(n) { return String(n).padStart(2, "0"); }
+  // THÊM ỨNG DỤNG TẠI ĐÂY: đặt dấu phẩy sau khối cuối rồi thêm một khối mới.
+];
 
-    function getNextExam() {
-      const now = new Date();
-      return [...data.exams]
-        .sort((a, b) => parseExamDate(a) - parseExamDate(b))
-        .find(exam => parseExamDate(exam) > now) || null;
-    }
-
-    function renderStatic() {
-      initMusic();
-      $("siteTitle").textContent = data.siteTitle;
-      $("siteSubtitle").textContent = data.siteSubtitle;
-      $("quoteText").textContent = data.quoteText;
-      $("quoteAuthor").textContent = data.quoteAuthor;
-      $("quoteSub").textContent = data.quoteSub;
-
-      $("chips").innerHTML = data.chips.map(([icon, label, color]) =>
-        `<span class="chip ${color}">${icon} ${label}</span>`
-      ).join("");
-
-      renderNews();
-      renderSchedule();
-    }
-
-    function renderNews() {
-      $("newsGrid").innerHTML = data.news.map(item => `
-        <a class="news-card" href="${escapeAttr(item.url || "#")}" ${item.url && item.url !== "#" ? "target=\"_blank\" rel=\"noopener\"" : ""}>
-          <div>
-            <div class="news-meta"><span class="tag">${escapeHtml(item.tag || "Tin tức")}</span><span class="ago">${escapeHtml(item.time || "Mới cập nhật")}</span></div>
-            <h3 class="news-title">${escapeHtml(item.title || "Tiêu đề tin tức")}</h3>
-            <p class="news-desc">${escapeHtml(item.desc || "")}</p>
-          </div>
-        </a>
-      `).join("");
-    }
-
-    function renderSchedule() {
-      const now = new Date();
-      const next = getNextExam();
-      const exams = [...data.exams].sort((a, b) => parseExamDate(a) - parseExamDate(b));
-      $("scheduleList").innerHTML = exams.map((exam, index) => {
-        const examDate = parseExamDate(exam);
-        const done = examDate <= now;
-        const active = next && exam === next;
-        if (hideDone && done) return "";
-        const status = done ? "Đã qua" : active ? "Đang đếm ngược" : "Sắp tới";
-        return `
-          <article class="exam-card ${active ? "active" : ""} ${done ? "done" : ""}">
-            <div class="exam-icon">${escapeHtml(exam.icon || String(index + 1))}</div>
-            <div>
-              <h3 class="exam-subject">${escapeHtml(exam.subject)}</h3>
-              <div class="exam-info">
-                <span>${formatDate(exam.date)}</span><span>•</span><span>${escapeHtml(exam.time)}</span><span>•</span><span>${Number(exam.duration || 0)} phút</span>
-                <span class="exam-status">${status}</span>
-              </div>
-            </div>
-          </article>
-        `;
-      }).join("") || `<p style="color:var(--muted-2);font-weight:800;">Không còn môn thi nào để hiển thị.</p>`;
-    }
-
-    function tick() {
-      const next = getNextExam();
-      if (!next) {
-        $("nextLabel").textContent = "Kỳ thi đã hoàn thành";
-        $("nextDate").textContent = "Chúc mừng bạn!";
-        $("nextTime").textContent = "✓ Hoàn tất";
-        $("countTitle").textContent = "Bạn đã đi hết chặng đường này";
-        setCount(0, 0, 0, 0);
-        renderSchedule();
-        return;
-      }
-
-      const target = parseExamDate(next);
-      const diff = Math.max(0, target - new Date());
-      const totalSeconds = Math.floor(diff / 1000);
-      const days = Math.floor(totalSeconds / 86400);
-      const hours = Math.floor((totalSeconds % 86400) / 3600);
-      const minutes = Math.floor((totalSeconds % 3600) / 60);
-      const seconds = totalSeconds % 60;
-
-      $("nextLabel").textContent = `Môn thi tiếp theo: ${next.subject}`;
-      $("nextDate").textContent = formatDate(next.date);
-      $("nextTime").textContent = `▣ ${next.time}`;
-      $("countTitle").textContent = `Thời gian còn lại đến môn thi ${next.subject}`;
-      setCount(days, hours, minutes, seconds);
-    }
-
-    function setCount(d, h, m, s) {
-      $("days").textContent = pad(d);
-      $("hours").textContent = pad(h);
-      $("minutes").textContent = pad(m);
-      $("seconds").textContent = pad(s);
-    }
-
-    function openEditor() {
-      $("editSiteTitle").value = data.siteTitle;
-      $("editSiteSubtitle").value = data.siteSubtitle;
-      $("editQuote").value = data.quoteText;
-      $("editAuthor").value = data.quoteAuthor;
-      $("editSubQuote").value = data.quoteSub;
-      renderExamEditor();
-      renderNewsEditor();
-      $("modalBackdrop").classList.add("open");
-    }
-
-    function closeEditor() {
-      $("modalBackdrop").classList.remove("open");
-    }
-
-    function renderExamEditor() {
-      $("examEditor").innerHTML = data.exams.map((exam, i) => `
-        <div class="editor-row" data-exam-index="${i}">
-          <div class="form-grid">
-            <div class="field"><label>Môn thi</label><input data-key="subject" value="${escapeAttr(exam.subject)}"></div>
-            <div class="field"><label>Biểu tượng</label><input data-key="icon" value="${escapeAttr(exam.icon || "")}"></div>
-            <div class="field"><label>Ngày</label><input data-key="date" type="date" value="${escapeAttr(exam.date)}"></div>
-            <div class="field"><label>Giờ</label><input data-key="time" type="time" value="${escapeAttr(exam.time)}"></div>
-            <div class="field"><label>Thời lượng phút</label><input data-key="duration" type="number" min="1" value="${escapeAttr(exam.duration)}"></div>
-          </div>
-          <div class="row-actions"><button class="pill-btn danger" type="button" onclick="removeExam(${i})">Xóa</button></div>
-        </div>
-      `).join("");
-    }
-
-    function renderNewsEditor() {
-      $("newsEditor").innerHTML = data.news.map((item, i) => `
-        <div class="editor-row" data-news-index="${i}">
-          <div class="form-grid">
-            <div class="field"><label>Nhãn</label><input data-key="tag" value="${escapeAttr(item.tag || "")}"></div>
-            <div class="field"><label>Thời gian đọc</label><input data-key="time" value="${escapeAttr(item.time || "")}"></div>
-            <div class="field full"><label>Tiêu đề</label><input data-key="title" value="${escapeAttr(item.title || "")}"></div>
-            <div class="field full"><label>Mô tả</label><textarea data-key="desc">${escapeHtml(item.desc || "")}</textarea></div>
-            <div class="field full"><label>Link</label><input data-key="url" value="${escapeAttr(item.url || "#")}"></div>
-          </div>
-          <div class="row-actions"><button class="pill-btn danger" type="button" onclick="removeNews(${i})">Xóa</button></div>
-        </div>
-      `).join("");
-    }
-
-    window.removeExam = (index) => {
-      data.exams.splice(index, 1);
-      renderExamEditor();
-    };
-
-    window.removeNews = (index) => {
-      data.news.splice(index, 1);
-      renderNewsEditor();
-    };
-
-    function collectEditorData() {
-      data.siteTitle = $("editSiteTitle").value.trim() || DEFAULT_DATA.siteTitle;
-      data.siteSubtitle = $("editSiteSubtitle").value.trim() || DEFAULT_DATA.siteSubtitle;
-      data.quoteText = $("editQuote").value.trim() || DEFAULT_DATA.quoteText;
-      data.quoteAuthor = $("editAuthor").value.trim() || DEFAULT_DATA.quoteAuthor;
-      data.quoteSub = $("editSubQuote").value.trim() || DEFAULT_DATA.quoteSub;
-
-      data.exams = [...document.querySelectorAll("[data-exam-index]")].map(row => {
-        const get = key => row.querySelector(`[data-key="${key}"]`).value.trim();
-        return { subject: get("subject"), icon: get("icon"), date: get("date"), time: get("time"), duration: Number(get("duration") || 0) };
-      }).filter(exam => exam.subject && exam.date && exam.time);
-
-      data.news = [...document.querySelectorAll("[data-news-index]")].map(row => {
-        const get = key => row.querySelector(`[data-key="${key}"]`).value.trim();
-        return { tag: get("tag"), title: get("title"), desc: get("desc"), time: get("time"), url: get("url") || "#" };
-      }).filter(item => item.title);
-    }
-
-    function exportJson() {
-      collectEditorData();
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "du-lieu-dem-nguoc-thpt-2026.json";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(a.href);
-      showToast("Đã xuất file JSON");
-    }
-
-    function importJson(file) {
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = () => {
-        try {
-          const imported = JSON.parse(reader.result);
-          data = { ...structuredClone(DEFAULT_DATA), ...imported };
-          saveData();
-          renderStatic();
-          tick();
-          openEditor();
-          showToast("Đã nhập dữ liệu");
-        } catch {
-          showToast("File JSON không hợp lệ");
-        }
-      };
-      reader.readAsText(file);
-    }
-
-    function escapeHtml(value) {
-      return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
-
-    function escapeAttr(value) { return escapeHtml(value); }
-
-    function initMusic() {
-      const player = $("musicPlayer");
-      if (!data.music || !data.music.length) data.music = structuredClone(DEFAULT_DATA.music);
-      player.volume = 0.38;
-      player.src = data.music[currentTrack]?.url || data.music[0].url;
-      player.onended = () => {
-        currentTrack = (currentTrack + 1) % data.music.length;
-        player.src = data.music[currentTrack].url;
-        if (musicOn) {
-          player.play().catch(() => {});
-          showToast(`Đang chuyển bài: ${data.music[currentTrack]?.name || "Nhạc nền"}`);
-        }
-      };
-    }
-
-    async function toggleMusic() {
-      const player = $("musicPlayer");
-      const btn = $("musicBtn");
-      if (!musicOn) {
-        try {
-          if (!player.src) initMusic();
-          await player.play();
-          musicOn = true;
-          btn.classList.add("music-on");
-          btn.textContent = "♫";
-          showToast(`Đang bật nhạc: ${data.music[currentTrack]?.name || "Nhạc nền"}`);
-        } catch {
-          showToast("Trình duyệt chưa cho phép phát nhạc. Hãy bấm lại nút nhạc.");
-        }
-      } else {
-        player.pause();
-        musicOn = false;
-        btn.classList.remove("music-on");
-        btn.textContent = "♪";
-        showToast("Đã tắt nhạc nền");
-      }
-    }
-
-    function showToast(message) {
-      const toast = $("toast");
-      toast.textContent = message;
-      toast.classList.add("show");
-      clearTimeout(showToast.timer);
-      showToast.timer = setTimeout(() => toast.classList.remove("show"), 2200);
-    }
-
-    function setTheme(theme) {
-      document.documentElement.dataset.theme = theme;
-      localStorage.setItem(THEME_KEY, theme);
-      $("themeBtn").textContent = theme === "light" ? "☀" : "☾";
-    }
-
-    $("musicBtn").addEventListener("click", toggleMusic);
-
-    $("themeBtn").addEventListener("click", () => {
-      setTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light");
-    });
-
-    $("filterBtn").addEventListener("click", () => {
-      hideDone = !hideDone;
-      renderSchedule();
-      showToast(hideDone ? "Đã ẩn môn đã thi" : "Đã hiện tất cả môn thi");
-    });
-
-    $("shareBtn").addEventListener("click", async () => {
-      const shareData = { title: data.siteTitle, text: data.siteSubtitle, url: location.href };
-      try {
-        if (navigator.share) await navigator.share(shareData);
-        else {
-          await navigator.clipboard.writeText(location.href);
-          showToast("Đã sao chép link trang");
-        }
-      } catch {}
-    });
-
-    $("editBtn").addEventListener("click", openEditor);
-    $("closeModal").addEventListener("click", closeEditor);
-    $("modalBackdrop").addEventListener("click", (e) => { if (e.target === $("modalBackdrop")) closeEditor(); });
-
-    $("addExamBtn").addEventListener("click", () => {
-      collectEditorData();
-      data.exams.push({ subject: "Môn thi mới", icon: "▣", date: "2026-06-12", time: "09:40", duration: 50 });
-      renderExamEditor();
-    });
-
-    $("addNewsBtn").addEventListener("click", () => {
-      collectEditorData();
-      data.news.push({ tag: "Tin mới", title: "Tiêu đề thông báo mới", desc: "Nhập mô tả ngắn cho thông báo.", time: "1 phút đọc", url: "#" });
-      renderNewsEditor();
-    });
-
-    $("saveBtn").addEventListener("click", () => {
-      collectEditorData();
-      saveData();
-      renderStatic();
-      tick();
-      closeEditor();
-      showToast("Đã lưu thay đổi");
-    });
-
-    $("resetBtn").addEventListener("click", () => {
-      if (!confirm("Khôi phục dữ liệu mặc định?")) return;
-      data = structuredClone(DEFAULT_DATA);
-      saveData();
-      renderStatic();
-      tick();
-      openEditor();
-      showToast("Đã khôi phục mặc định");
-    });
-
-    $("exportBtn").addEventListener("click", exportJson);
-    $("importFile").addEventListener("change", e => importJson(e.target.files[0]));
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeEditor();
-    });
-
-    setTheme(localStorage.getItem(THEME_KEY) || "dark");
-    renderStatic();
-    tick();
-    setInterval(() => {
-      tick();
-      renderSchedule();
-    }, 1000);
-  </script>
+/* ===================== HẾT CẤU HÌNH =====================
+  KHÔNG CẦN SỬA PHẦN DƯỚI NÀY. Đây là mã hiển thị tự động.
+========================================================== */
+const $=id=>document.getElementById(id);
+const safe=v=>String(v??"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=n=>typeof n==='number'&&Number.isFinite(n)?n.toLocaleString('vi-VN')+'đ':'Liên hệ';
+const icon=a=>`<div class="app-icon">${a.logo?`<img src="${safe(a.logo)}" alt="" onerror="this.remove();this.parentNode.textContent='${safe(a.ten.slice(0,1).toUpperCase())}'">`:safe(a.ten.slice(0,1).toUpperCase())}</div>`;
+const listItems=(items,tag='li')=>(items||[]).map(x=>`<${tag}>${safe(x)}</${tag}>`).join('');
+function showHome(){
+ $('main').innerHTML=`<section class="hero"><div class="wrap"><div class="hero-inner"><span class="eyebrow">Cửa hàng gói ứng dụng</span><h1>Ứng dụng yêu thích,<br>gói dùng phù hợp.</h1><p class="muted">${safe(CUA_HANG.gioiThieu)}</p><a class="btn" href="#danh-sach">Khám phá sản phẩm →</a></div></div></section><section class="section" id="danh-sach"><div class="wrap"><div class="section-head"><div><h2>Danh mục ứng dụng</h2><p class="muted">Chọn ứng dụng để xem gói và giá.</p></div><input class="search" id="search" type="search" placeholder="🔎 Tìm ứng dụng..." aria-label="Tìm ứng dụng"></div><div class="grid" id="appGrid"></div></div></section>`;
+ $('search').addEventListener('input',e=>drawApps(e.target.value));drawApps('');
+}
+function drawApps(query){let q=query.trim().toLocaleLowerCase('vi');let apps=SAN_PHAM.filter(a=>a.ten.toLocaleLowerCase('vi').includes(q));$('appGrid').innerHTML=apps.map(a=>`<article class="app-card">${icon(a)}<h3>${safe(a.ten)}</h3><p>${safe(a.moTa)}</p><a class="btn btn-outline" href="#app/${encodeURIComponent(a.id)}">Xem các gói →</a></article>`).join('')||'<p class="empty">Không tìm thấy ứng dụng phù hợp.</p>'}
+function showDetail(a){
+ $('main').innerHTML=`<div class="wrap detail-top"><button class="back" onclick="location.hash=''">← Quay lại danh sách</button><div class="banner" id="banner"><div class="banner-content">${icon(a)}<div><h1>${safe(a.ten)}</h1><p>${safe(a.moTa)}</p></div></div></div><div class="detail-layout"><div><section class="panel"><h2>Thông tin ứng dụng</h2><p class="muted">${safe(a.moTa)}</p><ul class="features">${listItems(a.tinhNang)}</ul></section><section class="panel"><h2>Các gói đang bán</h2><p class="muted">Chọn gói phù hợp để liên hệ đặt hàng.</p><div class="packages">${a.goi.map((p,i)=>`<article class="package"><span class="tag">${safe(p.loai||'Gói ứng dụng')}</span><h3>${safe(p.ten)}</h3><div class="duration">Thời hạn: ${safe(p.han)}</div><div class="price">${money(p.gia)}</div>${GIA_MINH_HOA?'<div class="note">Giá minh họa</div>':''}<button class="btn" onclick="openOrder('${safe(a.id)}',${i})">Đặt mua ngay →</button></article>`).join('')}</div></section><section class="panel"><h2>Hướng dẫn & điều khoản</h2><details><summary>Hướng dẫn sử dụng ${safe(a.ten)}</summary><ol>${listItems(a.huongDan)}</ol></details><details><summary>Điều khoản sử dụng ${safe(a.ten)}</summary><ul>${listItems(a.dieuKhoan)}</ul></details></section></div><aside><div class="panel"><h2>Cần tư vấn?</h2><p class="muted">Liên hệ cửa hàng để hỏi về ${safe(a.ten)}.</p><div class="contact-box"><button class="btn" style="width:100%" onclick="openOrder('${safe(a.id)}',-1)">Liên hệ về ${safe(a.ten)}</button></div></div><div class="panel"><h3>Lưu ý</h3><p class="muted">Đây là cửa hàng độc lập, không phải website chính thức của ứng dụng.</p>${GIA_MINH_HOA?'<p class="warning">Giá hiện tại chỉ là minh họa. Hãy thay bằng giá bán thật trước khi nhận đơn.</p>':''}</div></aside></div></div>`;
+ if(a.banner){const b=$('banner');const img=new Image();img.onload=()=>b.style.backgroundImage=`url("${a.banner.replace(/"/g,'%22')}")`;img.src=a.banner}
+}
+function route(){const hash=decodeURIComponent(location.hash.slice(1));if(hash.startsWith('app/')){const app=SAN_PHAM.find(a=>a.id===hash.slice(4));if(app)showDetail(app);else showHome()}else showHome();window.scrollTo(0,0)}
+let currentMessage='';
+function openOrder(id,index){const a=SAN_PHAM.find(x=>x.id===id);if(!a)return;const p=a.goi[index];currentMessage=p?`Xin chào ${CUA_HANG.ten}!\nTôi muốn đặt gói:\nỨng dụng: ${a.ten}\nTên gói: ${p.ten}\nLoại: ${p.loai||'Không phân loại'}\nThời hạn: ${p.han}\nGiá hiển thị: ${money(p.gia)}${GIA_MINH_HOA?' (giá minh họa, vui lòng xác nhận)':''}\nNhờ cửa hàng tư vấn cách mua và sử dụng.`:`Xin chào ${CUA_HANG.ten}! Tôi muốn được tư vấn về ứng dụng ${a.ten}.`;
+ $('orderText').textContent=currentMessage;const links=[['Zalo',CUA_HANG.zalo],['Facebook',CUA_HANG.facebook],['Telegram',CUA_HANG.telegram]];$('contactLinks').innerHTML=links.filter(x=>/^https:\/\//i.test(x[1])).map(([name,url])=>`<a class="btn btn-outline btn-small" target="_blank" rel="noopener noreferrer" href="${safe(url)}">Mở ${name} ↗</a>`).join('');$('contactWarning').hidden=!!links.some(x=>/^https:\/\//i.test(x[1]));$('orderDialog').classList.add('show')}
+function closeOrder(){$('orderDialog').classList.remove('show')}
+async function copyOrder(){try{await navigator.clipboard.writeText(currentMessage);alert('Đã sao chép nội dung đặt hàng!')}catch(e){const t=document.createElement('textarea');t.value=currentMessage;document.body.appendChild(t);t.select();const ok=document.execCommand('copy');t.remove();alert(ok?'Đã sao chép nội dung đặt hàng!':'Không thể sao chép tự động. Hãy chọn và sao chép nội dung trong hộp thoại.')}}
+$('orderDialog').addEventListener('click',e=>{if(e.target===$('orderDialog'))closeOrder()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeOrder()});
+$('brandName').textContent=CUA_HANG.ten;$('footerName').textContent=CUA_HANG.ten;document.title=CUA_HANG.ten+' | Cửa hàng gói ứng dụng';window.addEventListener('hashchange',route);route();
+</script>
 </body>
 </html>

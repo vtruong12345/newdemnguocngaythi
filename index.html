@@ -8,13 +8,51 @@
 :root{--bg:#f5f7f6;--white:#fff;--ink:#22352f;--muted:#697b73;--accent:#347f69;--soft:#e9f4ee;--border:#dfe9e3;--shadow:0 12px 32px rgba(32,63,49,.06)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.55}button,input{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}.wrap{max-width:1150px;margin:auto;padding:0 20px}header{background:rgba(255,255,255,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{font-size:22px;font-weight:800;color:var(--accent);display:flex;align-items:center;gap:9px}.brand-mark{display:grid;place-items:center;background:var(--accent);color:#fff;width:37px;height:37px;border-radius:12px}.navlinks{display:flex;gap:18px;font-size:14px;color:var(--muted)}.navlinks a:hover{color:var(--accent)}.hero{padding:65px 0 45px}.hero-inner{border-radius:25px;background:linear-gradient(120deg,#e4f1e8,#f9fbf8);padding:55px 50px;border:1px solid var(--border)}.eyebrow{color:var(--accent);font-size:13px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase}h1{font-size:clamp(31px,5vw,49px);line-height:1.18;margin:13px 0}h2{font-size:26px;margin:0 0 8px}h3{margin:0 0 8px}p{margin:0 0 16px}.muted{color:var(--muted)}.hero p{max-width:570px}.section{padding:24px 0 55px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:23px}.search{width:290px;max-width:100%;border:1px solid var(--border);padding:13px 15px;border-radius:13px;background:#fff;outline:none}.search:focus{border-color:var(--accent)}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}.app-card,.package,.panel{background:var(--white);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow)}.app-card{padding:23px;display:flex;flex-direction:column;min-height:250px;transition:transform .2s,border-color .2s}.app-card:hover,.package:hover{transform:translateY(-3px);border-color:#a9d2bd}.app-icon{width:62px;height:62px;border-radius:17px;background:var(--soft);color:var(--accent);display:grid;place-items:center;font-size:23px;font-weight:800;overflow:hidden;margin-bottom:17px}.app-icon img{width:100%;height:100%;object-fit:cover}.app-card h3{font-size:19px}.app-card p{font-size:14px;color:var(--muted);flex:1}.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:11px 16px;border-radius:11px;border:1px solid var(--accent);background:var(--accent);color:white;font-size:14px;font-weight:700;transition:opacity .2s}.btn:hover{opacity:.87}.btn-outline{background:white;color:var(--accent)}.btn-small{padding:9px 13px}.detail-top{padding:25px 0 10px}.back{background:none;border:0;color:var(--accent);font-weight:700;padding:8px 0}.banner{position:relative;min-height:245px;border-radius:22px;overflow:hidden;background:linear-gradient(115deg,#cce5d6,#e9f3ec);border:1px solid var(--border);display:flex;align-items:end;margin:10px 0 28px;background-position:center;background-size:cover}.banner:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,51,40,.85),rgba(22,51,40,.24))}.banner-content{position:relative;color:white;padding:34px;display:flex;align-items:center;gap:18px}.banner .app-icon{margin:0;background:white;flex-shrink:0}.banner h1{font-size:37px;margin:0 0 6px}.banner p{margin:0;color:#eaf5ee}.detail-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px}.panel{padding:24px;margin-bottom:22px}.panel h2{font-size:21px;margin-bottom:12px}.features{margin:0;padding-left:20px;color:var(--muted)}.features li{margin:7px 0}.packages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.package{padding:19px;display:flex;flex-direction:column;min-height:205px;transition:transform .2s}.package .tag{align-self:flex-start;background:var(--soft);color:var(--accent);font-size:12px;font-weight:700;border-radius:30px;padding:4px 10px;margin-bottom:13px}.package h3{font-size:17px;line-height:1.35}.duration{font-size:13px;color:var(--muted)}.price{font-size:24px;font-weight:800;color:var(--accent);margin:14px 0}.package .btn{margin-top:auto}.note{font-size:12px;color:var(--muted)}details{border:1px solid var(--border);border-radius:12px;margin-top:12px;padding:15px;background:#fff}summary{cursor:pointer;font-weight:700}details ol,details ul{margin-bottom:0;padding-left:22px}details li{margin:9px 0}.contact-box{background:#edf6f0;border-radius:14px;padding:18px}.contact-box .btn{width:100%;margin:5px 0}.footer{border-top:1px solid var(--border);background:#fff;padding:30px 0;color:var(--muted);font-size:14px}.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.empty{grid-column:1/-1;color:var(--muted);padding:30px;text-align:center}.dialog{position:fixed;inset:0;background:rgba(20,36,29,.57);z-index:20;display:none;align-items:center;justify-content:center;padding:20px}.dialog.show{display:flex}.dialog-card{background:white;border-radius:19px;padding:26px;max-width:480px;width:100%;max-height:90vh;overflow:auto}.dialog-head{display:flex;justify-content:space-between;gap:10px;align-items:start}.close{border:0;background:#edf2ee;border-radius:9px;padding:6px 11px;font-size:22px}.order-text{white-space:pre-wrap;background:#f6f8f7;border:1px solid var(--border);border-radius:12px;padding:15px;margin:17px 0;font-size:14px;overflow-wrap:anywhere}.contact-actions{display:flex;flex-wrap:wrap;gap:9px}.contact-actions .btn{flex:1}.warning{background:#fff7e9;color:#77521b;border:1px solid #f1dfba;padding:12px;border-radius:10px;font-size:13px;margin-top:12px}
 @media(max-width:950px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.detail-layout{grid-template-columns:1fr}.packages{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:650px){.navlinks{gap:10px;font-size:12px}.hero{padding:28px 0}.hero-inner{padding:30px 24px}.grid,.packages{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.section-head{align-items:stretch;flex-direction:column}.search{width:100%}.app-card{padding:16px;min-height:235px}.app-card h3{font-size:17px}.banner-content{padding:24px;align-items:start}.banner h1{font-size:29px}.panel{padding:17px}.package{padding:15px}.price{font-size:21px}}@media(max-width:380px){.grid,.packages{grid-template-columns:1fr}.navlinks a:nth-child(2){display:none}.banner-content{flex-direction:column}.hero-inner{padding:26px 20px}}
+
+/* GIAO DIỆN HỒNG NHẸ - TOÀN BỘ FONT ARIAL */
+:root{--bg:#fff8fb;--white:#fff;--ink:#493743;--muted:#826e7c;--accent:#c76592;--soft:#fff0f6;--border:#f2dce6;--shadow:0 12px 30px rgba(162,83,121,.09)}
+body{font-family:Arial,Helvetica,sans-serif;letter-spacing:.01em;overflow-x:hidden}
+.hero-inner{background:linear-gradient(125deg,#ffe5f0,#fff9fc)}
+.banner{background:linear-gradient(120deg,#edb8d0,#fff0f7)}
+.banner:before{background:linear-gradient(90deg,rgba(92,38,67,.82),rgba(92,38,67,.18))}
+.contact-box{background:#fff0f6}.app-card:hover,.package:hover{border-color:#e8b4cb}
+.dialog{z-index:40;background:rgba(51,27,42,.6)}
+.dialog-card{max-width:530px}.qr-wrap{text-align:center;border:1px solid var(--border);background:#fff9fc;border-radius:16px;padding:16px;margin:15px 0}
+.qr-wrap img{width:min(245px,100%);height:auto;aspect-ratio:1;object-fit:contain;background:white;border-radius:12px}
+.qr-price{font-size:25px;color:var(--accent);font-weight:800}.qr-note{font-size:12px;color:var(--muted);margin:8px 0 0}
+.floating-contact{position:fixed;right:16px;bottom:20px;z-index:25;display:flex;flex-direction:column;align-items:end;gap:9px}
+.float-toggle{border:0;border-radius:99px;background:var(--accent);color:white;padding:13px 19px;font-weight:bold;box-shadow:0 7px 22px #c7659255}
+.float-links{display:none;flex-direction:column;gap:8px;align-items:end;background:#fff;padding:12px;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow)}
+.float-links.show{display:flex}.float-links a{display:block;background:var(--soft);color:var(--ink);border-radius:9px;padding:9px 15px;font-size:14px;font-weight:bold}
+@media(max-width:650px){.floating-contact{right:12px;bottom:12px}.float-toggle{padding:12px 15px}}
+
+/* =========== GIAO DIỆN THẺ ẢNH SẢN PHẨM =========== */
+html,body,body *,button,input,textarea,select,summary{font-family:Arial,Helvetica,sans-serif!important}
+.grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.app-card,.package{padding:12px;background:#fff;border:1px solid #efd9e3;border-radius:18px;overflow:hidden;min-width:0;min-height:0;box-shadow:0 9px 25px rgba(127,67,97,.09)}
+.app-card .app-icon{display:none}
+.product-cover{position:relative;width:100%;aspect-ratio:1.6/1;overflow:hidden;border-radius:13px;background:linear-gradient(135deg,#f5c5de,#e9d5fb 60%,#ffebf2);display:flex;align-items:center;justify-content:center;margin-bottom:13px}
+.product-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.product-cover .cover-placeholder{display:flex;align-items:center;justify-content:center;gap:12px;padding:12px;text-align:center;font-size:clamp(15px,2vw,23px);font-weight:800;color:#7f4267;overflow-wrap:anywhere}
+.product-cover .cover-placeholder img{width:46px;height:46px;object-fit:contain;border-radius:12px;background:white;padding:3px;flex-shrink:0}
+.app-card h3,.package h3{font-size:15px;line-height:1.45;margin:0 2px 8px;font-weight:700;overflow-wrap:anywhere}
+.app-card p{font-size:13px;margin:0 2px 14px;line-height:1.5}
+.package .tag{margin:0 0 9px}
+.package .duration{margin-top:2px}
+.package .price{font-size:20px;margin:12px 0 14px;color:#c35385}
+.app-card .btn,.package .btn{width:100%;font-size:13px}
+.package{transition:transform .2s,border-color .2s}
+@media(max-width:950px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){.grid,.packages{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.app-card,.package{padding:9px;border-radius:15px}.product-cover{border-radius:11px}.product-cover .cover-placeholder{font-size:14px;gap:6px}.product-cover .cover-placeholder img{width:34px;height:34px}.app-card h3,.package h3{font-size:13px}.package .price{font-size:18px}.app-card .btn,.package .btn{padding:10px 6px;font-size:12px}}
+@media(max-width:370px){.grid,.packages{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header><div class="wrap nav"><a class="brand" href="#"><span class="brand-mark">G</span><span id="brandName"> Tiem Nha Bong</span></a><nav class="navlinks"><a href="#">Trang chủ</a><a href="#danh-sach">Sản phẩm</a><a href="#lien-he">Liên hệ</a></nav></div></header>
 <main id="main"></main>
-<footer class="footer" id="lien-he"><div class="wrap footer-row"><span>© <span id="footerName">Góc App</span> · Cửa hàng độc lập, không đại diện cho các ứng dụng.</span><span>Liên hệ mua hàng qua các kênh đã cấu hình.</span></div></footer>
-<div class="dialog" id="orderDialog" role="dialog" aria-modal="true" aria-labelledby="orderTitle"><div class="dialog-card"><div class="dialog-head"><div><h2 id="orderTitle">Thông tin đặt hàng</h2><p class="muted">Sao chép tin nhắn và gửi cho cửa hàng.</p></div><button class="close" onclick="closeOrder()" aria-label="Đóng">×</button></div><div id="orderText" class="order-text"></div><div class="contact-actions"><button class="btn" onclick="copyOrder()">📋 Sao chép nội dung</button></div><div id="contactLinks" class="contact-actions" style="margin-top:10px"></div><div id="contactWarning" class="warning" hidden>Chủ cửa hàng chưa cấu hình đường dẫn liên hệ.</div></div></div>
+<footer class="footer" id="lien-he"><div class="wrap footer-row"><span>© <span id="footerName">Tiem Nha Bong</span> · Cửa hàng độc lập, không đại diện cho các ứng dụng.</span><span>Liên hệ mua hàng qua các kênh đã cấu hình.</span></div></footer>
+<div class="dialog" id="orderDialog" role="dialog" aria-modal="true" aria-labelledby="orderTitle"><div class="dialog-card"><div class="dialog-head"><div><h2 id="orderTitle">Thông tin đặt hàng</h2><p class="muted">Sao chép tin nhắn và gửi cho cửa hàng.</p></div><button class="close" onclick="closeOrder()" aria-label="Đóng">×</button></div><div id="orderText" class="order-text"></div><div id="qrPayment"></div><div class="contact-actions"><button class="btn" onclick="copyOrder()">📋 Sao chép nội dung</button></div><div id="contactLinks" class="contact-actions" style="margin-top:10px"></div><div id="contactWarning" class="warning" hidden>Chủ cửa hàng chưa cấu hình đường dẫn liên hệ.</div></div></div>
+<div class="floating-contact"><div id="floatingLinks" class="float-links"></div><button class="float-toggle" type="button" onclick="toggleContacts()" aria-expanded="false" id="floatButton">💬 Liên hệ</button></div>
 <script>
 /* ======================================================================
   KHU VỰC CHỈNH SỬA — BẠN CHỈ CẦN SỬA TỪ ĐÂY ĐẾN DÒNG "HẾT CẤU HÌNH"
@@ -23,7 +61,7 @@
   GIÁ: ghi số, KHÔNG ghi dấu chấm: gia: 39000 => hiển thị 39.000đ
        gia: null => hiển thị "Liên hệ"
   ẢNH: để "" nếu chưa có link. Website sẽ tự dùng hình dự phòng.
-  THÊM GÓI: sao chép một dòng { ten: ..., loai: ..., han: ..., gia: ... },
+  THÊM GÓI: sao chép một dòng { ten: ..., loai: ..., han: ..., gia: ..., anh: "" },
   THÊM ỨNG DỤNG: sao chép nguyên một khối { ... } và đổi id, tên, dữ liệu.
 ======================================================================== */
 
@@ -32,18 +70,31 @@ const CUA_HANG = {
   gioiThieu: "Khám phá các gói ứng dụng phù hợp với nhu cầu của bạn. Xem giá rõ ràng và liên hệ để được tư vấn trước khi mua.",
   zalo: "",                            // THAY LINK LIÊN HỆ TẠI ĐÂY (ví dụ https://zalo.me/09xxxxxxxx)
   facebook: "",                        // THAY LINK LIÊN HỆ TẠI ĐÂY (link trang Facebook)
-  telegram: ""                         // THAY LINK LIÊN HỆ TẠI ĐÂY (ví dụ https://t.me/username)
+  telegram: "",                        // THAY LINK LIÊN HỆ TẠI ĐÂY
+  nhomZalo: "",                         // LINK NHÓM ZALO TẠI ĐÂY
+  // THÔNG TIN NHẬN CHUYỂN KHOẢN - nhập để hiển thị QR kèm số tiền từng gói
+  nganHang: "",                         // MÃ NGÂN HÀNG, ví dụ MB, VCB, ACB
+  soTaiKhoan: "",                       // SỐ TÀI KHOẢN NHẬN TIỀN
+  chuTaiKhoan: "",                      // TÊN CHỦ TÀI KHOẢN (không dấu nếu cần)
+  noiDungChuyenKhoan: "Thanh toan don hang" // Nội dung giao dịch minh bạch
 };
 
 // Chỉnh giá bán trong từng mục sản phẩm bên dưới.
 // Giá trong file giữ nguyên theo dữ liệu đã nhập; hãy tự xác nhận trước khi bán.
 
 
+/* THAY LINK ẢNH TẠI ĐÂY:
+   - anhThe: "https://...jpg" trong mỗi ứng dụng = ảnh thẻ ở trang chủ.
+   - anh: "https://...jpg" trong từng gói = ảnh riêng cho ô gói.
+     Ví dụ: {ten:"Wink VIP 1 tháng",loai:"VIP",han:"1 tháng",gia:100000,anh:"https://example.com/wink.jpg"},
+   - Nếu để trống, website hiện thẻ nền hồng kèm logo ứng dụng.
+   - Không cần chỉnh CSS hoặc mã hiển thị bên dưới.
+*/
 const SAN_PHAM = [
 
   // ===================== 01. MEITU =====================
   {
-    id: "meitu", ten: "Meitu", logo: "", banner: "", // THAY LINK ẢNH TẠI ĐÂY
+    id: "meitu", ten: "Meitu", logo: "https://cdn.upanhlaylink.com/i/v0GaYMBr.png", anhThe: "", banner: "", // THAY LINK ẢNH TẠI ĐÂY
     moTa: "Các gói Meitu theo thời hạn. Liên hệ để xác nhận quyền lợi và cách kích hoạt.",
     tinhNang: ["Gói theo tháng", "Thông tin quyền lợi được xác nhận khi đặt hàng"],
     huongDan: ["Chọn thời hạn phù hợp.", "Liên hệ cửa hàng để xác nhận gói.", "Làm theo hướng dẫn kích hoạt được cung cấp khi mua."],
@@ -68,7 +119,7 @@ const SAN_PHAM = [
 
   // ===================== 02. XINGTU =====================
   {
-    id:"xingtu",ten:"Xingtu",logo:"",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    id:"xingtu",ten:"Xingtu",logo:"https://cdn.upanhlaylink.com/i/6SoTv0gX.png", anhThe: "",banner:"", // THAY LINK ẢNH TẠI ĐÂY
     moTa:"Lựa chọn các gói VIP và SVIP với thời hạn linh hoạt.",
     tinhNang:["Có tùy chọn VIP và SVIP", "Tư vấn quyền lợi theo từng gói"],
     huongDan:["Chọn VIP hoặc SVIP.","Chọn thời hạn và liên hệ tư vấn.","Nhận hướng dẫn kích hoạt tương ứng."],
@@ -94,18 +145,14 @@ const SAN_PHAM = [
 
   // ===================== 03. WINK =====================
   {
-    id:"wink",ten:"Wink",logo:"",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    id:"wink",ten:"Wink",logo:"https://cdn.upanhlaylink.com/i/8Af9mPRs.png", anhThe: "",banner:"", // THAY LINK ẢNH TẠI ĐÂY
     moTa:"Các lựa chọn gói Wink theo thời hạn.",
     tinhNang:["Nhiều lựa chọn thời hạn","Xác nhận quyền lợi trước khi mua"],
     huongDan:["Chọn gói Wink.","Gửi yêu cầu đặt mua.","Nhận hướng dẫn sử dụng từ cửa hàng."],
-    dieuKhoan:["Quy định sử dụng 1 thiết bị:
-
-Sử dụng 1 thiết bị cố định
-Nguyên tắc thiết bị: Hệ thống lưu theo địa chỉ IP máy. 1 lần đăng nhập = 1 thiết bị.
-Không đăng nhập máy thứ 2: Kế cả khi đã đăng xuất máy cũ hoặc xóa app, vẫn tính là quá thiết bị.
-Đối máy/Thêm máy: Liên hệ Admin để mua thêm slot (có giảm giá).
-Vi phạm: Tự ý đăng nhập nhiều máy dẫn đến lỗi thiết bị toàn bộ máy sẽ bị từ chối bảo hành.
-Nếu phát hiện sai phạm bạn phải đền bù slot bị mất và tiền phạt vi phạm theo quy định."],
+    dieuKhoan: [
+      "Quy định sử dụng 1 thiết bị:",
+      "Sử dụng 1 thiết bị cố định\nNguyên tắc thiết bị: Hệ thống lưu theo địa chỉ IP máy. 1 lần đăng nhập = 1 thiết bị.\nKhông đăng nhập máy thứ 2: Kế cả khi đã đăng xuất máy cũ hoặc xóa app, vẫn tính là quá thiết bị.\nĐối máy/Thêm máy: Liên hệ Admin để mua thêm slot (có giảm giá).\nVi phạm: Tự ý đăng nhập nhiều máy dẫn đến lỗi thiết bị toàn bộ máy sẽ bị từ chối bảo hành.\nNếu phát hiện sai phạm bạn phải đền bù slot bị mất và tiền phạt vi phạm theo quy định."
+    ],
     goi:[
       {ten:"Wink 1 tháng",loai:"VIP",han:"1 tháng",gia:100000},
       {ten:"Wink 1 năm",loai:"VIP",han:"1 năm",gia:550000},
@@ -116,25 +163,20 @@ Nếu phát hiện sai phạm bạn phải đền bù slot bị mất và tiề
 
   // ===================== 04. CAPCUT =====================
   {
-    id:"capcut",ten:"CapCut",logo:"",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    id:"capcut",ten:"CapCut",logo:"https://cdn.upanhlaylink.com/i/WRniFaOv.png", anhThe: "",banner:"", // THAY LINK ẢNH TẠI ĐÂY
     moTa:"Danh sách gói CapCut với thời hạn mẫu dễ tùy chỉnh.",
     tinhNang:["Lựa chọn thời hạn","Tư vấn thông tin gói"],
     huongDan:["Chọn thời hạn.","Liên hệ để xác nhận cách cấp quyền.","Thực hiện theo hướng dẫn nhận được."],
-    dieuKhoan:["CHÍNH SÁCH BẢO HÀNH
-
-Bảo hành 1 đổi 1 nếu lỗi trong thời gian sử dụng.
-
-Khách hàng không đăng nhập vượt quá số lượng thiết bị đã mua ( 1 điện thoại 1 máy tính).
-
-Không bảo hành nếu khách hàng đăng nhập quá số lượng thiết bị đã mua hoặc spam liên tục trong việc thực hiện thao tác (Lỗi truy cập thường xuyên) =>  đợi từ 10 - 14 ngày để app tự động mở hạn chế/ khoá tài khoản
-
-Không thay đổi thông tin đăng nhập , username của tài khoản để được bảo hành nhé
-
-Lỗi thường xuyên liên hệ admin để được hỗ trợ nhé (tuỳ trường hợp)
-
-Lưu ý : Vui lòng không rời Space trong quá trình sử dụng !! Chỉ đăng nhập PC bằng app, không đăng nhập bằng web
-
-CÁCH ĐĂNG NHẬP TRÊN PC: đăng nhập email bằng điện thoại ngay trên app Capcut, sau đó quét QR lên PC"],
+    dieuKhoan: [
+      "CHÍNH SÁCH BẢO HÀNH",
+      "Bảo hành 1 đổi 1 nếu lỗi trong thời gian sử dụng.",
+      "Khách hàng không đăng nhập vượt quá số lượng thiết bị đã mua ( 1 điện thoại 1 máy tính).",
+      "Không bảo hành nếu khách hàng đăng nhập quá số lượng thiết bị đã mua hoặc spam liên tục trong việc thực hiện thao tác (Lỗi truy cập thường xuyên) =>  đợi từ 10 - 14 ngày để app tự động mở hạn chế/ khoá tài khoản",
+      "Không thay đổi thông tin đăng nhập , username của tài khoản để được bảo hành nhé",
+      "Lỗi thường xuyên liên hệ admin để được hỗ trợ nhé (tuỳ trường hợp)",
+      "Lưu ý : Vui lòng không rời Space trong quá trình sử dụng !! Chỉ đăng nhập PC bằng app, không đăng nhập bằng web",
+      "CÁCH ĐĂNG NHẬP TRÊN PC: đăng nhập email bằng điện thoại ngay trên app Capcut, sau đó quét QR lên PC"
+    ],
     goi:[
       {ten:"CapCut 1 tháng",loai:"Pro",han:"1 tháng",gia:95000},
       {ten:"CapCut 3 tháng",loai:"Pro",han:"3 tháng",gia:250000},
@@ -149,7 +191,7 @@ CÁCH ĐĂNG NHẬP TRÊN PC: đăng nhập email bằng điện thoại ngay tr
 
   // ===================== 05. YOUTUBE =====================
   {
-    id:"youtube",ten:"YouTube",logo:"",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    id:"youtube",ten:"YouTube",logo:"https://cdn.upanhlaylink.com/i/jqnzZ0QD.png", anhThe: "",banner:"", // THAY LINK ẢNH TẠI ĐÂY
     moTa:"Các gói YouTube theo thời hạn, thông tin mẫu cần xác nhận.",
     tinhNang:["Chọn thời hạn","Liên hệ xác nhận quyền lợi"],
     huongDan:["Chọn gói.","Liên hệ cửa hàng xác nhận điều kiện.","Nhận hướng dẫn sử dụng."],
@@ -162,40 +204,30 @@ CÁCH ĐĂNG NHẬP TRÊN PC: đăng nhập email bằng điện thoại ngay tr
 
   // ===================== 06. HYPIC =====================
   {
-    id:"hypic",ten:"Hypic",logo:"",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    id:"hypic",ten:"Hypic",logo:"https://cdn.upanhlaylink.com/i/0L2is97s.png", anhThe: "",banner:"", // THAY LINK ẢNH TẠI ĐÂY
     moTa:"Gói Hypic mẫu, tùy chỉnh thông tin theo sản phẩm thực tế.",
     tinhNang:["Tiêu chuẩn dễ thay đổi"],
     huongDan:["Chọn gói Hypic.","Liên hệ xác nhận.","Nhận hướng dẫn sử dụng."],
-    dieuKhoan:["LƯU Ý QUAN TRỌNG KHI SỬ DỤNG:
-
-Phương thức đăng nhập: Tài khoản được thực hiện đăng nhập thông qua liên kết với TikTok.
-
-Giới hạn thiết bị: Để đảm bảo quyền lợi và sự ổn định của tính năng Pro, tài khoản chỉ được sử dụng trên 01 thiết bị cố định. Việc đăng nhập nhiều thiết bị có thể làm ảnh hưởng đến trạng thái nâng cấp của tài khoản.
-
-LƯU Ý QUAN TRỌNG: Tắt "Gỡ bỏ ứng dụng không dùng" để tránh trường hợp tự động đăng xuất khi lâu không sử dụng (đối với trường hợp này bên shop không chịu trách nhiệm vì đây là lỗi khách quan từ máy khách). Cách tắt chế độ này: Vào cài đặt của máy -> Chọn mục Ứng dụng -> tìm kiếm Appstore -> kéo xuống chọn mục Gỡ bỏ ứng dụng và tắt đi
-
-Các bước thực hiện đăng nhập: để tránh bị lỗi truy cập thường xuyên thì làm kĩ từng bước ở dưới:
-Bước 1: Mở trình duyệt (cực kỳ quan trọng vì đăng nhập trực tiếp bằng app dễ lỗi) và đăng nhập Tiktok trên điện thoại của bạn.
-
-Bước 2: Nhập Username và Mật khẩu vào mục Đăng nhập của TikTok. Nếu cần nhận Mã xác minh (OTP), hãy nhấn vào "Link nhận mã" được cung cấp và ấn bắt đầu nhận mã
-
-Bước 3: Sau khi đăng nhập thành công. Vào ứng dụng Hypic, chọn dòng chữ Đăng nhập bằng TikTok / Sign in with TikTok
-
-Bước 4: Hệ thống sẽ tự động chuyển hướng bạn sang trình duyệt TikTok và tự động đăng nhập vào Hypic.
-
-Lưu ý 1: Nếu hệ thống không chuyển hướng qua trình duyệt thì xoá app Tiktok, sau khi đăng nhập thành công thì tải lại app Tiktok (Nếu không muốn mất dữ liệu vào mục "Dung lượng Iphone -> Tiktok -> Gỡ bỏ ứng dụng -> sau khi đăng nhập Hypic thành công thì chọn Cài đặt lại dữ liệu)
-
-Lưu ý 2: Nếu đã đăng nhập trình duyệt mà khi vào Hypic bắt đăng nhập lại thì cứ nhập lại username và mật khẩu đã cấp như bước 2 là vào được nhé 
-
-Vui lòng không đăng xuất, xoá app, đổi máy, thay đổi thông tin nếu vi phạm sẽ không hoàn tiền và bảo hành !
-
-Đối với tiktok dùng để đăng nhập vui lòng không thay đổi thông tin, sử dụng tài khoản với bất kì mục đích gì !! Bên em sẽ thu hồi tài khoản sau khi mình đăng nhập thành công hypic (sau 1h sẽ tự động thu hồi tính từ lúc đăng nhập tiktok thành công, vui lòng thao tác đăng nhập nhanh chóng)."],
+    dieuKhoan: [
+      "LƯU Ý QUAN TRỌNG KHI SỬ DỤNG:",
+      "Phương thức đăng nhập: Tài khoản được thực hiện đăng nhập thông qua liên kết với TikTok.",
+      "Giới hạn thiết bị: Để đảm bảo quyền lợi và sự ổn định của tính năng Pro, tài khoản chỉ được sử dụng trên 01 thiết bị cố định. Việc đăng nhập nhiều thiết bị có thể làm ảnh hưởng đến trạng thái nâng cấp của tài khoản.",
+      "LƯU Ý QUAN TRỌNG: Tắt \"Gỡ bỏ ứng dụng không dùng\" để tránh trường hợp tự động đăng xuất khi lâu không sử dụng (đối với trường hợp này bên shop không chịu trách nhiệm vì đây là lỗi khách quan từ máy khách). Cách tắt chế độ này: Vào cài đặt của máy -> Chọn mục Ứng dụng -> tìm kiếm Appstore -> kéo xuống chọn mục Gỡ bỏ ứng dụng và tắt đi",
+      "Các bước thực hiện đăng nhập: để tránh bị lỗi truy cập thường xuyên thì làm kĩ từng bước ở dưới:\nBước 1: Mở trình duyệt (cực kỳ quan trọng vì đăng nhập trực tiếp bằng app dễ lỗi) và đăng nhập Tiktok trên điện thoại của bạn.",
+      "Bước 2: Nhập Username và Mật khẩu vào mục Đăng nhập của TikTok. Nếu cần nhận Mã xác minh (OTP), hãy nhấn vào \"Link nhận mã\" được cung cấp và ấn bắt đầu nhận mã",
+      "Bước 3: Sau khi đăng nhập thành công. Vào ứng dụng Hypic, chọn dòng chữ Đăng nhập bằng TikTok / Sign in with TikTok",
+      "Bước 4: Hệ thống sẽ tự động chuyển hướng bạn sang trình duyệt TikTok và tự động đăng nhập vào Hypic.",
+      "Lưu ý 1: Nếu hệ thống không chuyển hướng qua trình duyệt thì xoá app Tiktok, sau khi đăng nhập thành công thì tải lại app Tiktok (Nếu không muốn mất dữ liệu vào mục \"Dung lượng Iphone -> Tiktok -> Gỡ bỏ ứng dụng -> sau khi đăng nhập Hypic thành công thì chọn Cài đặt lại dữ liệu)",
+      "Lưu ý 2: Nếu đã đăng nhập trình duyệt mà khi vào Hypic bắt đăng nhập lại thì cứ nhập lại username và mật khẩu đã cấp như bước 2 là vào được nhé",
+      "Vui lòng không đăng xuất, xoá app, đổi máy, thay đổi thông tin nếu vi phạm sẽ không hoàn tiền và bảo hành !",
+      "Đối với tiktok dùng để đăng nhập vui lòng không thay đổi thông tin, sử dụng tài khoản với bất kì mục đích gì !! Bên em sẽ thu hồi tài khoản sau khi mình đăng nhập thành công hypic (sau 1h sẽ tự động thu hồi tính từ lúc đăng nhập tiktok thành công, vui lòng thao tác đăng nhập nhanh chóng)."
+    ],
     goi:[{ten:"Hypic - Gói Năm",loai:"Tiêu chuẩn",han:"1 năm",gia:250000}]
   },
 
   // ===================== 07. CANVA =====================
   {
-    id:"canva",ten:"Canva",logo:"",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    id:"canva",ten:"Canva",logo:"https://www.google.com/s2/favicons?domain=canva.com&sz=256", anhThe: "",banner:"", // THAY LINK ẢNH TẠI ĐÂY
     moTa:"Gói Canva mẫu, vui lòng xác nhận hình thức cấp quyền.",
     tinhNang:["Tiêu chuẩn dễ thay đổi"],
     huongDan:["Chọn gói Canva.","Xác nhận hình thức cấp quyền.","Nhận hướng dẫn sử dụng."],
@@ -203,111 +235,9 @@ Vui lòng không đăng xuất, xoá app, đổi máy, thay đổi thông tin n�
     goi:[{ten:"Canva - Tiêu chuẩn",loai:"Tiêu chuẩn",han:"1 năm",gia:190000}]
   },
 
-  // ================ 08. ỨNG DỤNG 01 =================
-  {
-    id:"ung-dung-01",ten:"Ứng dụng 01",logo:"",banner:"",
-    moTa:"Mô tả sản phẩm đang cập nhật.",tinhNang:["Tính năng sẽ cập nhật"],
-    huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
-    dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
-    goi:[
-      {ten:"Gói 1 tháng",loai:"Tiêu chuẩn",han:"1 tháng",gia:19000},
-      {ten:"Gói 3 tháng",loai:"Tiêu chuẩn",han:"3 tháng",gia:49000},
-      {ten:"Gói 12 tháng",loai:"Tiêu chuẩn",han:"12 tháng",gia:159000}
-    ]
-  },
-
-  // ================ 09. ỨNG DỤNG 02 =================
-  {
-    id:"ung-dung-02",ten:"Ứng dụng 02",logo:"",banner:"",
-    moTa:"Mô tả sản phẩm đang cập nhật.",tinhNang:["Tính năng sẽ cập nhật"],
-    huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
-    dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
-    goi:[
-      {ten:"Gói 1 tháng",loai:"Tiêu chuẩn",han:"1 tháng",gia:19000},
-      {ten:"Gói 3 tháng",loai:"Tiêu chuẩn",han:"3 tháng",gia:49000},
-      {ten:"Gói 12 tháng",loai:"Tiêu chuẩn",han:"12 tháng",gia:159000}
-    ]
-  },
-
-  // ================ 10. ỨNG DỤNG 03 =================
-  {
-    id:"ung-dung-03",ten:"Ứng dụng 03",logo:"",banner:"",
-    moTa:"Mô tả sản phẩm đang cập nhật.",tinhNang:["Tính năng sẽ cập nhật"],
-    huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
-    dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
-    goi:[
-      {ten:"Gói 1 tháng",loai:"Tiêu chuẩn",han:"1 tháng",gia:19000},
-      {ten:"Gói 3 tháng",loai:"Tiêu chuẩn",han:"3 tháng",gia:49000},
-      {ten:"Gói 12 tháng",loai:"Tiêu chuẩn",han:"12 tháng",gia:159000}
-    ]
-  },
-
-  // ================ 11. ỨNG DỤNG 04 =================
-  {
-    id:"ung-dung-04",ten:"Ứng dụng 04",logo:"",banner:"",
-    moTa:"Mô tả sản phẩm đang cập nhật.",tinhNang:["Tính năng sẽ cập nhật"],
-    huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
-    dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
-    goi:[
-      {ten:"Gói 1 tháng",loai:"Tiêu chuẩn",han:"1 tháng",gia:19000},
-      {ten:"Gói 3 tháng",loai:"Tiêu chuẩn",han:"3 tháng",gia:49000},
-      {ten:"Gói 12 tháng",loai:"Tiêu chuẩn",han:"12 tháng",gia:159000}
-    ]
-  },
-
-  // ================ 12. ỨNG DỤNG 05 =================
-  {
-    id:"ung-dung-05",ten:"Ứng dụng 05",logo:"",banner:"",
-    moTa:"Mô tả sản phẩm đang cập nhật.",tinhNang:["Tính năng sẽ cập nhật"],
-    huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
-    dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
-    goi:[
-      {ten:"Gói 1 tháng",loai:"Tiêu chuẩn",han:"1 tháng",gia:19000},
-      {ten:"Gói 3 tháng",loai:"Tiêu chuẩn",han:"3 tháng",gia:49000},
-      {ten:"Gói 12 tháng",loai:"Tiêu chuẩn",han:"12 tháng",gia:159000}
-    ]
-  },
-
-  // ================ 13. ỨNG DỤNG 06 =================
-  {
-    id:"ung-dung-06",ten:"Ứng dụng 06",logo:"",banner:"",
-    moTa:"Mô tả sản phẩm đang cập nhật.",tinhNang:["Tính năng sẽ cập nhật"],
-    huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
-    dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
-    goi:[
-      {ten:"Gói 1 tháng",loai:"Tiêu chuẩn",han:"1 tháng",gia:19000},
-      {ten:"Gói 3 tháng",loai:"Tiêu chuẩn",han:"3 tháng",gia:49000},
-      {ten:"Gói 12 tháng",loai:"Tiêu chuẩn",han:"12 tháng",gia:159000}
-    ]
-  },
-
-  // ================ 14. ỨNG DỤNG 07 =================
-  {
-    id:"ung-dung-07",ten:"Ứng dụng 07",logo:"",banner:"",
-    moTa:"Mô tả sản phẩm đang cập nhật.",tinhNang:["Tính năng sẽ cập nhật"],
-    huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
-    dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
-    goi:[
-      {ten:"Gói 1 tháng",loai:"Tiêu chuẩn",han:"1 tháng",gia:19000},
-      {ten:"Gói 3 tháng",loai:"Tiêu chuẩn",han:"3 tháng",gia:49000},
-      {ten:"Gói 12 tháng",loai:"Tiêu chuẩn",han:"12 tháng",gia:159000}
-    ]
-  },
-
-  // ================ 15. ỨNG DỤNG 08 =================
-  {
-    id:"ung-dung-08",ten:"Ứng dụng 08",logo:"",banner:"",
-    moTa:"Mô tả sản phẩm đang cập nhật.",tinhNang:["Tính năng sẽ cập nhật"],
-    huongDan:["Chọn gói.","Liên hệ cửa hàng.","Nhận hướng dẫn riêng."],
-    dieuKhoan:["Điều khoản mẫu, cần chỉnh trước khi bán."],
-    goi:[
-      {ten:"Gói 1 tháng",loai:"Tiêu chuẩn",han:"1 tháng",gia:19000},
-      {ten:"Gói 3 tháng",loai:"Tiêu chuẩn",han:"3 tháng",gia:49000},
-      {ten:"Gói 12 tháng",loai:"Tiêu chuẩn",han:"12 tháng",gia:159000}
-    ]
-  }
-
   // THÊM ỨNG DỤNG TẠI ĐÂY: đặt dấu phẩy sau khối cuối rồi thêm một khối mới.
+  // THAY LINK LOGO: sửa trường logo: "https://..." của từng ứng dụng ở trên.
+  // Logo lấy từ favicon của website ứng dụng; có thể thay bằng ảnh icon chính xác của bạn.
 ];
 
 /* ===================== HẾT CẤU HÌNH =====================
@@ -317,23 +247,43 @@ const $=id=>document.getElementById(id);
 const safe=v=>String(v??"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const money=n=>typeof n==='number'&&Number.isFinite(n)?n.toLocaleString('vi-VN')+'đ':'Liên hệ';
 const icon=a=>`<div class="app-icon">${a.logo?`<img src="${safe(a.logo)}" alt="" onerror="this.remove();this.parentNode.textContent='${safe(a.ten.slice(0,1).toUpperCase())}'">`:safe(a.ten.slice(0,1).toUpperCase())}</div>`;
+// Ảnh từng thẻ: ưu tiên ảnh gói, sau đó ảnh ứng dụng; nếu chưa có ảnh thì dùng logo trên nền hồng.
+const cover=(app,goi)=>{
+ const src=(goi&&goi.anh)||app.anhThe||'';
+ const label=(goi&&goi.ten)||app.ten;
+ const fallback=`<div class="cover-placeholder">${app.logo?`<img src="${safe(app.logo)}" alt="" onerror="this.remove()">`:''}<span>${safe(label)}</span></div>`;
+ return `<div class="product-cover">${src?`<img src="${safe(src)}" alt="${safe(label)}" loading="lazy" onerror="this.outerHTML=decodeURIComponent('${encodeURIComponent(fallback)}')">`:fallback}</div>`;
+};
 const listItems=(items,tag='li')=>(items||[]).map(x=>`<${tag}>${safe(x)}</${tag}>`).join('');
 function showHome(){
  $('main').innerHTML=`<section class="hero"><div class="wrap"><div class="hero-inner"><span class="eyebrow">Cửa hàng gói ứng dụng</span><h1>Ứng dụng yêu thích,<br>gói dùng phù hợp.</h1><p class="muted">${safe(CUA_HANG.gioiThieu)}</p><a class="btn" href="#danh-sach">Khám phá sản phẩm →</a></div></div></section><section class="section" id="danh-sach"><div class="wrap"><div class="section-head"><div><h2>Danh mục ứng dụng</h2><p class="muted">Chọn ứng dụng để xem gói và giá.</p></div><input class="search" id="search" type="search" placeholder="🔎 Tìm ứng dụng..." aria-label="Tìm ứng dụng"></div><div class="grid" id="appGrid"></div></div></section>`;
  $('search').addEventListener('input',e=>drawApps(e.target.value));drawApps('');
 }
-function drawApps(query){let q=query.trim().toLocaleLowerCase('vi');let apps=SAN_PHAM.filter(a=>a.ten.toLocaleLowerCase('vi').includes(q));$('appGrid').innerHTML=apps.map(a=>`<article class="app-card">${icon(a)}<h3>${safe(a.ten)}</h3><p>${safe(a.moTa)}</p><a class="btn btn-outline" href="#app/${encodeURIComponent(a.id)}">Xem các gói →</a></article>`).join('')||'<p class="empty">Không tìm thấy ứng dụng phù hợp.</p>'}
+function drawApps(query){let q=query.trim().toLocaleLowerCase('vi');let apps=SAN_PHAM.filter(a=>a.ten.toLocaleLowerCase('vi').includes(q));$('appGrid').innerHTML=apps.map(a=>`<article class="app-card">${cover(a)}<h3>${safe(a.ten)}</h3><p>${safe(a.moTa)}</p><a class="btn btn-outline" href="#app/${encodeURIComponent(a.id)}">Xem các gói →</a></article>`).join('')||'<p class="empty">Không tìm thấy ứng dụng phù hợp.</p>'}
 function showDetail(a){
- $('main').innerHTML=`<div class="wrap detail-top"><button class="back" onclick="location.hash=''">← Quay lại danh sách</button><div class="banner" id="banner"><div class="banner-content">${icon(a)}<div><h1>${safe(a.ten)}</h1><p>${safe(a.moTa)}</p></div></div></div><div class="detail-layout"><div><section class="panel"><h2>Thông tin ứng dụng</h2><p class="muted">${safe(a.moTa)}</p><ul class="features">${listItems(a.tinhNang)}</ul></section><section class="panel"><h2>Các gói đang bán</h2><p class="muted">Chọn gói phù hợp để liên hệ đặt hàng.</p><div class="packages">${a.goi.map((p,i)=>`<article class="package"><span class="tag">${safe(p.loai||'Gói ứng dụng')}</span><h3>${safe(p.ten)}</h3><div class="duration">Thời hạn: ${safe(p.han)}</div><div class="price">${money(p.gia)}</div><button class="btn" onclick="openOrder('${safe(a.id)}',${i})">Đặt mua ngay →</button></article>`).join('')}</div></section><section class="panel"><h2>Hướng dẫn & điều khoản</h2><details><summary>Hướng dẫn sử dụng ${safe(a.ten)}</summary><ol>${listItems(a.huongDan)}</ol></details><details><summary>Điều khoản sử dụng ${safe(a.ten)}</summary><ul>${listItems(a.dieuKhoan)}</ul></details></section></div><aside><div class="panel"><h2>Cần tư vấn?</h2><p class="muted">Liên hệ cửa hàng để hỏi về ${safe(a.ten)}.</p><div class="contact-box"><button class="btn" style="width:100%" onclick="openOrder('${safe(a.id)}',-1)">Liên hệ về ${safe(a.ten)}</button></div></div><div class="panel"><h3>Lưu ý</h3><p class="muted">Đây là cửa hàng độc lập, không phải website chính thức của ứng dụng.</p></div></aside></div></div>`;
+ $('main').innerHTML=`<div class="wrap detail-top"><button class="back" onclick="location.hash=''">← Quay lại danh sách</button><div class="banner" id="banner"><div class="banner-content">${icon(a)}<div><h1>${safe(a.ten)}</h1><p>${safe(a.moTa)}</p></div></div></div><div class="detail-layout"><div><section class="panel"><h2>Thông tin ứng dụng</h2><p class="muted">${safe(a.moTa)}</p><ul class="features">${listItems(a.tinhNang)}</ul></section><section class="panel"><h2>Các gói đang bán</h2><p class="muted">Chọn gói phù hợp để liên hệ đặt hàng.</p><div class="packages">${a.goi.map((p,i)=>`<article class="package">${cover(a,p)}<span class="tag">${safe(p.loai||'Gói ứng dụng')}</span><h3>${safe(p.ten)}</h3><div class="duration">Thời hạn: ${safe(p.han)}</div><div class="price">${money(p.gia)}</div><button class="btn" onclick="openOrder('${safe(a.id)}',${i})">Đặt mua ngay →</button></article>`).join('')}</div></section><section class="panel"><h2>Hướng dẫn & điều khoản</h2><details><summary>Hướng dẫn sử dụng ${safe(a.ten)}</summary><ol>${listItems(a.huongDan)}</ol></details><details><summary>Điều khoản sử dụng ${safe(a.ten)}</summary><ul>${listItems(a.dieuKhoan)}</ul></details></section></div><aside><div class="panel"><h2>Cần tư vấn?</h2><p class="muted">Liên hệ cửa hàng để hỏi về ${safe(a.ten)}.</p><div class="contact-box"><button class="btn" style="width:100%" onclick="openOrder('${safe(a.id)}',-1)">Liên hệ về ${safe(a.ten)}</button></div></div><div class="panel"><h3>Lưu ý</h3><p class="muted">Đây là cửa hàng độc lập, không phải website chính thức của ứng dụng.</p></div></aside></div></div>`;
  if(a.banner){const b=$('banner');const img=new Image();img.onload=()=>b.style.backgroundImage=`url("${a.banner.replace(/"/g,'%22')}")`;img.src=a.banner}
 }
 function route(){const hash=decodeURIComponent(location.hash.slice(1));if(hash.startsWith('app/')){const app=SAN_PHAM.find(a=>a.id===hash.slice(4));if(app)showDetail(app);else showHome()}else showHome();window.scrollTo(0,0)}
 let currentMessage='';
 function openOrder(id,index){const a=SAN_PHAM.find(x=>x.id===id);if(!a)return;const p=a.goi[index];currentMessage=p?`Xin chào ${CUA_HANG.ten}!\nTôi muốn đặt gói:\nỨng dụng: ${a.ten}\nTên gói: ${p.ten}\nLoại: ${p.loai||'Không phân loại'}\nThời hạn: ${p.han}\nGiá hiển thị: ${money(p.gia)}\nNhờ cửa hàng tư vấn cách mua và sử dụng.`:`Xin chào ${CUA_HANG.ten}! Tôi muốn được tư vấn về ứng dụng ${a.ten}.`;
+ const qr=$('qrPayment');
+ if(p && typeof p.gia==='number' && p.gia>0 && CUA_HANG.nganHang.trim() && CUA_HANG.soTaiKhoan.trim()){
+   const noiDung=CUA_HANG.noiDungChuyenKhoan.trim() || 'Thanh toan don hang';
+   const url=`https://img.vietqr.io/image/${encodeURIComponent(CUA_HANG.nganHang.trim())}-${encodeURIComponent(CUA_HANG.soTaiKhoan.trim())}-compact2.png?amount=${encodeURIComponent(p.gia)}&addInfo=${encodeURIComponent(noiDung)}&accountName=${encodeURIComponent(CUA_HANG.chuTaiKhoan)}`;
+   qr.innerHTML=`<div class="qr-wrap"><h3>Quét QR để thanh toán</h3><img alt="Mã QR chuyển khoản" src="${safe(url)}" onerror="this.style.display='none';this.nextElementSibling.textContent='Không tải được mã QR. Vui lòng liên hệ cửa hàng.'"><p class="qr-note">Kiểm tra tên người nhận và số tiền trong ứng dụng ngân hàng trước khi chuyển.</p><div class="qr-price">${money(p.gia)}</div><div class="note">${safe(CUA_HANG.nganHang)} · ${safe(CUA_HANG.soTaiKhoan)} · ${safe(CUA_HANG.chuTaiKhoan)}</div><div class="note">Nội dung: ${safe(noiDung)}</div></div>`;
+ }else{qr.innerHTML='<div class="warning">Chưa cấu hình QR thanh toán hoặc gói chưa có giá. Hãy liên hệ cửa hàng để đặt mua.</div>'}
  $('orderText').textContent=currentMessage;const links=[['Zalo',CUA_HANG.zalo],['Facebook',CUA_HANG.facebook],['Telegram',CUA_HANG.telegram]];$('contactLinks').innerHTML=links.filter(x=>/^https:\/\//i.test(x[1])).map(([name,url])=>`<a class="btn btn-outline btn-small" target="_blank" rel="noopener noreferrer" href="${safe(url)}">Mở ${name} ↗</a>`).join('');$('contactWarning').hidden=!!links.some(x=>/^https:\/\//i.test(x[1]));$('orderDialog').classList.add('show')}
 function closeOrder(){$('orderDialog').classList.remove('show')}
 async function copyOrder(){try{await navigator.clipboard.writeText(currentMessage);alert('Đã sao chép nội dung đặt hàng!')}catch(e){const t=document.createElement('textarea');t.value=currentMessage;document.body.appendChild(t);t.select();const ok=document.execCommand('copy');t.remove();alert(ok?'Đã sao chép nội dung đặt hàng!':'Không thể sao chép tự động. Hãy chọn và sao chép nội dung trong hộp thoại.')}}
 $('orderDialog').addEventListener('click',e=>{if(e.target===$('orderDialog'))closeOrder()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeOrder()});
+function toggleContacts(){const el=$('floatingLinks');const open=el.classList.toggle('show');$('floatButton').setAttribute('aria-expanded',String(open))}
+function setupFloatingContacts(){
+ const items=[['Facebook',CUA_HANG.facebook],['Zalo',CUA_HANG.zalo],['Nhóm Zalo',CUA_HANG.nhomZalo],['Telegram',CUA_HANG.telegram]];
+ const valid=items.filter(x=>/^https:\/\//i.test(x[1]));
+ $('floatingLinks').innerHTML=valid.length?valid.map(([name,url])=>`<a href="${safe(url)}" target="_blank" rel="noopener noreferrer">${safe(name)} ↗</a>`).join(''):'<span class="note">Chưa thêm liên kết liên hệ.</span>';
+}
+setupFloatingContacts();
 $('brandName').textContent=CUA_HANG.ten;$('footerName').textContent=CUA_HANG.ten;document.title=CUA_HANG.ten+' | Cửa hàng gói ứng dụng';window.addEventListener('hashchange',route);route();
 </script>
 </body>

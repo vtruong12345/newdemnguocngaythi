@@ -46,18 +46,18 @@ html,body,body *,button,input,textarea,select,summary{font-family:Arial,Helvetic
 @media(max-width:650px){.grid,.packages{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.app-card,.package{padding:9px;border-radius:15px}.product-cover{border-radius:11px}.product-cover .cover-placeholder{font-size:14px;gap:6px}.product-cover .cover-placeholder img{width:34px;height:34px}.app-card h3,.package h3{font-size:13px}.package .price{font-size:18px}.app-card .btn,.package .btn{padding:10px 6px;font-size:12px}}
 @media(max-width:370px){.grid,.packages{grid-template-columns:1fr}}
 
-/* ===== THẺ ỨNG DỤNG: ẢNH PHỦ TOÀN BỘ KHUNG ===== */
-.grid .app-card{position:relative;display:block;padding:0;min-height:0;aspect-ratio:4/5;overflow:hidden;border-radius:18px;background:#f4d6e8;isolation:isolate}
-.grid .app-card .product-cover{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;margin:0;border-radius:0;background:linear-gradient(135deg,#f5c5de,#e9d5fb 60%,#ffebf2)}
+/* THẺ TRANG CHỦ GIỐNG MẪU: ẢNH LỚN TRÊN, THÔNG TIN BÊN DƯỚI */
+.grid .app-card{display:flex;flex-direction:column;min-height:0;aspect-ratio:auto;padding:12px;border-radius:17px;background:#202b3e;border:1px solid #35435d;overflow:hidden;gap:0}
+.grid .app-card .product-cover{position:relative;inset:auto;width:100%;height:auto;aspect-ratio:1.75/1;border-radius:12px;margin:0 0 12px;background:#ead8e9;overflow:hidden}
 .grid .app-card .product-cover>img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.grid .app-card .product-cover .cover-placeholder{width:100%;height:100%;display:flex;flex-direction:column;gap:15px;font-size:clamp(19px,2vw,29px)}
-.grid .app-card .product-cover .cover-placeholder img{width:74px;height:74px}
-.grid .app-card .app-card-info{position:absolute;inset:auto 0 0;padding:38px 14px 14px;background:linear-gradient(transparent,rgba(39,22,38,.78));color:white;z-index:1;display:flex;flex-direction:column;gap:9px}
-.grid .app-card .app-card-info h3{font-size:18px;color:#fff;margin:0;text-shadow:0 1px 4px #0005}
-.grid .app-card .app-card-info .btn{background:#fff;color:#a94477;border:0;border-radius:11px;width:100%;font-weight:700}
-.grid .app-card .app-card-info .btn:hover{background:#fff0f6}
-.grid .app-card .app-card-info p{display:none}
-@media(max-width:650px){.grid .app-card{aspect-ratio:3/4}.grid .app-card .app-card-info{padding:30px 9px 9px}.grid .app-card .app-card-info h3{font-size:15px}.grid .app-card .app-card-info .btn{font-size:12px;padding:9px 4px}}
+.grid .app-card .product-cover .cover-placeholder{width:100%;height:100%;padding:12px;display:grid;place-items:center;font-size:13px;color:#765c71}
+.grid .app-card .product-cover .cover-placeholder img{display:none}
+.grid .app-card .app-card-info{position:static;inset:auto;padding:0;background:none;color:#f5f7fb;display:flex;flex-direction:column;gap:10px;flex:1}
+.grid .app-card .app-card-info h3{font-size:15px;line-height:1.5;color:#f5f7fb;margin:0;text-shadow:none}
+.grid .app-card .app-card-info .btn{background:#df81aa;color:#fff;border:0;border-radius:10px;width:100%;font-weight:700;margin-top:auto}
+.grid .app-card .app-card-info .btn:hover{background:#c76592}
+.grid .app-card:hover{border-color:#d79bb8}
+@media(max-width:650px){.grid .app-card{padding:8px;border-radius:13px}.grid .app-card .product-cover{border-radius:9px;margin-bottom:9px}.grid .app-card .app-card-info h3{font-size:13px}.grid .app-card .app-card-info .btn{font-size:12px;padding:9px 4px}}
 </style>
 </head>
 <body>
@@ -81,15 +81,14 @@ html,body,body *,button,input,textarea,select,summary{font-family:Arial,Helvetic
 const CUA_HANG = {
   ten: "Tiem Nha Bong",                       // ĐỔI TÊN CỬA HÀNG TẠI ĐÂY
   gioiThieu: "Khám phá các gói ứng dụng phù hợp với nhu cầu của bạn. Xem giá rõ ràng và liên hệ để được tư vấn trước khi mua.",
-  zalo: "",                            // THAY LINK LIÊN HỆ TẠI ĐÂY (ví dụ https://zalo.me/09xxxxxxxx)
-  facebook: "",                        // THAY LINK LIÊN HỆ TẠI ĐÂY (link trang Facebook)
-  telegram: "",                        // THAY LINK LIÊN HỆ TẠI ĐÂY
-  nhomZalo: "",                         // LINK NHÓM ZALO TẠI ĐÂY
+  zalo: "https://zalo.me/0981251350",                            // THAY LINK LIÊN HỆ TẠI ĐÂY (ví dụ https://zalo.me/09xxxxxxxx)
+  facebook: "https://www.facebook.com/vantruonggg.08",                        // THAY LINK LIÊN HỆ TẠI ĐÂY (link trang Facebook)
+  nhomZalo: "https://zalo.me/g/vzj45bc9lqytqbrz65gk",                         // LINK NHÓM ZALO TẠI ĐÂY
   // THÔNG TIN NHẬN CHUYỂN KHOẢN - nhập để hiển thị QR kèm số tiền từng gói
-  nganHang: "",                         // MÃ NGÂN HÀNG, ví dụ MB, VCB, ACB
-  soTaiKhoan: "",                       // SỐ TÀI KHOẢN NHẬN TIỀN
-  chuTaiKhoan: "",                      // TÊN CHỦ TÀI KHOẢN (không dấu nếu cần)
-  noiDungChuyenKhoan: "Thanh toan don hang" // Nội dung giao dịch minh bạch
+  nganHang: "Mb",                         // MÃ NGÂN HÀNG, ví dụ MB, VCB, ACB
+  soTaiKhoan: "0981251350",                       // SỐ TÀI KHOẢN NHẬN TIỀN
+  chuTaiKhoan: "DINH VAN TRUONG",                      // TÊN CHỦ TÀI KHOẢN (không dấu nếu cần)
+  noiDungChuyenKhoan: "CHUYEN TIEN" // Nội dung giao dịch minh bạch
 };
 
 // Chỉnh giá bán trong từng mục sản phẩm bên dưới.
@@ -101,14 +100,14 @@ const CUA_HANG = {
    - Ảnh nên có tỉ lệ dọc 4:5; ảnh khác tỉ lệ sẽ được cắt vừa khung.
    - anh: "https://...jpg" trong từng gói = ảnh riêng cho ô gói.
      Ví dụ: {ten:"Wink VIP 1 tháng",loai:"VIP",han:"1 tháng",gia:100000,anh:"https://example.com/wink.jpg"},
-   - Nếu để trống, website hiện thẻ nền hồng kèm logo ứng dụng.
+   - Nếu để trống, website báo Chưa thêm ảnh sản phẩm; không hiện logo phóng to.
    - Không cần chỉnh CSS hoặc mã hiển thị bên dưới.
 */
 const SAN_PHAM = [
 
   // ===================== 01. MEITU =====================
   {
-    id: "meitu", ten: "Meitu", logo: "https://cdn.upanhlaylink.com/i/v0GaYMBr.png", anhThe: "", banner: "", // THAY LINK ẢNH TẠI ĐÂY
+    id: "meitu", ten: "Meitu", logo: "https://cdn.upanhlaylink.com/i/v0GaYMBr.png", anhThe: "https://cdn.upanhlaylink.com/i/v0GaYMBr.png", banner: "", // THAY LINK ẢNH TẠI ĐÂY
     moTa: "Các gói Meitu theo thời hạn. Liên hệ để xác nhận quyền lợi và cách kích hoạt.",
     tinhNang: ["Gói theo tháng", "Thông tin quyền lợi được xác nhận khi đặt hàng"],
     huongDan: ["Chọn thời hạn phù hợp.", "Liên hệ cửa hàng để xác nhận gói.", "Làm theo hướng dẫn kích hoạt được cung cấp khi mua."],
@@ -133,7 +132,7 @@ const SAN_PHAM = [
 
   // ===================== 02. XINGTU =====================
   {
-    id:"xingtu",ten:"Xingtu",logo:"https://cdn.upanhlaylink.com/i/6SoTv0gX.png", anhThe: "",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    id:"xingtu",ten:"Xingtu",logo:"https://cdn.upanhlaylink.com/i/6SoTv0gX.png", anhThe: "https://cdn.upanhlaylink.com/i/6SoTv0gX.png",banner:"", // THAY LINK ẢNH TẠI ĐÂY
     moTa:"Lựa chọn các gói VIP và SVIP với thời hạn linh hoạt.",
     tinhNang:["Có tùy chọn VIP và SVIP", "Tư vấn quyền lợi theo từng gói"],
     huongDan:["Chọn VIP hoặc SVIP.","Chọn thời hạn và liên hệ tư vấn.","Nhận hướng dẫn kích hoạt tương ứng."],
@@ -159,7 +158,7 @@ const SAN_PHAM = [
 
   // ===================== 03. WINK =====================
   {
-    id:"wink",ten:"Wink",logo:"https://cdn.upanhlaylink.com/i/8Af9mPRs.png", anhThe: "",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    id:"wink",ten:"Wink",logo:"https://cdn.upanhlaylink.com/i/8Af9mPRs.png", anhThe: "https://cdn.upanhlaylink.com/i/8Af9mPRs.png",banner:"", // THAY LINK ẢNH TẠI ĐÂY
     moTa:"Các lựa chọn gói Wink theo thời hạn.",
     tinhNang:["Nhiều lựa chọn thời hạn","Xác nhận quyền lợi trước khi mua"],
     huongDan:["Chọn gói Wink.","Gửi yêu cầu đặt mua.","Nhận hướng dẫn sử dụng từ cửa hàng."],
@@ -177,7 +176,7 @@ const SAN_PHAM = [
 
   // ===================== 04. CAPCUT =====================
   {
-    id:"capcut",ten:"CapCut",logo:"https://cdn.upanhlaylink.com/i/WRniFaOv.png", anhThe: "",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    id:"capcut",ten:"CapCut",logo:"https://cdn.upanhlaylink.com/i/WRniFaOv.png", anhThe: "https://cdn.upanhlaylink.com/i/WRniFaOv.png",banner:"", // THAY LINK ẢNH TẠI ĐÂY
     moTa:"Danh sách gói CapCut với thời hạn mẫu dễ tùy chỉnh.",
     tinhNang:["Lựa chọn thời hạn","Tư vấn thông tin gói"],
     huongDan:["Chọn thời hạn.","Liên hệ để xác nhận cách cấp quyền.","Thực hiện theo hướng dẫn nhận được."],
@@ -205,7 +204,7 @@ const SAN_PHAM = [
 
   // ===================== 05. YOUTUBE =====================
   {
-    id:"youtube",ten:"YouTube",logo:"https://cdn.upanhlaylink.com/i/jqnzZ0QD.png", anhThe: "",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    id:"youtube",ten:"YouTube",logo:"https://cdn.upanhlaylink.com/i/jqnzZ0QD.png", anhThe: "https://cdn.upanhlaylink.com/i/jqnzZ0QD.png",banner:"", // THAY LINK ẢNH TẠI ĐÂY
     moTa:"Các gói YouTube theo thời hạn, thông tin mẫu cần xác nhận.",
     tinhNang:["Chọn thời hạn","Liên hệ xác nhận quyền lợi"],
     huongDan:["Chọn gói.","Liên hệ cửa hàng xác nhận điều kiện.","Nhận hướng dẫn sử dụng."],
@@ -218,7 +217,7 @@ const SAN_PHAM = [
 
   // ===================== 06. HYPIC =====================
   {
-    id:"hypic",ten:"Hypic",logo:"https://cdn.upanhlaylink.com/i/0L2is97s.png", anhThe: "",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    id:"hypic",ten:"Hypic",logo:"https://cdn.upanhlaylink.com/i/0L2is97s.png", anhThe: "https://cdn.upanhlaylink.com/i/0L2is97s.png",banner:"", // THAY LINK ẢNH TẠI ĐÂY
     moTa:"Gói Hypic mẫu, tùy chỉnh thông tin theo sản phẩm thực tế.",
     tinhNang:["Tiêu chuẩn dễ thay đổi"],
     huongDan:["Chọn gói Hypic.","Liên hệ xác nhận.","Nhận hướng dẫn sử dụng."],
@@ -241,7 +240,7 @@ const SAN_PHAM = [
 
   // ===================== 07. CANVA =====================
   {
-    id:"canva",ten:"Canva",logo:"https://www.google.com/s2/favicons?domain=canva.com&sz=256", anhThe: "",banner:"", // THAY LINK ẢNH TẠI ĐÂY
+    id:"canva",ten:"Canva",logo:"https://www.google.com/s2/favicons?domain=canva.com&sz=256", anhThe: "https://cdn.upanhlaylink.com/i/DF8KxRdQ.png",banner:"", // THAY LINK ẢNH TẠI ĐÂY
     moTa:"Gói Canva mẫu, vui lòng xác nhận hình thức cấp quyền.",
     tinhNang:["Tiêu chuẩn dễ thay đổi"],
     huongDan:["Chọn gói Canva.","Xác nhận hình thức cấp quyền.","Nhận hướng dẫn sử dụng."],
@@ -265,7 +264,7 @@ const icon=a=>`<div class="app-icon">${a.logo?`<img src="${safe(a.logo)}" alt=""
 const cover=(app,goi)=>{
  const src=(goi&&goi.anh)||app.anhThe||'';
  const label=(goi&&goi.ten)||app.ten;
- const fallback=`<div class="cover-placeholder">${app.logo?`<img src="${safe(app.logo)}" alt="" onerror="this.remove()">`:''}<span>${safe(label)}</span></div>`;
+ const fallback=`<div class="cover-placeholder"><span>Chưa thêm ảnh sản phẩm</span></div>`;
  return `<div class="product-cover">${src?`<img src="${safe(src)}" alt="${safe(label)}" loading="lazy" onerror="this.outerHTML=decodeURIComponent('${encodeURIComponent(fallback)}')">`:fallback}</div>`;
 };
 const listItems=(items,tag='li')=>(items||[]).map(x=>`<${tag}>${safe(x)}</${tag}>`).join('');

@@ -45,6 +45,19 @@ html,body,body *,button,input,textarea,select,summary{font-family:Arial,Helvetic
 @media(max-width:950px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:650px){.grid,.packages{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.app-card,.package{padding:9px;border-radius:15px}.product-cover{border-radius:11px}.product-cover .cover-placeholder{font-size:14px;gap:6px}.product-cover .cover-placeholder img{width:34px;height:34px}.app-card h3,.package h3{font-size:13px}.package .price{font-size:18px}.app-card .btn,.package .btn{padding:10px 6px;font-size:12px}}
 @media(max-width:370px){.grid,.packages{grid-template-columns:1fr}}
+
+/* ===== THẺ ỨNG DỤNG: ẢNH PHỦ TOÀN BỘ KHUNG ===== */
+.grid .app-card{position:relative;display:block;padding:0;min-height:0;aspect-ratio:4/5;overflow:hidden;border-radius:18px;background:#f4d6e8;isolation:isolate}
+.grid .app-card .product-cover{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;margin:0;border-radius:0;background:linear-gradient(135deg,#f5c5de,#e9d5fb 60%,#ffebf2)}
+.grid .app-card .product-cover>img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.grid .app-card .product-cover .cover-placeholder{width:100%;height:100%;display:flex;flex-direction:column;gap:15px;font-size:clamp(19px,2vw,29px)}
+.grid .app-card .product-cover .cover-placeholder img{width:74px;height:74px}
+.grid .app-card .app-card-info{position:absolute;inset:auto 0 0;padding:38px 14px 14px;background:linear-gradient(transparent,rgba(39,22,38,.78));color:white;z-index:1;display:flex;flex-direction:column;gap:9px}
+.grid .app-card .app-card-info h3{font-size:18px;color:#fff;margin:0;text-shadow:0 1px 4px #0005}
+.grid .app-card .app-card-info .btn{background:#fff;color:#a94477;border:0;border-radius:11px;width:100%;font-weight:700}
+.grid .app-card .app-card-info .btn:hover{background:#fff0f6}
+.grid .app-card .app-card-info p{display:none}
+@media(max-width:650px){.grid .app-card{aspect-ratio:3/4}.grid .app-card .app-card-info{padding:30px 9px 9px}.grid .app-card .app-card-info h3{font-size:15px}.grid .app-card .app-card-info .btn{font-size:12px;padding:9px 4px}}
 </style>
 </head>
 <body>
@@ -84,7 +97,8 @@ const CUA_HANG = {
 
 
 /* THAY LINK ẢNH TẠI ĐÂY:
-   - anhThe: "https://...jpg" trong mỗi ứng dụng = ảnh thẻ ở trang chủ.
+   - anhThe: "https://...jpg" trong mỗi ứng dụng = ảnh PHỦ KÍN TOÀN BỘ thẻ ở trang chủ.
+   - Ảnh nên có tỉ lệ dọc 4:5; ảnh khác tỉ lệ sẽ được cắt vừa khung.
    - anh: "https://...jpg" trong từng gói = ảnh riêng cho ô gói.
      Ví dụ: {ten:"Wink VIP 1 tháng",loai:"VIP",han:"1 tháng",gia:100000,anh:"https://example.com/wink.jpg"},
    - Nếu để trống, website hiện thẻ nền hồng kèm logo ứng dụng.
@@ -259,7 +273,7 @@ function showHome(){
  $('main').innerHTML=`<section class="hero"><div class="wrap"><div class="hero-inner"><span class="eyebrow">Cửa hàng gói ứng dụng</span><h1>Ứng dụng yêu thích,<br>gói dùng phù hợp.</h1><p class="muted">${safe(CUA_HANG.gioiThieu)}</p><a class="btn" href="#danh-sach">Khám phá sản phẩm →</a></div></div></section><section class="section" id="danh-sach"><div class="wrap"><div class="section-head"><div><h2>Danh mục ứng dụng</h2><p class="muted">Chọn ứng dụng để xem gói và giá.</p></div><input class="search" id="search" type="search" placeholder="🔎 Tìm ứng dụng..." aria-label="Tìm ứng dụng"></div><div class="grid" id="appGrid"></div></div></section>`;
  $('search').addEventListener('input',e=>drawApps(e.target.value));drawApps('');
 }
-function drawApps(query){let q=query.trim().toLocaleLowerCase('vi');let apps=SAN_PHAM.filter(a=>a.ten.toLocaleLowerCase('vi').includes(q));$('appGrid').innerHTML=apps.map(a=>`<article class="app-card">${cover(a)}<h3>${safe(a.ten)}</h3><p>${safe(a.moTa)}</p><a class="btn btn-outline" href="#app/${encodeURIComponent(a.id)}">Xem các gói →</a></article>`).join('')||'<p class="empty">Không tìm thấy ứng dụng phù hợp.</p>'}
+function drawApps(query){let q=query.trim().toLocaleLowerCase('vi');let apps=SAN_PHAM.filter(a=>a.ten.toLocaleLowerCase('vi').includes(q));$('appGrid').innerHTML=apps.map(a=>`<article class="app-card">${cover(a)}<div class="app-card-info"><h3>${safe(a.ten)}</h3><a class="btn" href="#app/${encodeURIComponent(a.id)}" aria-label="Xem các gói ${safe(a.ten)}">Xem các gói →</a></div></article>`).join('')||'<p class="empty">Không tìm thấy ứng dụng phù hợp.</p>'}
 function showDetail(a){
  $('main').innerHTML=`<div class="wrap detail-top"><button class="back" onclick="location.hash=''">← Quay lại danh sách</button><div class="banner" id="banner"><div class="banner-content">${icon(a)}<div><h1>${safe(a.ten)}</h1><p>${safe(a.moTa)}</p></div></div></div><div class="detail-layout"><div><section class="panel"><h2>Thông tin ứng dụng</h2><p class="muted">${safe(a.moTa)}</p><ul class="features">${listItems(a.tinhNang)}</ul></section><section class="panel"><h2>Các gói đang bán</h2><p class="muted">Chọn gói phù hợp để liên hệ đặt hàng.</p><div class="packages">${a.goi.map((p,i)=>`<article class="package">${cover(a,p)}<span class="tag">${safe(p.loai||'Gói ứng dụng')}</span><h3>${safe(p.ten)}</h3><div class="duration">Thời hạn: ${safe(p.han)}</div><div class="price">${money(p.gia)}</div><button class="btn" onclick="openOrder('${safe(a.id)}',${i})">Đặt mua ngay →</button></article>`).join('')}</div></section><section class="panel"><h2>Hướng dẫn & điều khoản</h2><details><summary>Hướng dẫn sử dụng ${safe(a.ten)}</summary><ol>${listItems(a.huongDan)}</ol></details><details><summary>Điều khoản sử dụng ${safe(a.ten)}</summary><ul>${listItems(a.dieuKhoan)}</ul></details></section></div><aside><div class="panel"><h2>Cần tư vấn?</h2><p class="muted">Liên hệ cửa hàng để hỏi về ${safe(a.ten)}.</p><div class="contact-box"><button class="btn" style="width:100%" onclick="openOrder('${safe(a.id)}',-1)">Liên hệ về ${safe(a.ten)}</button></div></div><div class="panel"><h3>Lưu ý</h3><p class="muted">Đây là cửa hàng độc lập, không phải website chính thức của ứng dụng.</p></div></aside></div></div>`;
  if(a.banner){const b=$('banner');const img=new Image();img.onload=()=>b.style.backgroundImage=`url("${a.banner.replace(/"/g,'%22')}")`;img.src=a.banner}
